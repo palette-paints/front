@@ -1,0 +1,12 @@
+.lock1 {
+    display: block;
+    margin-top: -670px;
+    margin-left: -150px;
+}
+
+.lock2 {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 700px;
+    z-index: -1;
+}

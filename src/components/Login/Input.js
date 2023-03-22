@@ -9,7 +9,7 @@ const UserDiv = styled.div`
     border: 2px solid #3465c9;
     border-radius: 15px;
     margin-right: 70px;
-    margin-left: 20px;
+    margin-left: 150px;
     display: flex;
     justify-content: center;
 
@@ -34,17 +34,19 @@ const UserDiv = styled.div`
 
 const Input = () => {
     return (
-        <div
+        <a
+            href="/login"
             style={{
                 display: 'flex',
                 flexDirection: 'row-reverse',
                 height: 'fit-content',
+                textDecorationLine: 'none',
             }}
         >
             <UserDiv>
                 <p>로그인</p>
             </UserDiv>
-        </div>
+        </a>
     );
 };
 

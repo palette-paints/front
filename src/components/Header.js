@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Logo3 from '@/svg/Logo.svg';
-import Input from '@/components/Login/Input';
-import loginIconInputs from '@/modules/Input.module.css';
+import { ReactComponent as Logo3 } from '../svg/Logo.svg';
+import Input from './Login/Input';
+import loginIconInputs from '../modules/Input.module.css';
+import Title from './Title';
 
-const Header = styled.div`
+const HeaderBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -35,20 +36,12 @@ const Header = styled.div`
     }
 `;
 
-const Header2 = () => {
-    const [innerWidth, setInnerWidth] = useState('');
-
-    const [width, setWidth] = useState(1000);
-
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            setWidth(window.innerWidth);
-        });
-    }, []);
-
+const Header = () => {
     return (
         <div className={loginIconInputs.HeaderDiv}>
-            <Header>
+            <Title></Title>
+
+            <HeaderBox>
                 <li>
                     <a href="/plays">체험 잼잼</a>
                 </li>
@@ -58,7 +51,7 @@ const Header2 = () => {
                 <li>
                     <a href="/minds">마음 쑥쑥</a>
                 </li>
-            </Header>
+            </HeaderBox>
 
             <Logo3 className={loginIconInputs.logoImg} />
 
@@ -67,4 +60,4 @@ const Header2 = () => {
     );
 };
 
-export default Header2;
+export default Header;

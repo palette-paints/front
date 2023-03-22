@@ -1,12 +1,4 @@
 import styled from 'styled-components';
-import LoginIcon from '@/svg/LoginIcon.svg';
-
-const Loginicon = styled.img`
-    background-color: white;
-    border-radius: 50%;
-    padding: 2px;
-    margin-right: 5px;
-`;
 
 const Box = styled.div`
     font-family: 'Montserrat Alternates';
@@ -29,12 +21,7 @@ const Box = styled.div`
 `;
 
 function LoginTitle() {
-    return (
-        <Box>
-            <Loginicon src={LoginIcon} />
-            로그인
-        </Box>
-    );
+    return <Box>로그인</Box>;
 }
 
 export default LoginTitle;
