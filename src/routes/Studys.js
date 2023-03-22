@@ -1,5 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 
-export default function Studys() {
-    return <div>Studys</div>;
+function Studys() {
+    return (
+        <>
+            <Header></Header>
+        </>
+    );
 }
+
+export default Studys;

@@ -34,18 +34,6 @@ const HeaderDiv = styled.div`
 `;
 
 const Header = () => {
-    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const resizeListener = () => {
-            setInnerWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', resizeListener);
-        return () => {
-            window.removeEventListener('resize', resizeListener);
-        };
-    }, []);
-
     return (
         <HeaderDiv>
             <LogoImg src={Logo} />

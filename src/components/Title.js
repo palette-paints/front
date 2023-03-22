@@ -20,8 +20,8 @@ const Box = styled.div`
     background: #3465c9;
 `;
 
-function LoginTitle() {
-    return <Box>로그인</Box>;
+function Title({ title }) {
+    return <Box>{title}</Box>;
 }
 
-export default LoginTitle;
+export default Title;

@@ -4,6 +4,7 @@ import { ReactComponent as Logo3 } from '../svg/Logo.svg';
 import Input from './Login/Input';
 import loginIconInputs from '../modules/Input.module.css';
 import Title from './Title';
+import { useLocation } from 'react-router-dom';
 
 const HeaderBox = styled.div`
     display: flex;
@@ -36,10 +37,17 @@ const HeaderBox = styled.div`
     }
 `;
 
-const Header = () => {
+const Header = ({ title }) => {
+    const [location, setLocation] = useState('');
+    const loc = useLocation().pathname;
+
+    useEffect(() => {
+        setLocation(loc.substring(1));
+    }, []);
+
     return (
         <div className={loginIconInputs.HeaderDiv}>
-            <Title></Title>
+            <Title title={location}></Title>
 
             <HeaderBox>
                 <li>

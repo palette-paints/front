@@ -1,5 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 
-export default function Minds() {
-    return <div>Minds</div>;
+function Minds() {
+    return (
+        <>
+            <Header />
+        </>
+    );
 }
+
+export default Minds;
