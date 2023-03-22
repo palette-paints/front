@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const InputForm = styled.input`

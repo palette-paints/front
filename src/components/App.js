@@ -4,6 +4,7 @@ import Main from '../routes/Main';
 import Plays from '../routes/Plays';
 import Studys from '../routes/Studys';
 import Minds from '../routes/Minds';
+import Login from '../routes/Login';
 
 const App = () => {
     return (
@@ -21,6 +22,10 @@ const App = () => {
                 <Route
                     path={`${process.env.PUBLIC_URL}/minds`}
                     element={<Minds />}
+                />
+                <Route
+                    path={`${process.env.PUBLIC_URL}/login`}
+                    element={<Login />}
                 />
             </Routes>
         </Router>

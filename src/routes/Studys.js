@@ -11,3 +11,5 @@ export default function Studys() {
         </>
     );
 }
+
+export default Studys;

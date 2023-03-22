@@ -4,7 +4,6 @@ import B1 from '../../svg/B1.svg';
 import B2 from '../../svg/B2.svg';
 import B3 from '../../svg/B3.svg';
 import B4 from '../../svg/B4.svg';
-import Buttons from '../../modules/Button.module.css';
 
 const ButtonDiv = styled.div`
     width: fit-content;
@@ -173,19 +172,19 @@ const Button = () => {
     return (
         <ButtonDiv>
             <StyledButton href="/plays" style={{ color: '#7E6FDD' }}>
-                <ButtonImage src={B1} className={Buttons.buttons} />
+                <ButtonImage src={B1} />
                 <p>체험 잼잼</p>
             </StyledButton>
             <StyledButton href="/studys" style={{ color: '#3F8AB5' }}>
-                <ButtonImage src={B2} className={Buttons.buttons} />
+                <ButtonImage src={B2} />
                 <p>학업 튼튼</p>
             </StyledButton>
             <StyledButton href="/minds" style={{ color: '#71AF8A' }}>
-                <ButtonImage src={B3} className={Buttons.buttons} />
+                <ButtonImage src={B3} />
                 <p>마음 쑥쑥</p>
             </StyledButton>
             <StyledButton hreef="#" style={{ color: '#3465C9' }}>
-                <ButtonImage src={B4} className={Buttons.buttons} />
+                <ButtonImage src={B4} />
                 <p>마이페이지</p>
             </StyledButton>
         </ButtonDiv>

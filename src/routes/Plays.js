@@ -1,5 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 
-export default function Plays() {
-    return <div>Plays</div>;
+function Plays() {
+    return (
+        <>
+            <Header />
+        </>
+    );
 }
+
+export default Plays;

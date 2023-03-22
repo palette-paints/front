@@ -2,15 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import InputForm from './InputForm.js';
 import LButton from './LButton.js';
-import Lock1 from '@/svg/Lock.svg';
-import Lock2 from '@/svg/Lock2.svg';
+import Lock1 from '../../svg/Lock.svg';
+import Lock2 from '../../svg/Lock2.svg';
+import '../../css/login.css';
+
 const LoginPart = styled.div`
     height: 600px;
     width: 800px;
     background: #fffcf8;
     border-radius: 50px;
     display: flex;
-
+    margin-top: -100px;
     flex-direction: column;
     box-shadow: 6px 6px 30px rgba(170, 170, 170, 0.6);
     background: rgba(255, 252, 248, 0.3);
@@ -140,8 +142,8 @@ const LoginBox = () => {
                 </Find>
             </LoginPart>
 
-            <Lock1 />
-            <Lock2 />
+            <img src={Lock1} alt="lock" className="lock1" />
+            <img src={Lock2} alt="lock" className="lock2" />
         </Container>
     );
 };

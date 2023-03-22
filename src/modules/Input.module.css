@@ -1,17 +1,13 @@
-
-
-.HeaderDiv{
-    display: flex; 
+.HeaderDiv {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 1px;  
+    padding-top: 1px;
     margin-top: -1px;
-    margin-top : 50px;  
+    margin-top: 50px;
     padding-bottom: 30px;
-
 }
 
-.logoImg{
+.logoImg {
     margin-top: -13px;
-
 }
