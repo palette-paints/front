@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import StudysBar from '../PostView/StudysBar';
 import commentBlue from '../../images/commentBlue.png';
 import commentWhite from '../../images/commentWhite.png';
@@ -173,25 +173,33 @@ const PaginationBox = styled.div`
 //             useQueryString: true,
 //         },
 //     }).then((res) => res.json());
-const host = instance.get('/studys/1');
-const fetcher = (host) => host.then((res) => res.data);
+// const host = instance.get('/studys/1');
+// const fetcher = (host) => host.then((res) => res.data);
 function StudysDetail() {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
 
-    const route = useRouter();
-    console.log(route.query.id);
-    let url = 'http://3.38.52.33:8080/studys/' + route.query.id;
-    const { data, error } = useSWR(host, fetcher);
-    if (error) return '에러발생';
-    if (!data) return '로딩중..';
-    const date = new Date(data.createdAt).toISOString().split('T')[0];
+    const [datas, setDatas] = useState([]);
+    useEffect(() => {
+        getDatas();
+    }, []);
+    // if (error) return '에러발생';
+    // if (!data) return '로딩중..';
+    // console.log(data.comments);
+    const getDatas = () => {
+        fetch(`http://3.38.52.33:8080/studys/${this.props.match.params.id}`, {
+            method: 'get',
+        })
+            .then((res) => res.data)
+            .then((res) => setDatas(res));
+    };
+    const date = new Date(datas.createdAt).toISOString().split('T')[0];
 
     return (
         <>
-            <StudysBar category={data.category} />
+            <StudysBar category={datas.category} />
             <CardTitle>
                 <p
                     style={{
@@ -202,7 +210,7 @@ function StudysDetail() {
                         fontSize: '25px',
                     }}
                 >
-                    {data.title}
+                    {datas.title}
                 </p>
                 <Card>
                     <IdBox>
@@ -213,7 +221,7 @@ function StudysDetail() {
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
-                            {data.user}
+                            {datas.user}
                         </span>
                         <span style={{ position: 'absolute', right: '15px' }}>
                             {date}
@@ -243,7 +251,7 @@ function StudysDetail() {
                                 alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
-                            {data.comments.length}
+                            {datas.comments.length}
                         </Button>
                         <Button
                             onMouseOver={() => setIsBookmarkHover(true)}
@@ -261,7 +269,7 @@ function StudysDetail() {
                         </Button>
                     </div>
                     <p style={{ position: 'static', margin: '80px 0 0  50px' }}>
-                        {data.studyDetails}
+                        {datas.studyDetails}
                     </p>
                     <img
                         src="/images/sample.png"
@@ -293,10 +301,10 @@ function StudysDetail() {
                     style={{ margin: '0 3px 0 0' }}
                 />
                 답변
-                <span>{data.comments.length}</span>
+                <span>{datas.comments.length}</span>
             </CommentBar>
 
-            {data.comments.map((item) => (
+            {datas.comments.map((item) => (
                 <Comment>
                     <IdBox style={{ width: '860px' }}>
                         <img

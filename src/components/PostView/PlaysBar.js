@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import 'react-pagination-bar/dist/index.css';
-import logo from '/public/images/PlaysLogo.png';
+import logo from '../../images/PlaysLogo.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -60,7 +60,7 @@ const Button = styled.button`
 `;
 // const host = instance.get('/plays/1');
 // const fetcher = (host) => host.then((res) => res.data);
-function MindsBar() {
+function PlaysBar(props) {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         getDatas();
@@ -86,7 +86,7 @@ function MindsBar() {
             <Content>
                 <Categories>
                     <Button>전체</Button>
-                    {data.categories.map((category) =>
+                    {datas.categories.map((category) =>
                         props && category === props.category ? (
                             <Button
                                 style={{ background: '#7e6fdd', color: '#fff' }}
@@ -111,4 +111,4 @@ function MindsBar() {
         </>
     );
 }
-export default MindsBar;
+export default PlaysBar;

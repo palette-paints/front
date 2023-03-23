@@ -8,6 +8,7 @@ import MindsBar from '../PostView/MindsBar';
 import axios from 'axios';
 // import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -124,7 +125,7 @@ function MindsList() {
 
     const getDatas = async () => {
         const response = await axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get('http://3.38.52.33:8080/minds')
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
@@ -145,24 +146,27 @@ function MindsList() {
                     <Question>+ 질문하기</Question>
                 </a>
                 <List>
-                    {datas &&
+                    {/* {datas &&
                         datas.map((data) => (
                             <p>
                                 {data.id} {data.title}
                             </p>
-                        ))}
-                    {/* {data.minds &&
-                        data.minds.map((item) => (
-                            <a
-                                href={{
-                                    pathname: '/minds/[id]',
-                                    query: {
-                                        id: item.mindId,
-                                    },
-                                }}
+                        ))} */}
+                    {datas.minds &&
+                        datas.minds.map((item) => (
+                            // <Link
+                            //     to={{
+                            //         pathname: '/minds/${item.mindId}',
+                            //         query: {
+                            //             id: item.mindId,
+                            //         },
+                            //     }}
+                            // >
+                            <Link
+                                to={`${process.env.PUBLIC_URL}/minds/${item.mindId}`}
                             >
                                 <PostCard data={item} />
-                            </a>
+                            </Link>
                             // <PostCard
                             //   onClick={() => {
                             //     router.push(
@@ -175,7 +179,7 @@ function MindsList() {
                             //   }}
                             //   data={item}
                             // />
-                        ))} */}
+                        ))}
                 </List>
                 <PaginationBox>
                     <Pagination

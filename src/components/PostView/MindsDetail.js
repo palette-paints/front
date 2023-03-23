@@ -1,16 +1,16 @@
 import React from 'react';
-import MindsBar from '../MindsBar';
-import { useState, useEffect } from 'react';
+import MindsBar from '../PostView/MindsBar';
+import { useState, useEffect, useRouter } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import commentGreen from '/public/images/commentGreen.png';
-import commentWhite from '/public/images/commentWhite.png';
-import bookmarkGreen from '/public/images/bookmarkGreen.png';
-import bookmarkWhite from '/public/images/bookmarkWhite.png';
-import likeGreen from '/public/images/likeGreen.png';
-import likeWhite from '/public/images/likeWhite.png';
-import hateGreen from '/public/images/hateGreen.png';
-import hateWhite from '/public/images/hateWhite.png';
+import commentGreen from '../../images/commentGreen.png';
+import commentWhite from '../../images/commentWhite.png';
+import bookmarkGreen from '../../images/bookmarkGreen.png';
+import bookmarkWhite from '../../images/bookmarkWhite.png';
+import likeGreen from '../../images/likeGreen.png';
+import likeWhite from '../../images/likeWhite.png';
+import hateGreen from '../../images/hateGreen.png';
+import hateWhite from '../../images/hateWhite.png';
 
 const CardTitle = styled.div`
     display: flex;
@@ -177,8 +177,8 @@ const PaginationBox = styled.div`
 //             useQueryString: true,
 //         },
 //     }).then((res) => res.json());
-const host = instance.get('/minds/1');
-const fetcher = (host) => host.then((res) => res.data);
+// const host = instance.get('/minds/1');
+// const fetcher = (host) => host.then((res) => res.data);
 
 function MindsDetail() {
     const [isCommentHover, setIsCommentHover] = useState(false);
@@ -192,18 +192,29 @@ function MindsDetail() {
     //   return data;
     // };
     // const { data } = useSWR('http', fetch);
-    const route = useRouter();
-    console.log(route.query.id);
+    // const route = useRouter();
+    // console.log(route.query.id);
 
-    let url = 'http://3.38.52.33:8080/minds/' + route.query.id;
-    const { data, error } = useSWR(host, fetcher);
-    if (error) return '에러발생';
-    if (!data) return '로딩중..';
-    console.log(data.comments);
-    const date = new Date(data.createdAt).toISOString().split('T')[0];
+    // let url = 'http://3.38.52.33:8080/minds/' + route.query.id;
+    // const { data, error } = useSWR(host, fetcher);
+    const [datas, setDatas] = useState([]);
+    useEffect(() => {
+        getDatas();
+    }, []);
+    // if (error) return '에러발생';
+    // if (!data) return '로딩중..';
+    // console.log(data.comments);
+    const getDatas = () => {
+        fetch(`http://3.38.52.33:8080/minds/${this.props.match.params.id}`, {
+            method: 'get',
+        })
+            .then((res) => res.data)
+            .then((res) => setDatas(res));
+    };
+    const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
         <>
-            <MindsBar category={data.category} />
+            <MindsBar category={datas.category} />
             <CardTitle>
                 <p
                     style={{
@@ -214,7 +225,7 @@ function MindsDetail() {
                         fontSize: '25px',
                     }}
                 >
-                    {data.title}
+                    {datas.title}
                     {/* 2022년 3월 고1 수학 모의고사 30번 질문합니다 */}
                 </p>
                 <Card>
@@ -226,7 +237,7 @@ function MindsDetail() {
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
-                            {data.user}
+                            {datas.user}
                         </span>
                         <span style={{ position: 'absolute', right: '15px' }}>
                             {date}
@@ -256,7 +267,7 @@ function MindsDetail() {
                                 alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
-                            {data.comments.length}
+                            {datas.comments.length}
                         </Button>
                         <Button
                             onMouseOver={() => setIsBookmarkHover(true)}
@@ -274,7 +285,7 @@ function MindsDetail() {
                         </Button>
                     </div>
                     <p style={{ position: 'static', margin: '80px 0 0  50px' }}>
-                        {data.mindDetails}
+                        {datas.mindDetails}
                     </p>
                     <img
                         src="/images/sample.png"
@@ -306,9 +317,9 @@ function MindsDetail() {
                     style={{ margin: '0 3px 0 0' }}
                 />
                 답변
-                <span>{data.comments.length}</span>
+                <span>{datas.comments.length}</span>
             </CommentBar>
-            {data.comments.map((item) => (
+            {datas.comments.map((item) => (
                 <Comment>
                     <IdBox style={{ width: '860px' }}>
                         <img

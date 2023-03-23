@@ -61,7 +61,7 @@ const Button = styled.button`
 `;
 // const host = instance.get('/minds');
 // const fetcher = (host) => host.then((res) => res.data);
-function MindsBar(props) {
+function MindsBar() {
     // const { data, error } = useSWR(host, fetcher);
     // if (error) return '에러발생';
     // if (!data) return '로딩중..';
@@ -72,7 +72,7 @@ function MindsBar(props) {
 
     const getDatas = async () => {
         const response = await axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get('http://3.38.52.33:8080/minds')
             .then((response) => {
                 setDatas(response.data);
                 console.log(datas);
@@ -90,17 +90,21 @@ function MindsBar(props) {
             <Content>
                 <Categories>
                     <Button>전체</Button>
-                    {/* {data.categories.map((category) =>
-                        category === props && props.category ? (
-                            <Button
-                                style={{ background: '#71af8a', color: '#fff' }}
-                            >
-                                {category}
-                            </Button>
-                        ) : (
-                            <Button>{category}</Button>
-                        )
-                    )} */}
+                    {/* {datas.categories &&
+                        datas.categories.map((category) =>
+                            category === props && props.category ? (
+                                <Button
+                                    style={{
+                                        background: '#71af8a',
+                                        color: '#fff',
+                                    }}
+                                >
+                                    {category}
+                                </Button>
+                            ) : (
+                                <Button>{category}</Button>
+                            )
+                        )} */}
 
                     {/* <Button>전체</Button>
           <Button>학업</Button>
