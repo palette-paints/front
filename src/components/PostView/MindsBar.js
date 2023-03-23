@@ -83,10 +83,10 @@ function MindsBar() {
     };
     return (
         <>
-            <Banner>
+            {/* <Banner>
                 <img src={logo.src} style={{ margin: '0 10px 0 0' }} />
                 마음 쑥쑥
-            </Banner>
+            </Banner> */}
             <Content>
                 <Categories>
                     <Button>전체</Button>
