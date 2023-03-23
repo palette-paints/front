@@ -129,7 +129,7 @@ function StudysList() {
                     {datas.studies &&
                         datas.studies.map((item) => (
                             <Link
-                                to={`${process.env.PUBLIC_URL}/minds/${item.studyId}`}
+                                to={`${process.env.PUBLIC_URL}/studys/${item.studyId}`}
                             >
                                 <PostCard data={item} />
                             </Link>
