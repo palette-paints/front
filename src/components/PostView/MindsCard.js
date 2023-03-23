@@ -5,6 +5,7 @@ import commentGreen from '../../images/commentGreen.png';
 import commentWhite from '../../images/commentWhite.png';
 import bookmarkGreen from '../../images/bookmarkGreen.png';
 import bookmarkWhite from '../../images/bookmarkWhite.png';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 const Card = styled.div`
     display: flex;
@@ -86,58 +87,60 @@ function PostCard(props) {
     const date = new Date(props.data.createdDate).toISOString().split('T')[0];
     return (
         <Card>
-            <IdBox>
-                <img
-                    src="images/profile.png"
-                    width={45}
-                    alt="프사"
-                    style={{ position: 'absolute', left: '15px' }}
-                />
-                <span style={{ position: 'absolute', left: '60px' }}>
-                    {props.data.user}
-                </span>
-                <span style={{ position: 'absolute', right: '15px' }}>
-                    {date}
-                </span>
-            </IdBox>
-            <h4>{props.data.title}</h4>
-            <p>{props.data.mindDetails}</p>
-            <Bottom>
-                <Category>{props.data.category}</Category>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <Button
-                        onMouseOver={() => setIsCommentHover(true)}
-                        onMouseOut={() => setIsCommentHover(false)}
-                        style={{ width: '60px' }}
-                    >
-                        <img
-                            width="20px"
-                            src={
-                                isCommentHover
-                                    ? commentWhite.src
-                                    : commentGreen.src
-                            }
-                            alt="댓글"
-                            style={{ margin: '0 3px 0 0' }}
-                        />
-                        {props.data.comments}
-                    </Button>
-                    <Button
-                        onMouseOver={() => setIsBookmarkHover(true)}
-                        onMouseOut={() => setIsBookmarkHover(false)}
-                    >
-                        <img
-                            width="20px"
-                            src={
-                                isBookmarkHover
-                                    ? bookmarkWhite.src
-                                    : bookmarkGreen.src
-                            }
-                            alt="북마크"
-                        />
-                    </Button>
-                </div>
-            </Bottom>
+            <Link to={`/minds/${props.mindId}`}>
+                <IdBox>
+                    <img
+                        src="images/profile.png"
+                        width={45}
+                        alt="프사"
+                        style={{ position: 'absolute', left: '15px' }}
+                    />
+                    <span style={{ position: 'absolute', left: '60px' }}>
+                        {props.data.user}
+                    </span>
+                    <span style={{ position: 'absolute', right: '15px' }}>
+                        {date}
+                    </span>
+                </IdBox>
+                <h4>{props.data.title}</h4>
+                <p>{props.data.mindDetails}</p>
+                <Bottom>
+                    <Category>{props.data.category}</Category>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <Button
+                            onMouseOver={() => setIsCommentHover(true)}
+                            onMouseOut={() => setIsCommentHover(false)}
+                            style={{ width: '60px' }}
+                        >
+                            <img
+                                width="20px"
+                                src={
+                                    isCommentHover
+                                        ? commentWhite.src
+                                        : commentGreen.src
+                                }
+                                alt="댓글"
+                                style={{ margin: '0 3px 0 0' }}
+                            />
+                            {props.data.comments}
+                        </Button>
+                        <Button
+                            onMouseOver={() => setIsBookmarkHover(true)}
+                            onMouseOut={() => setIsBookmarkHover(false)}
+                        >
+                            <img
+                                width="20px"
+                                src={
+                                    isBookmarkHover
+                                        ? bookmarkWhite.src
+                                        : bookmarkGreen.src
+                                }
+                                alt="북마크"
+                            />
+                        </Button>
+                    </div>
+                </Bottom>
+            </Link>
         </Card>
     );
 }

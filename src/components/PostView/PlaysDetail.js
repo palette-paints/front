@@ -6,7 +6,9 @@ import commentPur from '../../images/commentPur.png';
 import commentWhite from '../../images/commentWhite.png';
 import bookmarkPur from '../../images/bookmarkPur.png';
 import bookmarkWhite from '../../images/bookmarkWhite.png';
-
+import { useParams } from 'react-router';
+import axios from 'axios';
+import Header from '../Header';
 const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
@@ -159,16 +161,23 @@ function CheDetail() {
     // if (error) return '에러발생';
     // if (!data) return '로딩중..';
     // console.log(data.comments);
-    const getDatas = () => {
-        fetch(`http://3.38.52.33:8080/plays/${this.props.match.params.id}`, {
-            method: 'get',
-        })
-            .then((res) => res.data)
-            .then((res) => setDatas(res));
+    const { id } = useParams();
+    const getDatas = async () => {
+        const response = await axios
+            .get(`http://3.38.52.33:8080/plays/${id}`)
+            .then((response) => {
+                setDatas(response.data);
+                console.log('성공');
+                console.log(datas);
+            })
+            .catch((error) => {
+                console.log('전체 글 불러오기 실패', error.message);
+            });
     };
     const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
         <>
+            <Header />
             <PlaysBar />
             <CardTitle>
                 <div

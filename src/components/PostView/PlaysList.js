@@ -122,16 +122,7 @@ function PlaysList() {
                 <List>
                     {datas.plays &&
                         datas.plays.map((item) => (
-                            <Link
-                                href={{
-                                    pathname: '/plays/[id]',
-                                    query: {
-                                        id: item.playId,
-                                    },
-                                }}
-                            >
-                                <PostCard data={item} />
-                            </Link>
+                            <PostCardImg data={item} />
                             // <PostCard
                             //   onClick={() => {
                             //     router.push(

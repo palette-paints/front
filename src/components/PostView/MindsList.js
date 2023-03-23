@@ -8,7 +8,6 @@ import MindsBar from '../PostView/MindsBar';
 import axios from 'axios';
 // import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -162,11 +161,7 @@ function MindsList() {
                             //         },
                             //     }}
                             // >
-                            <Link
-                                to={`${process.env.PUBLIC_URL}/minds/${item.mindId}`}
-                            >
-                                <PostCard data={item} />
-                            </Link>
+                            <PostCard data={item} mindId={item.mindId} />
                             // <PostCard
                             //   onClick={() => {
                             //     router.push(
