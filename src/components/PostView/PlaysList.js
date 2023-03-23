@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PlaysBar from '@/api/PostView/PlaysBar';
-import 'bootstrap/dist/css/bootstrap.css';
+
 import PostCardImg from '@/api/PostView/PlaysCardImg';
 import { Pagination } from 'react-pagination-bar';
 import 'react-pagination-bar/dist/index.css';
@@ -146,24 +146,7 @@ function PlaysList() {
                             // />
                         ))}
                 </List>
-                <PaginationBox>
-                    <Pagination
-                        totalItems={100}
-                        itemsPerPage={10}
-                        pageNeighbours={9}
-                        withProgressBar={false}
-                        onPageСhange={(pageNumber) => console.log(pageNumber)}
-                        startLabel={false}
-                        endLabel={false}
-                        customClassNames={{
-                            rpbItemClassName: 'custom-item',
-                            rpbItemClassNameActive: 'custom-item--active',
-                            rpbGoItemClassName: 'custom-go-item',
-                            rpbItemClassNameDisable: 'custom-item--disable',
-                            rpbRootClassName: 'custom-root',
-                        }}
-                    />
-                </PaginationBox>
+
                 {/* <Pagination
         currentPage={currentPage}
         itemsPerPage={pagePostsLimit}

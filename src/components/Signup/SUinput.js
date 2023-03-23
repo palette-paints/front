@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import InputForm from '../components/InputForm.js';
-import LButton from '../components/LButton.js';
-import Lock1 from '../svg/Lock.svg';
-import Lock2 from '../svg/Lock2.svg';
-import Bar from './Bar.js.js.js.js';
+import InputForm from '../Login/InputForm';
+import LButton from '../Login/LButton';
+import Lock1 from '../../svg/Lock.svg';
+import Lock2 from '../../svg/Lock2.svg';
+
 const LoginPart = styled.div`
     height: 600px;
     width: 800px;

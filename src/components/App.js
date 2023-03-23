@@ -8,7 +8,7 @@ import StudysDetail from '../components/PostView/StudysDetail';
 import Minds from '../routes/Minds';
 import MindsDetail from '../components/PostView/MindsDetail';
 import Login from '../routes/Login';
-
+import Signup from '../routes/Signup';
 const App = () => {
     return (
         <Router>
@@ -44,6 +44,10 @@ const App = () => {
                 <Route
                     path={`${process.env.PUBLIC_URL}/login`}
                     element={<Login />}
+                />
+                <Route
+                    path={`${process.env.PUBLIC_URL}/signup`}
+                    element={<Signup />}
                 />
             </Routes>
         </Router>

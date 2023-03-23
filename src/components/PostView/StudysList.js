@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.css';
+
 import PostCard from '../PostView/StudysCard';
 import StudysBar from '../PostView/StudysBar';
 import PostCardImg from '../PostView/StudysCardImg';
-import { Pagination } from 'react-pagination-bar';
+
 import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
 // import Link from 'next/link';
@@ -148,24 +148,7 @@ function StudysList() {
                             // />
                         ))}
                 </List>
-                <PaginationBox>
-                    <Pagination
-                        totalItems={100}
-                        itemsPerPage={10}
-                        pageNeighbours={9}
-                        withProgressBar={false}
-                        onPageСhange={(pageNumber) => console.log(pageNumber)}
-                        startLabel={false}
-                        endLabel={false}
-                        customClassNames={{
-                            rpbItemClassName: 'custom-item',
-                            rpbItemClassNameActive: 'custom-item--active',
-                            rpbGoItemClassName: 'custom-go-item',
-                            rpbItemClassNameDisable: 'custom-item--disable',
-                            rpbRootClassName: 'custom-root',
-                        }}
-                    />
-                </PaginationBox>
+
                 {/* <Pagination
         currentPage={currentPage}
         itemsPerPage={pagePostsLimit}

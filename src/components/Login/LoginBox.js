@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputForm from './InputForm.js';
 import LButton from './LButton.js';
 import Lock1 from '../../svg/Lock.svg';
 import Lock2 from '../../svg/Lock2.svg';
 import '../../css/login.css';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const LoginPart = styled.div`
     height: 600px;
@@ -111,23 +113,62 @@ const Find = styled.div`
 `;
 
 const LoginBox = () => {
+    const [loginId, setLoginId] = useState('');
+    const [loginPw, setLoginPw] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const onEmailHnadler = (event) => {
+        setLoginId(event.currentTarget.value);
+    };
+    const onPasswordHandler = (event) => {
+        setLoginPw(event.currentTarget.value);
+    };
+
+    const connectAccount = async function () {
+        try {
+            let response = await axios({
+                method: 'POST',
+                url: 'http://3.38.52.33:8080/login/form',
+                data: {
+                    loginId: loginId,
+                    loginPw: loginPw,
+                },
+            });
+            console.log(response);
+            document.write(JSON.stringify(response));
+        } catch (err) {
+            console.log(err);
+            throw new Error(err);
+        }
+    };
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        connectAccount();
+    };
+
     return (
         <Container>
             <LoginPart>
                 <Welcome>Welcome!</Welcome>
                 <form>
                     <InputForm
-                        type="email"
+                        type="text"
                         placeholder="아이디를 입력해주세요."
+                        onChange={onEmailHnadler}
                     />
                     <InputForm
                         type="password"
                         placeholder="비밀번호를 입력해주세요."
+                        onChange={onPasswordHandler}
                     />
                     <CheckBox type="checkbox" value="loginMaintain" />
                     <CheckDiv>로그인 상태 유지</CheckDiv>
 
-                    <LButton>로그인</LButton>
+                    <LButton type="button" onClick={onSubmit}>
+                        로그인
+                    </LButton>
                     <LButton style={{ backgroundColor: '#1DC200' }}>
                         네이버 아이디로 로그인
                     </LButton>
@@ -138,7 +179,7 @@ const LoginBox = () => {
                     <li>|</li>
                     <li>아이디 찾기</li>
                     <li>|</li>
-                    <li>회원가입</li>
+                    <a href="/signup">회원가입</a>
                 </Find>
             </LoginPart>
 
