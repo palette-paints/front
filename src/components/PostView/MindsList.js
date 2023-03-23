@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.css';
+
 import PostCard from '../PostView/MindsCard';
 // import PostCardImg from '@/api/PostView/MindsCardImg';
 import { Pagination } from 'react-pagination-bar';
@@ -177,24 +177,7 @@ function MindsList() {
                             // />
                         ))} */}
                 </List>
-                <PaginationBox>
-                    <Pagination
-                        totalItems={100}
-                        itemsPerPage={10}
-                        pageNeighbours={9}
-                        withProgressBar={false}
-                        onPageСhange={(pageNumber) => console.log(pageNumber)}
-                        startLabel={false}
-                        endLabel={false}
-                        customClassNames={{
-                            rpbItemClassName: 'custom-item',
-                            rpbItemClassNameActive: 'custom-item--active',
-                            rpbGoItemClassName: 'custom-go-item',
-                            rpbItemClassNameDisable: 'custom-item--disable',
-                            rpbRootClassName: 'custom-root',
-                        }}
-                    />
-                </PaginationBox>
+
                 {/* <Pagination
         currentPage={currentPage}
         itemsPerPage={pagePostsLimit}

@@ -125,17 +125,22 @@ const LoginBox = () => {
         setLoginPw(event.currentTarget.value);
     };
 
-    const connectAccount = async () => {
-        const response = await axios.post('http://3.38.52.33:8080/login/form', {
-            loginId: loginId,
-            loginPw: loginPw,
-        });
-        if (response.data.isSuccess) {
-            const jwt = response.data.result.jwt;
-            localStorage.setItem('jwt', jwt);
-            navigate('/');
+    const connectAccount = async function () {
+        try {
+            let response = await axios({
+                method: 'POST',
+                url: 'http://3.38.52.33:8080/login/form',
+                data: {
+                    loginId: loginId,
+                    loginPw: loginPw,
+                },
+            });
+            console.log(response);
+            document.write(JSON.stringify(response));
+        } catch (err) {
+            console.log(err);
+            throw new Error(err);
         }
-        setError(response.data.message);
     };
 
     const onSubmit = async (event) => {
@@ -161,7 +166,9 @@ const LoginBox = () => {
                     <CheckBox type="checkbox" value="loginMaintain" />
                     <CheckDiv>로그인 상태 유지</CheckDiv>
 
-                    <LButton onClick={onSubmit}>로그인</LButton>
+                    <LButton type="button" onClick={onSubmit}>
+                        로그인
+                    </LButton>
                     <LButton style={{ backgroundColor: '#1DC200' }}>
                         네이버 아이디로 로그인
                     </LButton>
@@ -172,7 +179,7 @@ const LoginBox = () => {
                     <li>|</li>
                     <li>아이디 찾기</li>
                     <li>|</li>
-                    <li>회원가입</li>
+                    <a href="/signup">회원가입</a>
                 </Find>
             </LoginPart>
 
