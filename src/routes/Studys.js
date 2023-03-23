@@ -1,12 +1,13 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../components/Main/Header';
+import MindsLists from '../components/PostView/MindsList';
+import StudysList from './../components/PostView/StudysList';
 
-function Studys() {
+export default function Studys() {
     return (
         <>
-            <Header></Header>
+            <Header />
+            <MindsLists />
         </>
     );
 }
-
-export default Studys;
