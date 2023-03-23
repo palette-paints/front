@@ -8,6 +8,7 @@ import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
 // import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 // import Link from 'next/link';
 
 const Content = styled.div`
@@ -107,7 +108,7 @@ function StudysList() {
 
     const getDatas = async () => {
         const response = await axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get('http://3.38.52.33:8080/studys')
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
@@ -125,18 +126,13 @@ function StudysList() {
                     <Question>+ 질문하기</Question>
                 </a>
                 <List>
-                    {/* {data.studies &&
-                        data.studies.map((item) => (
-                            <a
-                                href={{
-                                    pathname: '/studys/[id]',
-                                    query: {
-                                        id: item.studyId,
-                                    },
-                                }}
+                    {datas.studies &&
+                        datas.studies.map((item) => (
+                            <Link
+                                to={`${process.env.PUBLIC_URL}/minds/${item.studyId}`}
                             >
                                 <PostCard data={item} />
-                            </a>
+                            </Link>
 
                             // <PostCard
                             //   onClick={() => {
@@ -150,7 +146,7 @@ function StudysList() {
                             //   }}
                             //   data={item}
                             // />
-                        ))} */}
+                        ))}
                 </List>
 
                 {/* <Pagination

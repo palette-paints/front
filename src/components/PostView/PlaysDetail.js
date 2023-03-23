@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import React from 'react';
-import { useState } from 'react';
-import PlaysBar from '@/api/PostView/PlaysBar';
-import commentPur from '/public/images/commentPur.png';
-import commentWhite from '/public/images/commentWhite.png';
-import bookmarkPur from '/public/images/bookmarkPur.png';
-import bookmarkWhite from '/public/images/bookmarkWhite.png';
+import { useState, useEffect } from 'react';
+import PlaysBar from '../PostView/PlaysBar';
+import commentPur from '../../images/commentPur.png';
+import commentWhite from '../../images/commentWhite.png';
+import bookmarkPur from '../../images/bookmarkPur.png';
+import bookmarkWhite from '../../images/bookmarkWhite.png';
 
 const CardTitle = styled.div`
     display: flex;
@@ -146,19 +146,27 @@ const PaginationBox = styled.div`
 //             useQueryString: true,
 //         },
 //     }).then((res) => res.json());
-const host = instance.get('/plays/1');
-const fetcher = (host) => host.then((res) => res.data);
+// const host = instance.get('/plays/1');
+// const fetcher = (host) => host.then((res) => res.data);
 function CheDetail() {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
 
-    const route = useRouter();
-    console.log(route.query.id);
-    let url = 'http://3.38.52.33:8080/plays/' + route.query.id;
-    const { data, error } = useSWR(host, fetcher);
-    if (error) return '에러발생';
-    if (!data) return '로딩중..';
-    const date = new Date(data.createdAt).toISOString().split('T')[0];
+    const [datas, setDatas] = useState([]);
+    useEffect(() => {
+        getDatas();
+    }, []);
+    // if (error) return '에러발생';
+    // if (!data) return '로딩중..';
+    // console.log(data.comments);
+    const getDatas = () => {
+        fetch(`http://3.38.52.33:8080/plays/${this.props.match.params.id}`, {
+            method: 'get',
+        })
+            .then((res) => res.data)
+            .then((res) => setDatas(res));
+    };
+    const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
         <>
             <PlaysBar />
@@ -180,7 +188,7 @@ function CheDetail() {
                             fontSize: '25px',
                         }}
                     >
-                        {data.title}
+                        {datas.title}
                     </p>
                     <p
                         style={{
@@ -190,7 +198,7 @@ function CheDetail() {
                             fontSize: '20px',
                         }}
                     >
-                        {data.dueTo}
+                        {datas.dueTo}
                     </p>
                 </div>
                 <Card>
@@ -202,7 +210,7 @@ function CheDetail() {
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
-                            {data.user}
+                            {datas.user}
                         </span>
                         <span style={{ position: 'absolute', right: '15px' }}>
                             {date}
@@ -234,7 +242,7 @@ function CheDetail() {
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             답변
-                            {data.comments}
+                            {datas.comments}
                         </Button>
                         <Button
                             onMouseOver={() => setIsBookmarkHover(true)}
@@ -256,7 +264,7 @@ function CheDetail() {
                         <Content>
                             <p>신청 방법: 구글 폼</p>
                             <FileBar>
-                                첨부 파일: {data.palyId.submitLink}
+                                첨부 파일: {datas.palyId.submitLink}
                             </FileBar>
                             <p>참여 대상: </p>
                             <p>
@@ -275,7 +283,7 @@ function CheDetail() {
                             <p>
                                 활동 요약 : 요리체험 키트 1종 (초코과자 만들기)
                             </p>
-                            <p>활동 설명 : {data.playDetails}</p>
+                            <p>활동 설명 : {datas.playDetails}</p>
                         </Content>
                     </Wrapper>
                     <div

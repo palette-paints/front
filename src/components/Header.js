@@ -47,7 +47,15 @@ const Header = ({ title }) => {
 
     return (
         <div className={loginIconInputs.HeaderDiv}>
-            <Title title={location}></Title>
+            {location !== 'minds' ? (
+                <Title title={location}></Title>
+            ) : location !== 'studys' ? (
+                <Title title={location}></Title>
+            ) : location !== 'plays' ? (
+                <Title title={location}></Title>
+            ) : (
+                <></>
+            )}
 
             <HeaderBox>
                 <li>
