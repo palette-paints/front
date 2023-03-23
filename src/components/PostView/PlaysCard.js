@@ -77,63 +77,65 @@ const Button = styled.button`
         color: #fff;
     }
 `;
-function PostCard() {
+function PostCard(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     return (
         <Card>
-            <IdBox>
-                <img
-                    src="images/profile.png"
-                    width={45}
-                    alt="프사"
-                    style={{ position: 'absolute', left: '15px' }}
-                />
-                <span style={{ position: 'absolute', left: '60px' }}>
-                    닉네임
-                </span>
-                <span style={{ position: 'absolute', right: '15px' }}>
-                    날짜
-                </span>
-            </IdBox>
-            <h4>제목입니다.</h4>
-            <p>질문합니다.</p>
-            <Bottom>
-                <Category>카테고리</Category>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <Button
-                        onMouseOver={() => setIsCommentHover(true)}
-                        onMouseOut={() => setIsCommentHover(false)}
-                        style={{ width: '60px' }}
-                    >
-                        <img
-                            width="20px"
-                            src={
-                                isCommentHover
-                                    ? commentWhite.src
-                                    : commentPur.src
-                            }
-                            alt="댓글"
-                            style={{ margin: '0 3px 0 0' }}
-                        />
-                        0
-                    </Button>
-                    <Button
-                        onMouseOver={() => setIsBookmarkHover(true)}
-                        onMouseOut={() => setIsBookmarkHover(false)}
-                    >
-                        <img
-                            width="20px"
-                            src={
-                                isBookmarkHover
-                                    ? bookmarkWhite.src
-                                    : bookmarkPur.src
-                            }
-                            alt="북마크"
-                        />
-                    </Button>
-                </div>
-            </Bottom>
+            <Link to={`/minds/${props.playId}`}>
+                <IdBox>
+                    <img
+                        src="images/profile.png"
+                        width={45}
+                        alt="프사"
+                        style={{ position: 'absolute', left: '15px' }}
+                    />
+                    <span style={{ position: 'absolute', left: '60px' }}>
+                        닉네임
+                    </span>
+                    <span style={{ position: 'absolute', right: '15px' }}>
+                        날짜
+                    </span>
+                </IdBox>
+                <h4>제목입니다.</h4>
+                <p>질문합니다.</p>
+                <Bottom>
+                    <Category>카테고리</Category>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <Button
+                            onMouseOver={() => setIsCommentHover(true)}
+                            onMouseOut={() => setIsCommentHover(false)}
+                            style={{ width: '60px' }}
+                        >
+                            <img
+                                width="20px"
+                                src={
+                                    isCommentHover
+                                        ? commentWhite.src
+                                        : commentPur.src
+                                }
+                                alt="댓글"
+                                style={{ margin: '0 3px 0 0' }}
+                            />
+                            0
+                        </Button>
+                        <Button
+                            onMouseOver={() => setIsBookmarkHover(true)}
+                            onMouseOut={() => setIsBookmarkHover(false)}
+                        >
+                            <img
+                                width="20px"
+                                src={
+                                    isBookmarkHover
+                                        ? bookmarkWhite.src
+                                        : bookmarkPur.src
+                                }
+                                alt="북마크"
+                            />
+                        </Button>
+                    </div>
+                </Bottom>
+            </Link>
         </Card>
     );
 }

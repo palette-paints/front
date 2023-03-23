@@ -59,7 +59,7 @@ const Button = styled.button`
     }
 `;
 
-function MindsBar(props) {
+function StudysBar(props) {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         getDatas();
@@ -118,4 +118,4 @@ function MindsBar(props) {
         </>
     );
 }
-export default MindsBar;
+export default StudysBar;

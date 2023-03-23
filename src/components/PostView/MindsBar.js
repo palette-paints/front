@@ -75,6 +75,7 @@ function MindsBar(props) {
             .get('http://3.38.52.33:8080/minds')
             .then((response) => {
                 setDatas(response.data);
+                console.log('mindsbar');
                 console.log(datas);
             })
             .catch((error) => {
