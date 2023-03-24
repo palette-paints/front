@@ -186,7 +186,7 @@ function MindsDetail(props) {
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
-
+    const [newCommentDetail, setNewCommentDetail] = useState([]);
     // const fetcher = async (instance) => {
     //   const res = await fetch(instance);
     //   const data = res.json();
@@ -227,7 +227,31 @@ function MindsDetail(props) {
                 console.log('전체 글 불러오기 실패', error.message);
             });
     };
+    function addComment() {
+        return (
+            <>
+                <div>댓글 작성</div>
+            </>
+        );
+    }
+    const CommentSubmit = (e) => {
+        e.preventDefault();
+        console.log(newCommentDetail);
+        axios
+            .post(`http://3.38.52.33:8080/minds/${id}/comment/`, {
+                commentDetail: newCommentDetail,
+                commentAttachedFile: 'http://wrwe',
+            })
+            .then((response) => {
+                console.log('작성 성공');
+            })
+            .catch((error) => {
+                console.log('작성 실패');
+                console.log(error.response.data);
+            });
 
+        setNewCommentDetail([]);
+    };
     // const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
         <>
@@ -425,7 +449,13 @@ function MindsDetail(props) {
                         </div>
                     </Comment>
                 ))}
-            <CommentAdd>+ 댓글 작성</CommentAdd>
+            <CommentAdd onClick={() => addComment}>+ 댓글 작성</CommentAdd>
+            <input
+                placeholder="댓글을 입력하시오"
+                value={newCommentDetail}
+                onChange={(e) => setNewCommentDetail(e.target.value)}
+            ></input>
+            <button onClick={CommentSubmit}>저장</button>
             <PaginationBox>
                 <span>이전글</span>/<span>다음글</span>
             </PaginationBox>

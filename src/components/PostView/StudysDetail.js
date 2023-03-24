@@ -184,6 +184,7 @@ function StudysDetail() {
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
+    const [newCommentDetail, setNewCommentDetail] = useState('');
 
     const [datas, setDatas] = useState([]);
     useEffect(() => {
@@ -208,7 +209,34 @@ function StudysDetail() {
     };
     console.log(datas.category);
     // const date = new Date(datas.createdAt).toISOString().split('T')[0];
+    const onDelete = (id) => {
+        axios
+            .delete(`http://3.38.52.33:8080/studys/${id}`)
+            .then((response) => {
+                getDatas(response.data);
+            })
+            .catch((error) => {
+                console.log('삭제 실패', error);
+            });
+    };
+    console.log(newCommentDetail);
 
+    const CommentSubmit = (e) => {
+        e.preventDefault();
+        console.log(newCommentDetail);
+        axios
+            .post(`http://3.38.52.33:8080/studys/${id}/comment`, {
+                commentDetail: newCommentDetail,
+            })
+            .then((response) => {
+                console.log('작성 성공');
+            })
+            .catch((error) => {
+                console.log('작성 실패');
+                console.log(error.response.data);
+            });
+        setNewCommentDetail('');
+    };
     return (
         <>
             <Header />
@@ -300,7 +328,10 @@ function StudysDetail() {
                         <Button style={{ padding: '14px 20px' }}>
                             수정하기
                         </Button>
-                        <Button style={{ padding: '14px 20px' }}>
+                        <Button
+                            style={{ padding: '14px 20px' }}
+                            onClick={() => onDelete(id)}
+                        >
                             삭제하기
                         </Button>
                     </div>
@@ -407,6 +438,12 @@ function StudysDetail() {
                     </Comment>
                 ))}
             <CommentAdd>+ 댓글 작성</CommentAdd>
+            <input
+                placeholder="댓글을 입력하시오"
+                value={newCommentDetail}
+                onChange={(e) => setNewCommentDetail(e.target.value)}
+            ></input>
+            <button onClick={CommentSubmit}>저장</button>
             <PaginationBox>
                 <span>이전글</span>/<span>다음글</span>
             </PaginationBox>
