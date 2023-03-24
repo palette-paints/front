@@ -1,6 +1,7 @@
 import React from 'react';
-import MindsBar from '../PostView/MindsBar';
+import MindsBar from './MindsBar';
 import { useState, useEffect, useRouter } from 'react';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import styled from 'styled-components';
 import commentGreen from '../../images/commentGreen.png';
@@ -11,7 +12,7 @@ import likeGreen from '../../images/likeGreen.png';
 import likeWhite from '../../images/likeWhite.png';
 import hateGreen from '../../images/hateGreen.png';
 import hateWhite from '../../images/hateWhite.png';
-
+import Header from '../Header';
 const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
@@ -180,12 +181,12 @@ const PaginationBox = styled.div`
 // const host = instance.get('/minds/1');
 // const fetcher = (host) => host.then((res) => res.data);
 
-function MindsDetail() {
+function MindsDetail(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
-
+    const [newCommentDetail, setNewCommentDetail] = useState([]);
     // const fetcher = async (instance) => {
     //   const res = await fetch(instance);
     //   const data = res.json();
@@ -204,16 +205,57 @@ function MindsDetail() {
     // if (error) return '에러발생';
     // if (!data) return '로딩중..';
     // console.log(data.comments);
-    const getDatas = () => {
-        fetch(`http://3.38.52.33:8080/minds/${this.props.match.params.id}`, {
-            method: 'get',
-        })
-            .then((res) => res.data)
-            .then((res) => setDatas(res));
+    const { id } = useParams();
+    // const getDatas = () => {
+    //     fetch(`http://3.38.52.33:8080/minds/${id}`, {
+    //         method: 'get',
+    //     })
+    //         .then((res) => setDatas(res.data))
+    //         .then(console.log('성공'))
+    //         .then(console.log(datas));
+    // };
+
+    const getDatas = async () => {
+        const response = await axios
+            .get(`http://3.38.52.33:8080/minds/${id}`)
+            .then((response) => {
+                setDatas(response.data);
+                console.log('성공');
+                console.log(datas);
+            })
+            .catch((error) => {
+                console.log('전체 글 불러오기 실패', error.message);
+            });
     };
-    const date = new Date(datas.createdAt).toISOString().split('T')[0];
+    function addComment() {
+        return (
+            <>
+                <div>댓글 작성</div>
+            </>
+        );
+    }
+    const CommentSubmit = (e) => {
+        e.preventDefault();
+        console.log(newCommentDetail);
+        axios
+            .post(`http://3.38.52.33:8080/minds/${id}/comment/`, {
+                commentDetail: newCommentDetail,
+                commentAttachedFile: 'http://wrwe',
+            })
+            .then((response) => {
+                console.log('작성 성공');
+            })
+            .catch((error) => {
+                console.log('작성 실패');
+                console.log(error.response.data);
+            });
+
+        setNewCommentDetail([]);
+    };
+    // const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
         <>
+            <Header />
             <MindsBar category={datas.category} />
             <CardTitle>
                 <p
@@ -240,7 +282,7 @@ function MindsDetail() {
                             {datas.user}
                         </span>
                         <span style={{ position: 'absolute', right: '15px' }}>
-                            {date}
+                            {/* {date} */}
                         </span>
                     </IdBox>
                     <div
@@ -267,7 +309,7 @@ function MindsDetail() {
                                 alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
-                            {datas.comments.length}
+                            {datas.comments && datas.comments.length}
                         </Button>
                         <Button
                             onMouseOver={() => setIsBookmarkHover(true)}
@@ -317,83 +359,103 @@ function MindsDetail() {
                     style={{ margin: '0 3px 0 0' }}
                 />
                 답변
-                <span>{datas.comments.length}</span>
+                <span>{datas.comments && datas.comments.length}</span>
             </CommentBar>
-            {datas.comments.map((item) => (
-                <Comment>
-                    <IdBox style={{ width: '860px' }}>
-                        <img
-                            src="/images/profile.png"
-                            width={45}
-                            style={{ position: 'absolute', left: '15px' }}
-                        />
-                        <span style={{ position: 'absolute', left: '60px' }}>
-                            {item.user}
-                        </span>
-                        <span style={{ position: 'absolute', right: '15px' }}>
-                            {item.createdAt}
-                        </span>
-                    </IdBox>
-                    <div
-                        style={{
-                            display: 'flex',
-                            gap: '10px',
-                            position: 'absolute',
-                            right: '60px',
-                            top: '50px',
-                        }}
-                    >
-                        <Button
-                            onMouseOver={() => setIsLikeHover(true)}
-                            onMouseOut={() => setIsLikeHover(false)}
-                            style={{ width: '60px' }}
-                        >
+            {datas.comments &&
+                datas.comments.map((item) => (
+                    <Comment>
+                        <IdBox style={{ width: '860px' }}>
                             <img
-                                src={
-                                    isLikeHover ? likeWhite.src : likeGreen.src
-                                }
-                                alt="좋아요"
-                                style={{ margin: '0 3px 0 0' }}
+                                src="/images/profile.png"
+                                width={45}
+                                style={{ position: 'absolute', left: '15px' }}
                             />
-                            {item.like}
-                        </Button>
-                        <Button
-                            onMouseOver={() => setIsHateHover(true)}
-                            onMouseOut={() => setIsHateHover(false)}
-                            style={{ width: '60px' }}
+                            <span
+                                style={{ position: 'absolute', left: '60px' }}
+                            >
+                                {item.user}
+                            </span>
+                            <span
+                                style={{ position: 'absolute', right: '15px' }}
+                            >
+                                {item.createdAt}
+                            </span>
+                        </IdBox>
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: '10px',
+                                position: 'absolute',
+                                right: '60px',
+                                top: '50px',
+                            }}
                         >
-                            <img
-                                src={
-                                    isHateHover ? hateWhite.src : hateGreen.src
-                                }
-                                alt="싫어요"
-                                style={{ margin: '0 3px 0 0' }}
-                            />
-                            {item.unlike}
-                        </Button>
-                    </div>
-                    <p style={{ position: 'static', margin: '30px 0 0  50px' }}>
-                        {item.commentDetail}
-                    </p>
-                    <div
-                        style={{
-                            display: 'flex',
-                            gap: '10px',
-                            position: 'absolute',
-                            bottom: '50px',
-                            right: '50px',
-                        }}
-                    >
-                        <Button style={{ padding: '14px 20px' }}>
-                            수정하기
-                        </Button>
-                        <Button style={{ padding: '14px 20px' }}>
-                            삭제하기
-                        </Button>
-                    </div>
-                </Comment>
-            ))}
-            <CommentAdd>+ 댓글 작성</CommentAdd>
+                            <Button
+                                onMouseOver={() => setIsLikeHover(true)}
+                                onMouseOut={() => setIsLikeHover(false)}
+                                style={{ width: '60px' }}
+                            >
+                                <img
+                                    src={
+                                        isLikeHover
+                                            ? likeWhite.src
+                                            : likeGreen.src
+                                    }
+                                    alt="좋아요"
+                                    style={{ margin: '0 3px 0 0' }}
+                                />
+                                {item.like}
+                            </Button>
+                            <Button
+                                onMouseOver={() => setIsHateHover(true)}
+                                onMouseOut={() => setIsHateHover(false)}
+                                style={{ width: '60px' }}
+                            >
+                                <img
+                                    src={
+                                        isHateHover
+                                            ? hateWhite.src
+                                            : hateGreen.src
+                                    }
+                                    alt="싫어요"
+                                    style={{ margin: '0 3px 0 0' }}
+                                />
+                                {item.unlike}
+                            </Button>
+                        </div>
+                        <p
+                            style={{
+                                position: 'static',
+                                margin: '30px 0 0  50px',
+                            }}
+                        >
+                            {item.commentDetail}
+                        </p>
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: '10px',
+                                position: 'absolute',
+                                bottom: '50px',
+                                right: '50px',
+                            }}
+                        >
+                            <Button style={{ padding: '14px 20px' }}>
+                                수정하기
+                            </Button>
+                            <Button style={{ padding: '14px 20px' }}>
+                                삭제하기
+                            </Button>
+                        </div>
+                    </Comment>
+                ))}
+            <CommentAdd onClick={() => addComment}>+ 댓글 작성</CommentAdd>
+            <input
+                placeholder="댓글을 입력하시오"
+                value={newCommentDetail}
+                onChange={(e) => setNewCommentDetail(e.target.value)}
+            ></input>
+            <button onClick={CommentSubmit}>저장</button>
             <PaginationBox>
                 <span>이전글</span>/<span>다음글</span>
             </PaginationBox>

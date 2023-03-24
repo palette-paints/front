@@ -61,7 +61,7 @@ const Button = styled.button`
 `;
 // const host = instance.get('/minds');
 // const fetcher = (host) => host.then((res) => res.data);
-function MindsBar() {
+function MindsBar(props) {
     // const { data, error } = useSWR(host, fetcher);
     // if (error) return '에러발생';
     // if (!data) return '로딩중..';
@@ -75,6 +75,7 @@ function MindsBar() {
             .get('http://3.38.52.33:8080/minds')
             .then((response) => {
                 setDatas(response.data);
+                console.log('mindsbar');
                 console.log(datas);
             })
             .catch((error) => {
@@ -90,7 +91,7 @@ function MindsBar() {
             <Content>
                 <Categories>
                     <Button>전체</Button>
-                    {/* {datas.categories &&
+                    {datas.categories &&
                         datas.categories.map((category) =>
                             category === props && props.category ? (
                                 <Button
@@ -104,7 +105,7 @@ function MindsBar() {
                             ) : (
                                 <Button>{category}</Button>
                             )
-                        )} */}
+                        )}
 
                     {/* <Button>전체</Button>
           <Button>학업</Button>

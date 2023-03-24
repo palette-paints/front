@@ -60,7 +60,7 @@ const Button = styled.button`
     }
 `;
 
-function MindsBar(props) {
+function StudysBar(props) {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         getDatas();
@@ -68,7 +68,7 @@ function MindsBar(props) {
 
     const getDatas = async () => {
         const response = await axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get('http://3.38.52.33:8080/studys')
             .then((response) => {
                 setDatas(response.data);
                 console.log(datas);
@@ -86,17 +86,21 @@ function MindsBar(props) {
             <Content>
                 <Categories>
                     <Button>전체</Button>
-                    {/* {data.categories.map((category) =>
-                        category === props.category ? (
-                            <Button
-                                style={{ background: '#3f8ab5', color: '#fff' }}
-                            >
-                                {category}
-                            </Button>
-                        ) : (
-                            <Button>{category}</Button>
-                        )
-                    )} */}
+                    {datas.categories &&
+                        datas.categories.map((category) =>
+                            category === props.category ? (
+                                <Button
+                                    style={{
+                                        background: '#3f8ab5',
+                                        color: '#fff',
+                                    }}
+                                >
+                                    {category}
+                                </Button>
+                            ) : (
+                                <Button>{category}</Button>
+                            )
+                        )}
 
                     {/* <Button>전체</Button>
           <Button>국어</Button>
@@ -115,4 +119,4 @@ function MindsBar(props) {
         </>
     );
 }
-export default MindsBar;
+export default StudysBar;

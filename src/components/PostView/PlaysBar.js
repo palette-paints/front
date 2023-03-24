@@ -69,7 +69,7 @@ function PlaysBar(props) {
 
     const getDatas = async () => {
         const response = await axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get('http://3.38.52.33:8080/plays')
             .then((response) => {
                 setDatas(response.data);
                 console.log(datas);
