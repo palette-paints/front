@@ -26,8 +26,8 @@ const Categories = styled.div`
     justify-content: start;
     align-items: center;
     gap: 10px;
-
     margin: 40px auto;
+    margin-top: 130px;
     width: 1120px;
     background: #ffffff;
     box-shadow: 0px 2px 10px rgba(113, 175, 138, 0.5);
