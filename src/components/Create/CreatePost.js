@@ -4,6 +4,7 @@ import './createStlye.css';
 import styled from 'styled-components';
 
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const CreateBox = styled.div`
     display: flex;
@@ -37,37 +38,36 @@ function CreatePost() {
     const postPost = (event) => {
         event.preventDefault();
         const formData = new FormData();
-        var body = {
-            category: '국어',
-            title: 'title',
-            studyDetails: 'dd',
-            studyAttachedFile: 'dd',
-        };
+        formData.append('category', 'ㅇㅇ');
+        formData.append('title', 'hihihi');
+        formData.append('studyDetails', 'wehrihwierhalweirlaweij');
+        formData.append('studyAttachedFile', 'sdfwef');
 
-        formData.append('category', '국어');
-        formData.append('title', 'title');
-        formData.append('studyDetails', 'studyDetails');
-        formData.append('studyAttachedFile', 'studyAttachedFile');
-
-        axios({
-            method: 'post',
-            url: 'http://3.38.52.33:8080/studys/new',
-
-            data: body,
-        })
+        axios
+            .post(
+                `http://3.38.52.33:8080/studys/new`,
+                { studyDetailReq: formData },
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
             .then((response) => {
                 getPosts();
             })
-            .catch((detail) => {
+            .catch((error) => {
                 console.log('작성 실패');
-                console.log(detail);
+                console.log(error.message);
+                console.log(error);
+                console.log(error.response.data);
             });
 
         setNewPost('');
     };
     return (
         <CreateBox>
-            <form onSubmit={postPost} method="post">
+            <form onSubmit={postPost}>
                 <input
                     className="CreateForm"
                     type="text"
