@@ -27,6 +27,7 @@ const Categories = styled.div`
     gap: 10px;
 
     margin: 40px auto;
+    margin-top: 130px;
     width: 1120px;
     background: #ffffff;
     box-shadow: 0px 2px 10px rgba(63, 138, 181, 0.5);

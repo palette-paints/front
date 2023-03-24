@@ -9,6 +9,10 @@ import Minds from '../routes/Minds';
 import MindsDetail from '../components/PostView/MindsDetail';
 import Login from '../routes/Login';
 import Signup from '../routes/Signup';
+import S_create from '../routes/S_create';
+import P_create from '../routes/P_create';
+import M_create from '../routes/M_create';
+
 const App = () => {
     return (
         <Router>
@@ -48,6 +52,18 @@ const App = () => {
                 <Route
                     path={`${process.env.PUBLIC_URL}/signup`}
                     element={<Signup />}
+                />
+                <Route
+                    path={`${process.env.PUBLIC_URL}/studys/create`}
+                    element={<S_create />}
+                />
+                <Route
+                    path={`${process.env.PUBLIC_URL}/minds/create`}
+                    element={<M_create />}
+                />
+                <Route
+                    path={`${process.env.PUBLIC_URL}/plays/create`}
+                    element={<P_create />}
                 />
             </Routes>
         </Router>
