@@ -150,18 +150,6 @@ const PaginationBox = styled.div`
     padding: 10px;
     color: #00639b;
 `;
-// const host = 'http://3.38.52.33:8080/studys';
-// const fetcher = (url) =>
-//     fetch(url, {
-//         method: 'GET',
-//         headers: {
-//             'x-rapidapi-host': host,
-//             'x-rapidapi-key': '1',
-//             useQueryString: true,
-//         },
-//     }).then((res) => res.json());
-// const host = instance.get('/studys/1');
-// const fetcher = (host) => host.then((res) => res.data);
 function StudysDetail() {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
@@ -169,25 +157,17 @@ function StudysDetail() {
     const [isHateHover, setIsHateHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
 
+    const { id } = useParams();
     const [datas, setDatas] = useState([]);
+
     useEffect(() => {
         getDatas();
     }, []);
+
     // if (error) return '에러발생';
     // if (!data) return '로딩중..';
     // console.log(data.comments);
-    const { id } = useParams();
-    const onDelete = (id) => {
-        axios
-            .delete(`http://3.38.52.33:8080/studys/${id}`)
-            .then((response) => {
-                getDatas(response.data);
-                window.location.href = '/studys/';
-            })
-            .catch((error) => {
-                console.log('삭제 실패', error);
-            });
-    };
+
     const getDatas = async () => {
         const response = await axios
             .get(`http://3.38.52.33:8080/studys/${id}`)
@@ -200,7 +180,37 @@ function StudysDetail() {
                 console.log('전체 글 불러오기 실패', error.message);
             });
     };
-    // const date = new Date(datas.createdAt).toISOString().split('T')[0];
+    console.log(datas.category);
+
+    const onDelete = (id) => {
+        axios
+            .delete(`http://3.38.52.33:8080/studys/${id}`)
+            .then((response) => {
+                getDatas(response.data);
+                window.location.href = '/studys/';
+            })
+            .catch((error) => {
+                console.log('삭제 실패', error);
+            });
+    };
+
+    const handleSubmit = (id) => {
+        try {
+            const formData = new FormData();
+            formData.append('title', 'ggggg');
+            formData.append('category', 'category');
+            formData.append('studyDetails', '바뀜');
+            formData.append('studyAttachedFile', 'http:sdfwef');
+
+            axios.put(`http://3.38.52.33:8080/studys/${id}/`, formData);
+            console.log('수정완료');
+        } catch (error) {
+            console.log('수정실패');
+            console.log(error);
+        }
+    };
+
+    console.log(newCommentDetail);
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
@@ -219,6 +229,7 @@ function StudysDetail() {
             });
 
         setNewCommentDetail([]);
+        getDatas();
     };
 
     return (
@@ -309,7 +320,10 @@ function StudysDetail() {
                             right: '50px',
                         }}
                     >
-                        <Button style={{ padding: '14px 20px' }}>
+                        <Button
+                            style={{ padding: '14px 20px' }}
+                            onClick={() => handleSubmit(id)}
+                        >
                             수정하기
                         </Button>
                         <Button

@@ -168,52 +168,21 @@ const PaginationBox = styled.div`
     color: #4e705b;
 `;
 
-// const host = 'http://3.38.52.33:8080/minds';
-// const fetcher = (url) =>
-//     fetch(url, {
-//         method: 'GET',
-//         headers: {
-//             'x-rapidapi-host': host,
-//             'x-rapidapi-key': '1',
-//             useQueryString: true,
-//         },
-//     }).then((res) => res.json());
-// const host = instance.get('/minds/1');
-// const fetcher = (host) => host.then((res) => res.data);
-
 function MindsDetail(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
-    // const fetcher = async (instance) => {
-    //   const res = await fetch(instance);
-    //   const data = res.json();
-    //   return data;
-    // };
-    // const { data } = useSWR('http', fetch);
-    // const route = useRouter();
-    // console.log(route.query.id);
+    const [editComment, setEditComment] = useState(true);
 
-    // let url = 'http://3.38.52.33:8080/minds/' + route.query.id;
-    // const { data, error } = useSWR(host, fetcher);
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         getDatas();
     }, []);
-    // if (error) return '에러발생';
-    // if (!data) return '로딩중..';
-    // console.log(data.comments);
+
     const { id } = useParams();
-    // const getDatas = () => {
-    //     fetch(`http://3.38.52.33:8080/minds/${id}`, {
-    //         method: 'get',
-    //     })
-    //         .then((res) => setDatas(res.data))
-    //         .then(console.log('성공'))
-    //         .then(console.log(datas));
-    // };
+
     const onDelete = (id) => {
         axios
             .delete(`http://3.38.52.33:8080/minds/${id}`)
@@ -224,14 +193,25 @@ function MindsDetail(props) {
                 console.log('삭제 실패', error);
             });
     };
-    const onDeleteComment = (id, comment) => {
+    const onDeleteComment = (id, commentId) => {
         axios
-            .delete(`http://3.38.52.33:8080/minds/${id}/comment/${comment}`)
+            .delete(`http://3.38.52.33:8080/minds/${id}/comment/${commentId}`)
             .then((response) => {
                 getDatas(response.data);
             })
             .catch((error) => {
                 console.log('삭제 실패', error);
+            });
+    };
+
+    const commentEdit = (id, comment_id) => {
+        axios
+            .put(`http://3.38.52.33:8080/minds/${id}/comment/${comment_id}`, {
+                commentDetail: '수정',
+            })
+            .then((response) => {
+                console.log('수정 성공');
+                setEditComment(true);
             });
     };
     const getDatas = async () => {
@@ -245,6 +225,12 @@ function MindsDetail(props) {
             .catch((error) => {
                 console.log('전체 글 불러오기 실패', error.message);
             });
+    };
+
+    const [comment, setComment] = useState();
+    console.log(datas.comments);
+    const changeComment = (e) => {
+        setEditComment(false);
     };
     function addComment() {
         return (
@@ -385,97 +371,124 @@ function MindsDetail(props) {
                 답변
                 <span>{datas.comments && datas.comments.length}</span>
             </CommentBar>
+
             {datas.comments &&
                 datas.comments.map((item) => (
                     <Comment>
-                        <IdBox style={{ width: '860px' }}>
-                            <img
-                                src="/images/profile.png"
-                                width={45}
-                                style={{ position: 'absolute', left: '15px' }}
-                            />
-                            <span
-                                style={{ position: 'absolute', left: '60px' }}
-                            >
-                                {item.user}
-                            </span>
-                            <span
-                                style={{ position: 'absolute', right: '15px' }}
-                            >
-                                {item.createdAt}
-                            </span>
-                        </IdBox>
-                        <div
-                            style={{
-                                display: 'flex',
-                                gap: '10px',
-                                position: 'absolute',
-                                right: '60px',
-                                top: '50px',
-                            }}
-                        >
-                            <Button
-                                onMouseOver={() => setIsLikeHover(true)}
-                                onMouseOut={() => setIsLikeHover(false)}
-                                style={{ width: '60px' }}
-                            >
-                                <img
-                                    src={
-                                        isLikeHover
-                                            ? likeWhite.src
-                                            : likeGreen.src
-                                    }
-                                    alt="좋아요"
-                                    style={{ margin: '0 3px 0 0' }}
-                                />
-                                {item.like}
-                            </Button>
-                            <Button
-                                onMouseOver={() => setIsHateHover(true)}
-                                onMouseOut={() => setIsHateHover(false)}
-                                style={{ width: '60px' }}
-                            >
-                                <img
-                                    src={
-                                        isHateHover
-                                            ? hateWhite.src
-                                            : hateGreen.src
-                                    }
-                                    alt="싫어요"
-                                    style={{ margin: '0 3px 0 0' }}
-                                />
-                                {item.unlike}
-                            </Button>
-                        </div>
-                        <p
-                            style={{
-                                position: 'static',
-                                margin: '30px 0 0  50px',
-                            }}
-                        >
-                            {item.commentDetail}
-                        </p>
-                        <div
-                            style={{
-                                display: 'flex',
-                                gap: '10px',
-                                position: 'absolute',
-                                bottom: '50px',
-                                right: '50px',
-                            }}
-                        >
-                            <Button style={{ padding: '14px 20px' }}>
-                                수정하기
-                            </Button>
-                            <Button
-                                style={{ padding: '14px 20px' }}
-                                onClick={() =>
-                                    onDeleteComment(id, item.commentId)
-                                }
-                            >
-                                삭제하기
-                            </Button>
-                        </div>
+                        {editComment == false ? (
+                            <form onSubmit={changeComment}>
+                                <div>
+                                    <input type="text"></input>
+                                    <button type="button">수정완료</button>
+                                </div>
+                            </form>
+                        ) : (
+                            <div>
+                                <IdBox style={{ width: '860px' }}>
+                                    <img
+                                        src="/images/profile.png"
+                                        width={45}
+                                        style={{
+                                            position: 'absolute',
+                                            left: '15px',
+                                        }}
+                                    />
+                                    <span
+                                        style={{
+                                            position: 'absolute',
+                                            left: '60px',
+                                        }}
+                                    >
+                                        {item.user}
+                                    </span>
+                                    <span
+                                        style={{
+                                            position: 'absolute',
+                                            right: '15px',
+                                        }}
+                                    >
+                                        {item.createdAt}
+                                    </span>
+                                </IdBox>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        gap: '10px',
+                                        position: 'absolute',
+                                        right: '60px',
+                                        top: '50px',
+                                    }}
+                                >
+                                    <Button
+                                        onMouseOver={() => setIsLikeHover(true)}
+                                        onMouseOut={() => setIsLikeHover(false)}
+                                        style={{ width: '60px' }}
+                                    >
+                                        <img
+                                            src={
+                                                isLikeHover
+                                                    ? likeWhite.src
+                                                    : likeGreen.src
+                                            }
+                                            alt="좋아요"
+                                            style={{ margin: '0 3px 0 0' }}
+                                        />
+                                        {item.like}
+                                    </Button>
+                                    <Button
+                                        onMouseOver={() => setIsHateHover(true)}
+                                        onMouseOut={() => setIsHateHover(false)}
+                                        style={{ width: '60px' }}
+                                    >
+                                        <img
+                                            src={
+                                                isHateHover
+                                                    ? hateWhite.src
+                                                    : hateGreen.src
+                                            }
+                                            alt="싫어요"
+                                            style={{ margin: '0 3px 0 0' }}
+                                        />
+                                        {item.unlike}
+                                    </Button>
+                                </div>
+                                <p
+                                    style={{
+                                        position: 'static',
+                                        margin: '30px 0 0  50px',
+                                    }}
+                                >
+                                    {item.commentDetail}
+                                </p>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        gap: '10px',
+                                        position: 'absolute',
+                                        bottom: '50px',
+                                        right: '50px',
+                                    }}
+                                >
+                                    <Button
+                                        style={{ padding: '14px 20px' }}
+                                        onClick={commentEdit(
+                                            id,
+                                            item.commentId
+                                        )}
+                                    >
+                                        수정하기
+                                    </Button>
+                                    <Button
+                                        style={{ padding: '14px 20px' }}
+                                        onClick={() =>
+                                            onDeleteComment(id, item.commentId)
+                                        }
+                                    >
+                                        삭제하기
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
                     </Comment>
                 ))}
             <CommentAdd onClick={() => addComment}>+ 댓글 작성</CommentAdd>

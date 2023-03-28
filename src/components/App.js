@@ -12,6 +12,7 @@ import Signup from '../routes/Signup';
 import S_create from '../routes/S_create';
 import P_create from '../routes/P_create';
 import M_create from '../routes/M_create';
+import S_edit from '../routes/S_edit';
 
 const App = () => {
     return (
@@ -52,6 +53,11 @@ const App = () => {
                 <Route
                     path={`${process.env.PUBLIC_URL}/plays/create`}
                     element={<P_create />}
+                />
+
+                <Route
+                    path={`${process.env.PUBLIC_URL}/studys/edit/:id`}
+                    element={<S_edit />}
                 />
             </Routes>
         </Router>

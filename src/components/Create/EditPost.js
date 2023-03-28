@@ -48,15 +48,7 @@ function CreatePost() {
 
         axios
             .post(`http://3.38.52.33:8080/studys/new/`, {
-                category: '국어',
-                title: 'hihihi',
-                studyDetails: 'wehrihwierhalweirlaweij',
-
-                studyAttachedFile: 'http:sdfwef',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                data,
             })
             .then((response) => {
                 getPosts();
