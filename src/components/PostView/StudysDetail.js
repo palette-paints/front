@@ -10,7 +10,7 @@ import likeBlue from '../../images/likeBlue.png';
 import likeWhite from '../../images/likeWhite.png';
 import hateBlue from '../../images/hateBlue.png';
 import hateWhite from '../../images/hateWhite.png';
-import { useParams } from 'react-router';
+import { redirect, useParams } from 'react-router';
 import axios from 'axios';
 import Header from '../Header';
 
@@ -197,19 +197,20 @@ function StudysDetail() {
             .delete(`http://3.38.52.33:8080/studys/${id}`)
             .then((response) => {
                 getDatas(response.data);
+                window.location.href = '/studys/';
             })
             .catch((error) => {
                 console.log('삭제 실패', error);
             });
     };
     console.log(newCommentDetail);
-
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
         axios
             .post(`http://3.38.52.33:8080/studys/${id}/comment/`, {
-                commentDetail: newCommentDetail,
+                commentDetail: 'awefawefawe',
+                commentAttachedFile: 'http://wrwe',
             })
             .then((response) => {
                 console.log('작성 성공');
@@ -218,8 +219,11 @@ function StudysDetail() {
                 console.log('작성 실패');
                 console.log(error.response.data);
             });
-        setNewCommentDetail('');
+
+        setNewCommentDetail([]);
+        getDatas();
     };
+
     return (
         <>
             <Header />
