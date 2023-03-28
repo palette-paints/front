@@ -155,7 +155,7 @@ function StudysDetail() {
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
-    const [newCommentDetail, setNewCommentDetail] = useState('');
+    const [newCommentDetail, setNewCommentDetail] = useState([]);
 
     const { id } = useParams();
     const [datas, setDatas] = useState([]);
@@ -163,6 +163,10 @@ function StudysDetail() {
     useEffect(() => {
         getDatas();
     }, []);
+
+    // if (error) return '에러발생';
+    // if (!data) return '로딩중..';
+    // console.log(data.comments);
 
     const getDatas = async () => {
         const response = await axios
@@ -191,18 +195,19 @@ function StudysDetail() {
     };
 
     const handleSubmit = (id) => {
-        // try {
-        //     const formData = new FormData();
-        //     formData.append('title', 'ggggg');
-        //     formData.append('category', 'category');
-        //     formData.append('studyDetails', '바뀜');
-        //     formData.append('studyAttachedFile', 'http:sdfwef');
-        //     axios.put(`http://3.38.52.33:8080/studys/${id}/`, formData);
-        //     console.log('수정완료');
-        // } catch (error) {
-        //     console.log('수정실패');
-        //     console.log(error);
-        // }
+        try {
+            const formData = new FormData();
+            formData.append('title', 'ggggg');
+            formData.append('category', 'category');
+            formData.append('studyDetails', '바뀜');
+            formData.append('studyAttachedFile', 'http:sdfwef');
+
+            axios.put(`http://3.38.52.33:8080/studys/${id}/`, formData);
+            console.log('수정완료');
+        } catch (error) {
+            console.log('수정실패');
+            console.log(error);
+        }
     };
 
     console.log(newCommentDetail);
@@ -211,11 +216,12 @@ function StudysDetail() {
         console.log(newCommentDetail);
         axios
             .post(`http://3.38.52.33:8080/studys/${id}/comment/`, {
-                commentDetail: 'awefawefawe',
+                commentDetail: newCommentDetail,
                 commentAttachedFile: 'http://wrwe',
             })
             .then((response) => {
                 console.log('작성 성공');
+                window.location.reload();
             })
             .catch((error) => {
                 console.log('작성 실패');
