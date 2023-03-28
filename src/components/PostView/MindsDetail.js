@@ -1,7 +1,7 @@
 import React from 'react';
 import MindsBar from './MindsBar';
 import { useState, useEffect, useRouter } from 'react';
-import { useParams } from 'react-router';
+import { redirect, useParams } from 'react-router';
 import axios from 'axios';
 import styled from 'styled-components';
 import commentGreen from '../../images/commentGreen.png';
@@ -251,6 +251,7 @@ function MindsDetail(props) {
             });
 
         setNewCommentDetail([]);
+        getDatas();
     };
     // const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
