@@ -10,7 +10,7 @@ import likeBlue from '../../images/likeBlue.png';
 import likeWhite from '../../images/likeWhite.png';
 import hateBlue from '../../images/hateBlue.png';
 import hateWhite from '../../images/hateWhite.png';
-import { useParams } from 'react-router';
+import { redirect, useParams } from 'react-router';
 import axios from 'axios';
 import Header from '../Header';
 
@@ -20,15 +20,12 @@ const CardTitle = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 30px;
-
     width: 1124px;
     height: 835px;
-
     background: #3f8ab5;
     margin: 100px auto;
     box-shadow: 2px 2px 20px rgba(63, 138, 181, 0.5);
     border-radius: 50px;
-
     position: relative;
 `;
 const Card = styled.div`
@@ -38,7 +35,6 @@ const Card = styled.div`
     margin: 0;
     width: 100%;
     height: 800px;
-
     color: #00639b;
     background: #fff;
     border-radius: 50px;
@@ -50,7 +46,6 @@ const IdBox = styled.div`
     padding: 20px 30px;
     margin-bottom: 30px;
     gap: 10px;
-
     width: 888px;
     height: 6px;
     text-align: left;
@@ -58,7 +53,6 @@ const IdBox = styled.div`
     box-shadow: 2px 2px 7px rgba(63, 138, 181, 0.5);
     border-radius: 50px;
     color: #00639b;
-
     position: relative;
     top: 50px;
     left: 50px;
@@ -69,7 +63,6 @@ const Button = styled.button`
     justify-content: center;
     align-items: center;
     padding: 10px 10px;
-
     color: #00639b;
     font-size: 1em;
     background: #fff;
@@ -88,17 +81,13 @@ const CommentBar = styled.div`
     padding: 20px 30px;
     margin: 0 auto;
     gap: 10px;
-
     width: 1124px;
-
     background: #6cacd0;
     box-shadow: 2px 2px 20px rgba(63, 138, 181, 0.5);
     border-radius: 50px;
-
     flex: none;
     order: 0;
     flex-grow: 0;
-
     font-family: 'Montserrat Alternates';
     font-style: normal;
     font-weight: 600;
@@ -114,7 +103,6 @@ const Comment = styled.div`
     margin: 20px auto;
     width: 1174px;
     height: 250px;
-
     color: #00639b;
     background: #ffffff;
     box-shadow: 2px 2px 20px rgba(63, 138, 181, 0.5);
@@ -129,17 +117,13 @@ const CommentAdd = styled.div`
     padding: 20px 30px;
     margin: 30px auto;
     gap: 10px;
-
     width: 1124px;
-
     background: #fff;
     box-shadow: 2px 2px 20px rgba(63, 138, 181, 0.5);
     border-radius: 50px;
-
     flex: none;
     order: 0;
     flex-grow: 0;
-
     font-family: 'Montserrat Alternates';
     font-style: normal;
     font-weight: 600;
@@ -157,7 +141,6 @@ const PaginationBox = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-
     margin: 40px auto;
     width: 526px;
     height: 52px;
@@ -217,13 +200,19 @@ function StudysDetail() {
             });
     };
     // const date = new Date(datas.createdAt).toISOString().split('T')[0];
-    function addComment() {
-        return (
-            <>
-                <div>댓글 작성</div>
-            </>
-        );
-    }
+
+    const onDelete = (id) => {
+        axios
+            .delete(`http://3.38.52.33:8080/studys/${id}`)
+            .then((response) => {
+                getDatas(response.data);
+                window.location.href = '/studys/';
+            })
+            .catch((error) => {
+                console.log('삭제 실패', error);
+            });
+    };
+    console.log(newCommentDetail);
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
@@ -243,6 +232,7 @@ function StudysDetail() {
         setNewCommentDetail([]);
         getDatas();
     };
+
     return (
         <>
             <Header />

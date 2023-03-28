@@ -46,7 +46,10 @@ const Header = ({ title }) => {
     }, []);
 
     return (
-        <div className={loginIconInputs.HeaderDiv}>
+        <div
+            className={loginIconInputs.HeaderDiv}
+            style={{ marginBottom: '150px' }}
+        >
             {location !== 'minds' ? (
                 <Title title={location}></Title>
             ) : location !== 'studys' ? (
