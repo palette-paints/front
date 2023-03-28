@@ -38,13 +38,17 @@ function CreatePost() {
     const postPost = (event) => {
         event.preventDefault();
 
-        axios
-            .post(`http://3.38.52.33:8080/studys/new`, {
-                category: '국어',
-                title: 'hihihi',
-                studyDetails: 'wehrihwierhalweirlaweij',
+        const data = {
+            category: '국어',
+            title: 'hihihi',
+            studyDetails: 'wehrihwierhalweirlaweij',
 
-                studyAttachedFile: 'http:sdfwef',
+            studyAttachedFile: 'http:sdfwef',
+        };
+
+        axios
+            .post(`http://3.38.52.33:8080/studys/new/`, {
+                data,
             })
             .then((response) => {
                 getPosts();
