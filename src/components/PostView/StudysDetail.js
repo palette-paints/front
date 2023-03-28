@@ -182,6 +182,7 @@ function StudysDetail() {
             .delete(`http://3.38.52.33:8080/studys/${id}`)
             .then((response) => {
                 getDatas(response.data);
+                window.location.href = '/studys/';
             })
             .catch((error) => {
                 console.log('삭제 실패', error);
@@ -200,19 +201,6 @@ function StudysDetail() {
             });
     };
     // const date = new Date(datas.createdAt).toISOString().split('T')[0];
-
-    const onDelete = (id) => {
-        axios
-            .delete(`http://3.38.52.33:8080/studys/${id}`)
-            .then((response) => {
-                getDatas(response.data);
-                window.location.href = '/studys/';
-            })
-            .catch((error) => {
-                console.log('삭제 실패', error);
-            });
-    };
-    console.log(newCommentDetail);
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
@@ -223,6 +211,7 @@ function StudysDetail() {
             })
             .then((response) => {
                 console.log('작성 성공');
+                window.location.reload();
             })
             .catch((error) => {
                 console.log('작성 실패');
@@ -230,7 +219,6 @@ function StudysDetail() {
             });
 
         setNewCommentDetail([]);
-        getDatas();
     };
 
     return (
@@ -433,7 +421,7 @@ function StudysDetail() {
                         </div>
                     </Comment>
                 ))}
-            <CommentAdd onClick={() => addComment}>+ 댓글 작성</CommentAdd>
+            <CommentAdd>+ 댓글 작성</CommentAdd>
             <input
                 placeholder="댓글을 입력하시오"
                 value={newCommentDetail}

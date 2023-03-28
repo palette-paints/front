@@ -263,6 +263,7 @@ function MindsDetail(props) {
             })
             .then((response) => {
                 console.log('작성 성공');
+                window.location.reload();
             })
             .catch((error) => {
                 console.log('작성 실패');
