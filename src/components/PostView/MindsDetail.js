@@ -214,7 +214,26 @@ function MindsDetail(props) {
     //         .then(console.log('성공'))
     //         .then(console.log(datas));
     // };
-
+    const onDelete = (id) => {
+        axios
+            .delete(`http://3.38.52.33:8080/minds/${id}`)
+            .then((response) => {
+                getDatas(response.data);
+            })
+            .catch((error) => {
+                console.log('삭제 실패', error);
+            });
+    };
+    const onDeleteComment = (id, comment) => {
+        axios
+            .delete(`http://3.38.52.33:8080/minds/${id}/comment/${comment}`)
+            .then((response) => {
+                getDatas(response.data);
+            })
+            .catch((error) => {
+                console.log('삭제 실패', error);
+            });
+    };
     const getDatas = async () => {
         const response = await axios
             .get(`http://3.38.52.33:8080/minds/${id}`)
@@ -346,7 +365,10 @@ function MindsDetail(props) {
                         <Button style={{ padding: '14px 20px' }}>
                             수정하기
                         </Button>
-                        <Button style={{ padding: '14px 20px' }}>
+                        <Button
+                            style={{ padding: '14px 20px' }}
+                            onClick={() => onDelete(id)}
+                        >
                             삭제하기
                         </Button>
                     </div>
@@ -444,7 +466,12 @@ function MindsDetail(props) {
                             <Button style={{ padding: '14px 20px' }}>
                                 수정하기
                             </Button>
-                            <Button style={{ padding: '14px 20px' }}>
+                            <Button
+                                style={{ padding: '14px 20px' }}
+                                onClick={() =>
+                                    onDeleteComment(id, item.commentId)
+                                }
+                            >
                                 삭제하기
                             </Button>
                         </div>

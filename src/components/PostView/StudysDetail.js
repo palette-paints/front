@@ -167,7 +167,7 @@ function StudysDetail() {
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
-    const [newCommentDetail, setNewCommentDetail] = useState('');
+    const [newCommentDetail, setNewCommentDetail] = useState([]);
 
     const [datas, setDatas] = useState([]);
     useEffect(() => {
@@ -177,7 +177,16 @@ function StudysDetail() {
     // if (!data) return '로딩중..';
     // console.log(data.comments);
     const { id } = useParams();
-    console.log(id);
+    const onDelete = (id) => {
+        axios
+            .delete(`http://3.38.52.33:8080/studys/${id}`)
+            .then((response) => {
+                getDatas(response.data);
+            })
+            .catch((error) => {
+                console.log('삭제 실패', error);
+            });
+    };
     const getDatas = async () => {
         const response = await axios
             .get(`http://3.38.52.33:8080/studys/${id}`)
@@ -190,8 +199,8 @@ function StudysDetail() {
                 console.log('전체 글 불러오기 실패', error.message);
             });
     };
-    console.log(datas.category);
     // const date = new Date(datas.createdAt).toISOString().split('T')[0];
+
     const onDelete = (id) => {
         axios
             .delete(`http://3.38.52.33:8080/studys/${id}`)
@@ -209,7 +218,7 @@ function StudysDetail() {
         console.log(newCommentDetail);
         axios
             .post(`http://3.38.52.33:8080/studys/${id}/comment/`, {
-                commentDetail: 'awefawefawe',
+                commentDetail: newCommentDetail,
                 commentAttachedFile: 'http://wrwe',
             })
             .then((response) => {
@@ -424,7 +433,7 @@ function StudysDetail() {
                         </div>
                     </Comment>
                 ))}
-            <CommentAdd>+ 댓글 작성</CommentAdd>
+            <CommentAdd onClick={() => addComment}>+ 댓글 작성</CommentAdd>
             <input
                 placeholder="댓글을 입력하시오"
                 value={newCommentDetail}
