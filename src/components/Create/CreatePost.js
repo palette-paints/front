@@ -37,22 +37,15 @@ function CreatePost() {
 
     const postPost = (event) => {
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('category', 'ㅇㅇ');
-        formData.append('title', 'hihihi');
-        formData.append('studyDetails', 'wehrihwierhalweirlaweij');
-        formData.append('studyAttachedFile', 'sdfwef');
 
         axios
-            .post(
-                `http://3.38.52.33:8080/studys/new`,
-                { studyDetailReq: formData },
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                }
-            )
+            .post(`http://3.38.52.33:8080/studys/new`, {
+                category: '국어',
+                title: 'hihihi',
+                studyDetails: 'wehrihwierhalweirlaweij',
+
+                studyAttachedFile: 'http:sdfwef',
+            })
             .then((response) => {
                 getPosts();
             })

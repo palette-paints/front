@@ -125,22 +125,19 @@ const LoginBox = () => {
         setLoginPw(event.currentTarget.value);
     };
 
-    const connectAccount = async function () {
-        try {
-            let response = await axios({
-                method: 'POST',
-                url: 'http://3.38.52.33:8080/login/form',
-                data: {
-                    loginId: loginId,
-                    loginPw: loginPw,
-                },
+    const connectAccount = (e) => {
+        axios
+            .post('http://3.38.52.33:8080/login/form', {
+                loginId: 'id',
+                loginPw: 'pass',
+            })
+            .then((response) => {
+                console.log('로그인 성공');
+            })
+            .catch((error) => {
+                console.log('로그인 실패');
+                console.log(error.response.data);
             });
-            console.log(response);
-            document.write(JSON.stringify(response));
-        } catch (err) {
-            console.log(err);
-            throw new Error(err);
-        }
     };
 
     const onSubmit = async (event) => {

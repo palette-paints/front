@@ -208,7 +208,7 @@ function StudysDetail() {
         e.preventDefault();
         console.log(newCommentDetail);
         axios
-            .post(`http://3.38.52.33:8080/studys/${id}/comment`, {
+            .post(`http://3.38.52.33:8080/studys/${id}/comment/`, {
                 commentDetail: newCommentDetail,
             })
             .then((response) => {
