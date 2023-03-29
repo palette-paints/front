@@ -168,6 +168,7 @@ function StudysDetail() {
     const [isLikeHover, setIsLikeHover] = useState(false);
     const [isHateHover, setIsHateHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
+    const [newCommentVis, setNewCommentVis] = useState(false);
 
     const [datas, setDatas] = useState([]);
     useEffect(() => {
@@ -421,13 +422,18 @@ function StudysDetail() {
                         </div>
                     </Comment>
                 ))}
-            <CommentAdd>+ 댓글 작성</CommentAdd>
-            <input
-                placeholder="댓글을 입력하시오"
-                value={newCommentDetail}
-                onChange={(e) => setNewCommentDetail(e.target.value)}
-            ></input>
-            <button onClick={CommentSubmit}>저장</button>
+
+            <CommentAdd onClick={() => setNewCommentVis(true)}>
+                + 댓글 작성
+            </CommentAdd>
+            <div style={{ isVisible: 'false' }}>
+                <input
+                    placeholder="댓글을 입력하시오"
+                    value={newCommentDetail}
+                    onChange={(e) => setNewCommentDetail(e.target.value)}
+                />
+                <button onClick={CommentSubmit}>저장</button>
+            </div>
             <PaginationBox>
                 <span>이전글</span>/<span>다음글</span>
             </PaginationBox>
