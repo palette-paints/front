@@ -157,6 +157,7 @@ function StudysDetail() {
     const [isHateHover, setIsHateHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
     const [newCommentVis, setNewCommentVis] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     const { id } = useParams();
     const [datas, setDatas] = useState([]);
@@ -406,17 +407,67 @@ function StudysDetail() {
                     </Comment>
                 ))}
 
-            <CommentAdd onClick={() => setNewCommentVis(true)}>
+            <CommentAdd onClick={() => setVisible(true)}>
                 + 댓글 작성
             </CommentAdd>
-            <div style={{ isVisible: 'false' }}>
-                <input
-                    placeholder="댓글을 입력하시오"
-                    value={newCommentDetail}
-                    onChange={(e) => setNewCommentDetail(e.target.value)}
-                />
-                <button onClick={CommentSubmit}>저장</button>
-            </div>
+            {visible && (
+                <Comment>
+                    <IdBox style={{ width: '860px' }}>
+                        <img
+                            src="/images/profile.png"
+                            width={45}
+                            style={{
+                                position: 'absolute',
+                                left: '15px',
+                            }}
+                        />
+                        <span
+                            style={{
+                                position: 'absolute',
+                                left: '60px',
+                            }}
+                        >
+                            본인 이름
+                        </span>
+                    </IdBox>
+                    <div
+                        style={{
+                            display: 'flex',
+                            gap: '10px',
+                            position: 'absolute',
+                            right: '60px',
+                            top: '50px',
+                        }}
+                    >
+                        <Button
+                            style={{ padding: '14px 20px' }}
+                            onClick={CommentSubmit}
+                        >
+                            저장하기
+                        </Button>
+                    </div>
+                    <input
+                        placeholder="댓글을 입력하시오"
+                        value={newCommentDetail}
+                        onChange={(e) => setNewCommentDetail(e.target.value)}
+                        style={{
+                            display: 'flex',
+                            gap: '10px',
+                            position: 'absolute',
+                            top: '120px',
+                            left: '50px',
+                            width: '1050px',
+                            height: '50px',
+                            fontSize: '15px',
+                            border: '0',
+                            borderRadius: '15px',
+                            outline: 'none',
+                            paddingLeft: '10px',
+                            backgroundColor: 'rgba(63, 138, 181, 0.2)',
+                        }}
+                    ></input>
+                </Comment>
+            )}
             <PaginationBox>
                 <span>이전글</span>/<span>다음글</span>
             </PaginationBox>
