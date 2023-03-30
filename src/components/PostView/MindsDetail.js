@@ -1,6 +1,6 @@
 import React from 'react';
 import MindsBar from './MindsBar';
-import { useState, useEffect, useRouter } from 'react';
+import { useState, useEffect, useRouter, useMemo } from 'react';
 import { redirect, useParams } from 'react-router';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -171,8 +171,8 @@ const PaginationBox = styled.div`
 function MindsDetail(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
-    const [isLikeHover, setIsLikeHover] = useState(false);
-    const [isHateHover, setIsHateHover] = useState(false);
+    //const [isLikeHover, setIsLikeHover] = useState(false);
+    //const [isHateHover, setIsHateHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
     const [editComment, setEditComment] = useState(true);
 
@@ -214,6 +214,7 @@ function MindsDetail(props) {
                 setEditComment(true);
             });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getDatas = async () => {
         const response = await axios
             .get(`http://3.38.52.33:8080/minds/${id}`)
@@ -301,34 +302,19 @@ function MindsDetail(props) {
                             top: '50px',
                         }}
                     >
-                        <Button
-                            onMouseOver={() => setIsCommentHover(true)}
-                            onMouseOut={() => setIsCommentHover(false)}
-                            style={{ width: '60px' }}
-                        >
+                        <Button style={{ width: '60px' }}>
                             <img
                                 width="20px"
-                                src={
-                                    isCommentHover
-                                        ? commentWhite.src
-                                        : commentGreen.src
-                                }
+                                src={commentGreen.src}
                                 alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
                         </Button>
-                        <Button
-                            onMouseOver={() => setIsBookmarkHover(true)}
-                            onMouseOut={() => setIsBookmarkHover(false)}
-                        >
+                        <Button>
                             <img
                                 width="20px"
-                                src={
-                                    isBookmarkHover
-                                        ? bookmarkWhite.src
-                                        : bookmarkGreen.src
-                                }
+                                src={bookmarkGreen.src}
                                 alt="북마크"
                             />
                         </Button>
@@ -419,33 +405,19 @@ function MindsDetail(props) {
                                         top: '50px',
                                     }}
                                 >
-                                    <Button
-                                        onMouseOver={() => setIsLikeHover(true)}
-                                        onMouseOut={() => setIsLikeHover(false)}
-                                        style={{ width: '60px' }}
-                                    >
+                                    <Button style={{ width: '60px' }}>
                                         <img
-                                            src={
-                                                isLikeHover
-                                                    ? likeWhite.src
-                                                    : likeGreen.src
-                                            }
+                                            width="20px"
+                                            src={likeGreen.src}
                                             alt="좋아요"
                                             style={{ margin: '0 3px 0 0' }}
                                         />
                                         {item.like}
                                     </Button>
-                                    <Button
-                                        onMouseOver={() => setIsHateHover(true)}
-                                        onMouseOut={() => setIsHateHover(false)}
-                                        style={{ width: '60px' }}
-                                    >
+                                    <Button style={{ width: '60px' }}>
                                         <img
-                                            src={
-                                                isHateHover
-                                                    ? hateWhite.src
-                                                    : hateGreen.src
-                                            }
+                                            width="20px"
+                                            src={hateGreen.src}
                                             alt="싫어요"
                                             style={{ margin: '0 3px 0 0' }}
                                         />
@@ -504,4 +476,4 @@ function MindsDetail(props) {
         </>
     );
 }
-export default MindsDetail;
+export default React.memo(MindsDetail);

@@ -273,34 +273,19 @@ function StudysDetail() {
                             top: '50px',
                         }}
                     >
-                        <Button
-                            onMouseOver={() => setIsCommentHover(true)}
-                            onMouseOut={() => setIsCommentHover(false)}
-                            style={{ width: '60px' }}
-                        >
+                        <Button style={{ width: '60px' }}>
                             <img
                                 width="20px"
-                                src={
-                                    isCommentHover
-                                        ? commentWhite.src
-                                        : commentBlue.src
-                                }
+                                src={commentBlue.src}
                                 alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
                         </Button>
-                        <Button
-                            onMouseOver={() => setIsBookmarkHover(true)}
-                            onMouseOut={() => setIsBookmarkHover(false)}
-                        >
+                        <Button>
                             <img
                                 width="20px"
-                                src={
-                                    isBookmarkHover
-                                        ? bookmarkWhite.src
-                                        : bookmarkBlue.src
-                                }
+                                src={bookmarkBlue.src}
                                 alt="북마크"
                             />
                         </Button>
@@ -377,33 +362,17 @@ function StudysDetail() {
                                 top: '50px',
                             }}
                         >
-                            <Button
-                                onMouseOver={() => setIsLikeHover(true)}
-                                onMouseOut={() => setIsLikeHover(false)}
-                                style={{ width: '60px' }}
-                            >
+                            <Button style={{ width: '60px' }}>
                                 <img
-                                    src={
-                                        isLikeHover
-                                            ? likeWhite.src
-                                            : likeBlue.src
-                                    }
+                                    src={likeBlue.src}
                                     alt="좋아요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.like}
                             </Button>
-                            <Button
-                                onMouseOver={() => setIsHateHover(true)}
-                                onMouseOut={() => setIsHateHover(false)}
-                                style={{ width: '60px' }}
-                            >
+                            <Button style={{ width: '60px' }}>
                                 <img
-                                    src={
-                                        isHateHover
-                                            ? hateWhite.src
-                                            : hateBlue.src
-                                    }
+                                    src={hateBlue.src}
                                     alt="싫어요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
