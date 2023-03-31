@@ -56,16 +56,75 @@ export default function Mypage() {
         <>
             <Content>
                 <Categories>
-                    <Button onClick={() => setStatus(1)}>개인정보</Button>
-                    <Button onClick={() => setStatus(2)}>
-                        체험 잼잼 신청 목록
-                    </Button>
-                    <Button onClick={() => setStatus(3)}>
-                        학업 튼튼 질문 목록
-                    </Button>
-                    <Button onClick={() => setStatus(4)}>
-                        마음 쑥쑥 질문 목록
-                    </Button>
+                    {status === 1 ? (
+                        <Button
+                            onClick={() => setStatus(1)}
+                            style={{
+                                background: '#3465C9',
+                                color: '#fff',
+                                fontWeight: '600',
+                            }}
+                        >
+                            개인정보
+                        </Button>
+                    ) : (
+                        <Button onClick={() => setStatus(1)}>개인정보</Button>
+                    )}
+                    {status === 2 ? (
+                        <Button
+                            onClick={() => setStatus(2)}
+                            style={{
+                                background: '#7E6FDD',
+                                color: '#fff',
+                                fontWeight: '600',
+                                boxShadow:
+                                    '2px 2px 10px rgba(126, 110, 221, 0.5)',
+                            }}
+                        >
+                            체험 잼잼 신청 목록
+                        </Button>
+                    ) : (
+                        <Button onClick={() => setStatus(2)}>
+                            체험 잼잼 신청 목록
+                        </Button>
+                    )}
+                    {status === 3 ? (
+                        <Button
+                            onClick={() => setStatus(3)}
+                            style={{
+                                background: '#3F8AB5',
+                                color: '#fff',
+                                fontWeight: '600',
+                                boxShadow:
+                                    '2px 2px 10px rgba(63, 138, 181, 0.5)',
+                            }}
+                        >
+                            학업 튼튼 신청 목록
+                        </Button>
+                    ) : (
+                        <Button onClick={() => setStatus(3)}>
+                            학업 튼튼 질문 목록
+                        </Button>
+                    )}
+
+                    {status === 4 ? (
+                        <Button
+                            onClick={() => setStatus(4)}
+                            style={{
+                                background: '#71AF8A',
+                                color: '#fff',
+                                fontWeight: '600',
+                                boxShadow:
+                                    '2px 2px 10px rgba(113, 175, 138, 0.5)',
+                            }}
+                        >
+                            마음 쑥쑥 신청 목록
+                        </Button>
+                    ) : (
+                        <Button onClick={() => setStatus(4)}>
+                            마음 쑥쑥 질문 목록
+                        </Button>
+                    )}
                 </Categories>
             </Content>
             {status === 1 && <Inform />}
