@@ -4,7 +4,8 @@ import PlaysBar from '@/api/PostView/PlaysBar';
 import PostCardImg from '@/api/PostView/PlaysCardImg';
 import { Pagination } from 'react-pagination-bar';
 import 'react-pagination-bar/dist/index.css';
-import Link from 'next/link';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -103,9 +104,10 @@ function PlaysList() {
 
     const getDatas = async () => {
         const response = await axios
-            .get('https://jsonplaceholder.typicode.com/posts')
+            .get('http://3.38.52.33:8080/plays')
             .then((response) => {
                 setDatas(response.data);
+                console.log('성공');
                 console.log(datas);
             })
             .catch((error) => {
@@ -136,6 +138,7 @@ function PlaysList() {
                             //   data={item}
                             // />
                         ))}
+                    {!datas && <div>게시물이 없습니다.</div>}
                 </List>
 
                 {/* <Pagination
