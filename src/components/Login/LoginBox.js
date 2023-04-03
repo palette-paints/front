@@ -112,10 +112,11 @@ const Find = styled.div`
     }
 `;
 
-const LoginBox = () => {
+const LoginBox = ({ loginState, setLoginState }) => {
     const [loginId, setLoginId] = useState('');
     const [loginPw, setLoginPw] = useState('');
     const [error, setError] = useState('');
+
     const navigate = useNavigate();
 
     const onEmailHnadler = (event) => {
@@ -128,11 +129,13 @@ const LoginBox = () => {
     const connectAccount = (e) => {
         axios
             .post('http://3.38.52.33:8080/login/form', {
-                loginId: 'id',
-                loginPw: 'pass',
+                loginId: loginId,
+                loginPw: loginPw,
             })
             .then((response) => {
                 console.log('로그인 성공');
+                setLoginState(true);
+                window.location.href = '/';
             })
             .catch((error) => {
                 console.log('로그인 실패');
