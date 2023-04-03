@@ -177,7 +177,6 @@ function MindsDetail(props) {
 
     const [visible, setVisible] = useState(false);
 
-
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         getDatas();
@@ -206,7 +205,6 @@ function MindsDetail(props) {
             });
     };
 
-
     const getDatas = async () => {
         const response = await axios
             .get(`http://3.38.52.33:8080/minds/${id}`)
@@ -219,7 +217,6 @@ function MindsDetail(props) {
                 console.log('전체 글 불러오기 실패', error.message);
             });
     };
-
 
     function addComment() {
         return (
@@ -350,7 +347,6 @@ function MindsDetail(props) {
             {datas.comments &&
                 datas.comments.map((item) => (
                     <Comment>
-
                         <IdBox style={{ width: '860px' }}>
                             <img
                                 src="/images/profile.png"
@@ -388,11 +384,7 @@ function MindsDetail(props) {
                         >
                             <Button style={{ width: '60px' }}>
                                 <img
-                                    src={
-                                        isLikeHover
-                                            ? likeWhite.src
-                                            : likeGreen.src
-                                    }
+                                    src={likeGreen.src}
                                     alt="좋아요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
@@ -400,11 +392,7 @@ function MindsDetail(props) {
                             </Button>
                             <Button style={{ width: '60px' }}>
                                 <img
-                                    src={
-                                        isHateHover
-                                            ? hateWhite.src
-                                            : hateGreen.src
-                                    }
+                                    src={hateGreen.src}
                                     alt="싫어요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
@@ -440,7 +428,6 @@ function MindsDetail(props) {
                                 삭제하기
                             </Button>
                         </div>
-
                     </Comment>
                 ))}
             <CommentAdd onClick={() => setVisible(true)}>
