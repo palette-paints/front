@@ -205,16 +205,6 @@ function MindsDetail(props) {
             });
     };
 
-    const commentEdit = (id, comment_id) => {
-        axios
-            .put(`http://3.38.52.33:8080/minds/${id}/comment/${comment_id}`, {
-                commentDetail: '수정',
-            })
-            .then((response) => {
-                console.log('수정 성공');
-                setEditComment(true);
-            });
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const getDatas = async () => {
         const response = await axios
@@ -435,13 +425,7 @@ function MindsDetail(props) {
                                         right: '50px',
                                     }}
                                 >
-                                    <Button
-                                        style={{ padding: '14px 20px' }}
-                                        onClick={commentEdit(
-                                            id,
-                                            item.commentId
-                                        )}
-                                    >
+                                    <Button style={{ padding: '14px 20px' }}>
                                         수정하기
                                     </Button>
                                     <Button

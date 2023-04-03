@@ -212,7 +212,6 @@ function StudysDetail() {
         }
     };
 
-    console.log(newCommentDetail);
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
