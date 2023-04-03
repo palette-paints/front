@@ -13,53 +13,39 @@ const CreateBox = styled.div`
 `;
 
 function CreatePost() {
+    const [file, setFile] = useState(null);
     const [title, setTitle] = useState('');
     const [posts, setPosts] = useState('');
     const [newPost, setNewPost] = useState('');
 
-    useEffect(() => {
-        getPosts();
-    }, []);
-
-    const getPosts = async () => {
-        const response = await axios
-            .get('http://3.38.52.33:8080/studys')
-            .then((response) => {
-                // (전체 게시글 저장)
-                setPosts(response.data);
-                console.log('성공');
-                console.log(posts);
-            })
-            .catch((error) => {
-                console.log('전체 글 불러오기 실패', error.message);
-            });
+    const handleChangeFile = (event) => {
+        setFile(event.target.files);
     };
-
     const postPost = (event) => {
         event.preventDefault();
 
-        const data = {
+        const studyDetailReq = {
             category: '국어',
-            title: 'hihihi',
-            studyDetails: 'wehrihwierhalweirlaweij',
-
-            studyAttachedFile: 'http:sdfwef',
+            title: '성공',
+            studyDetails: '성공',
         };
+        const fd = new FormData();
+        fd.append('studyAttachedFile', file);
+        fd.append(
+            ' studyDetailReq',
+            new Blob([JSON.stringify(studyDetailReq)], {
+                type: 'application/json',
+            })
+        );
 
         axios
-            .post(`http://3.38.52.33:8080/studys/new/`, {
-                category: '국어',
-                title: 'hihihi',
-                studyDetails: 'wehrihwierhalweirlaweij',
-
-                studyAttachedFile: 'http:sdfwef',
-                body: JSON.stringify(data),
+            .post(`http://3.38.52.33:8080/studys/new`, fd, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'multipart/form-data',
                 },
             })
             .then((response) => {
-                getPosts();
+                window.location.href = '/studys/';
             })
             .catch((error) => {
                 console.log('작성 실패');
@@ -67,12 +53,16 @@ function CreatePost() {
                 console.log(error);
                 console.log(error.response.data);
             });
-
-        setNewPost('');
     };
     return (
         <CreateBox>
             <form onSubmit={postPost}>
+                <input
+                    type="file"
+                    id="file"
+                    onChange={handleChangeFile}
+                    multiple="multiple"
+                ></input>
                 <input
                     className="CreateForm"
                     type="text"
