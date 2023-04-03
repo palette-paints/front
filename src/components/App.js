@@ -14,8 +14,11 @@ import P_create from '../routes/P_create';
 import M_create from '../routes/M_create';
 import S_edit from '../routes/S_edit';
 import Mypage from '../routes/Mypage';
+import { useState } from 'react';
 
 const App = () => {
+    const [loginState, setLoginState] = useState(false);
+
     return (
         <Router>
             <Routes>
@@ -36,6 +39,8 @@ const App = () => {
                 />
                 <Route exact path={`/minds/:id`} element={<MindsDetail />} />
                 <Route
+                    loginState={false}
+                    setLoginState={setLoginState}
                     path={`${process.env.PUBLIC_URL}/login`}
                     element={<Login />}
                 />
