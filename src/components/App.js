@@ -19,6 +19,10 @@ import { useState } from 'react';
 const App = () => {
     const [loginState, setLoginState] = useState(false);
 
+    const setLoginStateTrue = () => {
+        setLoginState(true);
+    };
+
     return (
         <Router>
             <Routes>
@@ -39,8 +43,8 @@ const App = () => {
                 />
                 <Route exact path={`/minds/:id`} element={<MindsDetail />} />
                 <Route
-                    loginState={false}
-                    setLoginState={setLoginState}
+                    loginState={loginState}
+                    setLoginStateTrue={setLoginStateTrue}
                     path={`${process.env.PUBLIC_URL}/login`}
                     element={<Login />}
                 />

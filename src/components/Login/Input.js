@@ -39,7 +39,7 @@ const UserDiv = styled.div`
 const Input = ({ loginState }) => {
     return (
         <a
-            href={loginState == false ? '/login' : '/mypage'}
+            href={loginState === false ? '/login' : '/mypage'}
             style={{
                 display: 'flex',
                 flexDirection: 'row-reverse',
@@ -47,7 +47,7 @@ const Input = ({ loginState }) => {
                 textDecorationLine: 'none',
             }}
         >
-            {loginState == false ? (
+            {loginState === false ? (
                 <UserDiv>
                     <p>로그인</p>
                 </UserDiv>
