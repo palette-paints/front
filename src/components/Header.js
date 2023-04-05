@@ -37,7 +37,7 @@ const HeaderBox = styled.div`
     }
 `;
 
-const Header = ({ title }) => {
+const Header = ({ title, loginState }) => {
     const [location, setLocation] = useState('');
     const loc = useLocation().pathname;
 
@@ -74,7 +74,7 @@ const Header = ({ title }) => {
 
             <Logo3 className={loginIconInputs.logoImg} />
 
-            <Input />
+            <Input loginState={loginState} />
         </div>
     );
 };

@@ -1,3 +1,7 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 import styled from 'styled-components';
 
 const Content = styled.div`
@@ -75,7 +79,32 @@ const Textbox = styled.div`
     box-shadow: 0px 2px 10px rgba(52, 101, 201, 0.5);
     border-radius: 30px;
 `;
-export default function Inform() {
+const Inform = ({ setLoginState }) => {
+    const logout = (e) => {
+        axios.post('http://3.38.52.33:8080/logout').then((response) => {
+            console.log('로그아웃');
+            window.location.href = '/';
+            setLoginState(false);
+        });
+    };
+    const [user, setUser] = useState([]);
+    useEffect(() => {
+        getDatas();
+    }, []);
+
+    const getDatas = async () => {
+        const response = await axios
+            .get(`http://3.38.52.33:8080/mypage`)
+            .then((response) => {
+                setUser(response.data);
+                console.log('성공');
+                console.log(user);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
     return (
         <>
             <Content>
@@ -89,7 +118,9 @@ export default function Inform() {
                     <Profile />
                     <Button>+ 이미지 수정</Button>
                     <Button>정보 수정</Button>
-                    <Button>로그아웃</Button>
+                    <Button type="button" onClick={logout}>
+                        로그아웃
+                    </Button>
                 </div>
                 <Card>
                     <Header>고유 정보</Header>
@@ -140,4 +171,5 @@ export default function Inform() {
             </Content>
         </>
     );
-}
+};
+export default Inform;
