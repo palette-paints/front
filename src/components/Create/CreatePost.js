@@ -18,51 +18,28 @@ function CreatePost() {
     const [posts, setPosts] = useState('');
     const [newPost, setNewPost] = useState('');
 
-    // useEffect(() => {
-    //     getPosts();
-    // }, []);
-
-    // const getPosts = async () => {
-    //     const response = await axios
-    //         .get('http://3.38.52.33:8080/studys')
-    //         .then((response) => {
-    //             // (전체 게시글 저장)
-    //             setPosts(response.data);
-    //             console.log('성공');
-    //             console.log(posts);
-    //         })
-    //         .catch((error) => {
-    //             console.log('전체 글 불러오기 실패', error.message);
-    //         });
-    // };
-
     const handleChangeFile = (event) => {
         setFile(event.target.files);
     };
     const postPost = (event) => {
         event.preventDefault();
-        const fd = new FormData();
-        fd.append('studyAttachedFile', file[0]);
-        // event.preventDefault();
-        const data = {
+
+        const studyDetailReq = {
             category: '국어',
             title: '성공',
             studyDetails: '성공',
         };
+        const fd = new FormData();
+        fd.append('studyAttachedFile', file);
+        fd.append(
+            ' studyDetailReq',
+            new Blob([JSON.stringify(studyDetailReq)], {
+                type: 'application/json',
+            })
+        );
 
-        const blob = new Blob([JSON.stringify(data)], {
-            type: 'application/json',
-        });
-        fd.append('data', blob);
         axios
-            .post(`http://3.38.52.33:8080/studys/new/`, {
-                data: fd,
-                // category: '국어',
-                // title: 'hihihi',
-                // studyDetails: 'wehrihwierhalweirlaweij',
-
-                // studyAttachedFile: 'http:sdfwef',
-                // body: JSON.stringify(data),
+            .post(`http://3.38.52.33:8080/studys/new`, fd, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
