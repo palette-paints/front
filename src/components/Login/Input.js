@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import LoginBox from './LoginBox';
+import { useState } from 'react';
 const UserDiv = styled.div`
     box-sizing: border-box;
     width: 120px;
@@ -25,17 +26,20 @@ const UserDiv = styled.div`
     }
 
     :hover {
+        height: 40px;
         background-color: #3465c9;
+
         p {
+            background-color: #3465c9;
             color: #fff;
         }
     }
 `;
 
-const Input = () => {
+const Input = ({ loginState }) => {
     return (
         <a
-            href="/login"
+            href={loginState === false ? '/login' : '/mypage'}
             style={{
                 display: 'flex',
                 flexDirection: 'row-reverse',
@@ -43,9 +47,15 @@ const Input = () => {
                 textDecorationLine: 'none',
             }}
         >
-            <UserDiv>
-                <p>로그인</p>
-            </UserDiv>
+            {loginState === false ? (
+                <UserDiv>
+                    <p>로그인</p>
+                </UserDiv>
+            ) : (
+                <UserDiv>
+                    <p>마이페이지</p>
+                </UserDiv>
+            )}
         </a>
     );
 };
