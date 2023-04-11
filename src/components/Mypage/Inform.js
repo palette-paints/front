@@ -87,22 +87,20 @@ const Inform = ({ setLoginState }) => {
             setLoginState(false);
         });
     };
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState({});
     useEffect(() => {
         getDatas();
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
-            .get(`http://3.38.52.33:8080/mypage`)
-            .then((response) => {
-                setUser(response.data);
-                console.log('성공');
-                console.log(user);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        try {
+            const response = await axios.get('http://3.38.52.33:8080/mypage');
+            setUser(response.data);
+            console.log('성공');
+            console.log(response.data); // user 상태 값이 업데이트된 후 출력
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

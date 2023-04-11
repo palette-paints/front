@@ -1,5 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+    BrowserRouter,
+} from 'react-router-dom';
 import Main from '../routes/Main';
 import Plays from '../routes/Plays';
 import PlaysDetail from '../components/PostView/PlaysDetail';
@@ -14,17 +20,21 @@ import P_create from '../routes/P_create';
 import M_create from '../routes/M_create';
 import S_edit from '../routes/S_edit';
 import Mypage from '../routes/Mypage';
-import { useState } from 'react';
+import ProtectedRoute from './ProtectedRoute';
 
 const App = () => {
-    const [loginState, setLoginState] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const setLoginStateTrue = () => {
-        setLoginState(true);
+        setIsLoggedIn(true);
+    };
+
+    const setLoginStateFalse = () => {
+        setIsLoggedIn(false);
     };
 
     return (
-        <Router>
+        <BrowserRouter>
             <Routes>
                 <Route path={`${process.env.PUBLIC_URL}/`} element={<Main />} />
                 <Route
@@ -43,10 +53,8 @@ const App = () => {
                 />
                 <Route exact path={`/minds/:id`} element={<MindsDetail />} />
                 <Route
-                    loginState={loginState}
-                    setLoginStateTrue={setLoginStateTrue}
                     path={`${process.env.PUBLIC_URL}/login`}
-                    element={<Login />}
+                    element={<Login setLoginStateTrue={setLoginStateTrue} />}
                 />
                 <Route
                     path={`${process.env.PUBLIC_URL}/signup`}
@@ -54,27 +62,56 @@ const App = () => {
                 />
                 <Route
                     path={`${process.env.PUBLIC_URL}/studys/create`}
-                    element={<S_create />}
+                    element={
+                        <ProtectedRoute
+                            isLoggedIn={isLoggedIn}
+                            component={<S_create />}
+                        />
+                    }
                 />
                 <Route
                     path={`${process.env.PUBLIC_URL}/minds/create`}
-                    element={<M_create />}
+                    element={
+                        <ProtectedRoute
+                            isLoggedIn={isLoggedIn}
+                            component={<M_create />}
+                        />
+                    }
                 />
                 <Route
                     path={`${process.env.PUBLIC_URL}/plays/create`}
-                    element={<P_create />}
+                    element={
+                        <ProtectedRoute
+                            isLoggedIn={isLoggedIn}
+                            component={<P_create />}
+                        />
+                    }
                 />
-
                 <Route
                     path={`${process.env.PUBLIC_URL}/studys/edit/:id`}
-                    element={<S_edit />}
+                    element={
+                        <ProtectedRoute
+                            isLoggedIn={isLoggedIn}
+                            component={<S_edit />}
+                        />
+                    }
                 />
                 <Route
                     path={`${process.env.PUBLIC_URL}/mypage`}
-                    element={<Mypage />}
+                    element={
+                        <ProtectedRoute
+                            isLoggedIn={isLoggedIn}
+                            component={<Mypage />}
+                        />
+                    }
+                />
+
+                <Route
+                    path="*"
+                    element={<Navigate to={`${process.env.PUBLIC_URL}/`} />}
                 />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
 };
 

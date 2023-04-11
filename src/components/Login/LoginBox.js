@@ -132,9 +132,7 @@ const LoginBox = ({ loginState, setLoginStateTrue }) => {
                 loginId: loginId,
                 loginPw: loginPw,
             })
-            .then(() => {
-                loginChange();
-            })
+
             .then((response) => {
                 console.log('로그인 성공');
 
