@@ -39,7 +39,7 @@ function CreatePost() {
         );
 
         axios
-            .post(`http://3.38.52.33:8080/studys/new`, fd, {
+            .post(`https://beforyou.shop/studys/new`, fd, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
