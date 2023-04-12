@@ -76,7 +76,6 @@ function PlaysBar(props) {
             })
             .catch((error) => {
                 console.log('전체 글 불러오기 실패', error.message);
-                <div>*준비 중*</div>;
             });
     };
     return (
@@ -103,15 +102,6 @@ function PlaysBar(props) {
                                 <Button>{category}</Button>
                             )
                         )}
-                    {/* <Button>전체</Button>
-          <Button>스포츠</Button>
-          <Button>댄스</Button>
-          <Button>음악</Button>
-          <Button>미술</Button>
-          <Button>요리</Button>
-          <Button>영상</Button>
-          <Button>축제</Button>
-          <Button>기타</Button> */}
                 </Categories>
             </Content>
         </>
