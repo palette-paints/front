@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatePost from '../components/Create/CreatePost';
+import CreatePost from '../components/Create/CreatePostStudy';
 import Header from '../components/Header';
 
 function S_create() {
