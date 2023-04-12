@@ -38,7 +38,6 @@ const UserDiv = styled.div`
 
 const Input = () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-
     return (
         <a
             href={isLoggedIn === 'false' ? '/login' : '/mypage'}
