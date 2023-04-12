@@ -36,8 +36,7 @@ const HeaderBox = styled.div`
         font-size: 15px;
     }
 `;
-
-const Header = ({ title, loginState }) => {
+function Header(title, loginState) {
     const [location, setLocation] = useState('');
     const loc = useLocation().pathname;
 
@@ -77,6 +76,6 @@ const Header = ({ title, loginState }) => {
             <Input loginState={loginState} />
         </div>
     );
-};
+}
 
 export default Header;
