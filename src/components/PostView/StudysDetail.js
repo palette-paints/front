@@ -166,10 +166,6 @@ function StudysDetail() {
         getDatas();
     }, []);
 
-    // if (error) return '에러발생';
-    // if (!data) return '로딩중..';
-    // console.log(data.comments);
-
     const getDatas = async () => {
         const response = await axios
             .get(`https://beforyou.shop/studys/${id}`)
@@ -254,7 +250,6 @@ function StudysDetail() {
                         <img
                             src="/images/profile.png"
                             width={45}
-                            alt="프사"
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
@@ -277,17 +272,9 @@ function StudysDetail() {
                             <img
                                 width="20px"
                                 src={commentBlue.src}
-                                alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
-                        </Button>
-                        <Button>
-                            <img
-                                width="20px"
-                                src={bookmarkBlue.src}
-                                alt="북마크"
-                            />
                         </Button>
                     </div>
                     <p style={{ position: 'static', margin: '80px 0 0  50px' }}>
@@ -339,7 +326,6 @@ function StudysDetail() {
                             <img
                                 src="/images/profile.png"
                                 width={45}
-                                alt="프사"
                                 style={{ position: 'absolute', left: '15px' }}
                             />
                             <span
@@ -350,7 +336,7 @@ function StudysDetail() {
                             <span
                                 style={{ position: 'absolute', right: '15px' }}
                             >
-                                {item.createdAt}
+                                {item.createdAt.slice(0, 10)}
                             </span>
                         </IdBox>
                         <div
@@ -365,7 +351,6 @@ function StudysDetail() {
                             <Button style={{ width: '60px' }}>
                                 <img
                                     src={likeBlue.src}
-                                    alt="좋아요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.like}
@@ -373,7 +358,6 @@ function StudysDetail() {
                             <Button style={{ width: '60px' }}>
                                 <img
                                     src={hateBlue.src}
-                                    alt="싫어요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.unlike}
@@ -467,9 +451,6 @@ function StudysDetail() {
                     ></input>
                 </Comment>
             )}
-            <PaginationBox>
-                <span>이전글</span>/<span>다음글</span>
-            </PaginationBox>
         </>
     );
 }

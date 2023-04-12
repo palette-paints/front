@@ -44,6 +44,7 @@ const Bottom = styled.div`
     display: inline-flex;
     justify-content: space-between;
     flex-direction: row;
+    background: #ffffff;
 `;
 const Category = styled.button`
     display: flex;
@@ -55,7 +56,7 @@ const Category = styled.button`
     width: 100px;
     font-size: 1em;
     background: #3f8ab5;
-    color: #fff;
+    color: #ffffff;
     box-shadow: 0px 2px 10px rgba(63, 138, 181, 0.5);
     border-radius: 30px;
     border: none;
@@ -69,13 +70,13 @@ const Button = styled.button`
 
     color: #00639b;
     font-size: 1em;
-    background: #fff;
+    background: #ffffff;
     box-shadow: 0px 2px 10px rgba(63, 138, 181, 0.5);
     border-radius: 30px;
     border: none;
     &:hover {
         background: #3f8ab5;
-        color: #fff;
+        color: #ffffff;
     }
 `;
 function PostCard(props) {
@@ -84,7 +85,7 @@ function PostCard(props) {
     const date = new Date(props.data.createdDate).toISOString().split('T')[0];
     return (
         <Card>
-            <IdBox>
+            <IdBox style={{ background: '#fff' }}>
                 <img
                     src="images/profile.png"
                     width={45}
