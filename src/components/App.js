@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
     Routes,
@@ -23,15 +23,24 @@ import Mypage from '../routes/Mypage';
 import ProtectedRoute from './ProtectedRoute';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState('');
 
     const setLoginStateTrue = () => {
         setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn', 'true');
     };
 
     const setLoginStateFalse = () => {
         setIsLoggedIn(false);
+        localStorage.removeItem('isLoggedIn');
     };
+
+    useEffect(() => {
+        const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+        if (storedIsLoggedIn !== undefined && storedIsLoggedIn !== isLoggedIn) {
+            setIsLoggedIn(storedIsLoggedIn === 'true');
+        }
+    }, [isLoggedIn]);
 
     return (
         <BrowserRouter>
@@ -108,6 +117,7 @@ const App = () => {
                     path={`${process.env.PUBLIC_URL}/mypage`}
                     element={
                         <ProtectedRoute
+                            setLoginStateFalse={setLoginStateFalse}
                             isLoggedIn={isLoggedIn}
                             component={Mypage}
                         />

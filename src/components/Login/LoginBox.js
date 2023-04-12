@@ -135,7 +135,8 @@ const LoginBox = ({ setLoginStateTrue, isLoggedIn }) => {
             .then((response) => {
                 console.log('로그인 성공');
                 setLoginStateTrue();
-                console.log(isLoggedIn);
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = '/main';
             })
             .catch((error) => {
                 console.log('로그인 실패');

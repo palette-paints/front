@@ -79,18 +79,20 @@ const Textbox = styled.div`
     box-shadow: 0px 2px 10px rgba(52, 101, 201, 0.5);
     border-radius: 30px;
 `;
-const Inform = ({ setLoginState }) => {
-    const logout = (e) => {
-        axios.post('http://3.38.52.33:8080/logout').then((response) => {
-            console.log('로그아웃');
-            window.location.href = '/';
-            setLoginState(false);
-        });
-    };
+const Inform = ({ setLoginStateFalse }) => {
     const [user, setUser] = useState({});
+
     useEffect(() => {
         getDatas();
     }, []);
+
+    const logout = (e) => {
+        axios.post('http://3.38.52.33:8080/logout').then((response) => {
+            console.log('로그아웃');
+            setLoginStateFalse();
+            localStorage.setItem('isLoggedIn', false);
+        });
+    };
 
     const getDatas = async () => {
         try {
