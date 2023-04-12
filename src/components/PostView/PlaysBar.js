@@ -69,7 +69,7 @@ function PlaysBar(props) {
 
     const getDatas = async () => {
         const response = await axios
-            .get('http://3.38.52.33:8080/plays')
+            .get('https://beforyou.shop/plays')
             .then((response) => {
                 setDatas(response.data);
                 console.log(datas);
@@ -87,26 +87,21 @@ function PlaysBar(props) {
             <Content>
                 <Categories>
                     <Button>전체</Button>
-                    {datas.categories.map((category) =>
-                        props && category === props.category ? (
-                            <Button
-                                style={{ background: '#7e6fdd', color: '#fff' }}
-                            >
-                                {category}
-                            </Button>
-                        ) : (
-                            <Button>{category}</Button>
-                        )
-                    )}
-                    {/* <Button>전체</Button>
-          <Button>스포츠</Button>
-          <Button>댄스</Button>
-          <Button>음악</Button>
-          <Button>미술</Button>
-          <Button>요리</Button>
-          <Button>영상</Button>
-          <Button>축제</Button>
-          <Button>기타</Button> */}
+                    {datas.categories &&
+                        datas.categories.map((category) =>
+                            props && category === props.category ? (
+                                <Button
+                                    style={{
+                                        background: '#7e6fdd',
+                                        color: '#fff',
+                                    }}
+                                >
+                                    {category}
+                                </Button>
+                            ) : (
+                                <Button>{category}</Button>
+                            )
+                        )}
                 </Categories>
             </Content>
         </>

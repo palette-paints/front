@@ -164,7 +164,7 @@ function CheDetail() {
     const { id } = useParams();
     const getDatas = async () => {
         const response = await axios
-            .get(`http://3.38.52.33:8080/plays/${id}`)
+            .get(`https://beforyou.shop/plays/${id}`)
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');

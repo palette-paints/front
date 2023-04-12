@@ -168,7 +168,7 @@ function StudysDetail() {
 
     const getDatas = async () => {
         const response = await axios
-            .get(`http://3.38.52.33:8080/studys/${id}`)
+            .get(`https://beforyou.shop/studys/${id}`)
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
@@ -182,7 +182,7 @@ function StudysDetail() {
 
     const onDelete = (id) => {
         axios
-            .delete(`http://3.38.52.33:8080/studys/${id}`)
+            .delete(`https://beforyou.shop/studys/${id}`)
             .then((response) => {
                 getDatas(response.data);
                 window.location.href = '/studys/';
@@ -200,7 +200,7 @@ function StudysDetail() {
             formData.append('studyDetails', '바뀜');
             formData.append('studyAttachedFile', 'http:sdfwef');
 
-            axios.put(`http://3.38.52.33:8080/studys/${id}/`, formData);
+            axios.put(`https://beforyou.shop/studys/${id}/`, formData);
             console.log('수정완료');
         } catch (error) {
             console.log('수정실패');
@@ -208,12 +208,11 @@ function StudysDetail() {
         }
     };
 
-    console.log(newCommentDetail);
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
         axios
-            .post(`http://3.38.52.33:8080/studys/${id}/comment/`, {
+            .post(`https://beforyou.shop/studys/${id}/comment/`, {
                 commentDetail: newCommentDetail,
                 commentAttachedFile: 'http://wrwe',
             })

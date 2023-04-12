@@ -186,7 +186,7 @@ function MindsDetail(props) {
 
     const onDelete = (id) => {
         axios
-            .delete(`http://3.38.52.33:8080/minds/${id}`)
+            .delete(`https://beforyou.shop/minds/${id}`)
             .then((response) => {
                 getDatas(response.data);
             })
@@ -196,7 +196,7 @@ function MindsDetail(props) {
     };
     const onDeleteComment = (id, commentId) => {
         axios
-            .delete(`http://3.38.52.33:8080/minds/${id}/comment/${commentId}`)
+            .delete(`https://beforyou.shop/minds/${id}/comment/${commentId}`)
             .then((response) => {
                 getDatas(response.data);
             })
@@ -207,7 +207,7 @@ function MindsDetail(props) {
 
     const getDatas = async () => {
         const response = await axios
-            .get(`http://3.38.52.33:8080/minds/${id}`)
+            .get(`https://beforyou.shop/minds/${id}`)
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
@@ -218,19 +218,11 @@ function MindsDetail(props) {
             });
     };
 
-    function addComment() {
-        return (
-            <>
-                <div>댓글 작성</div>
-            </>
-        );
-    }
-
     const CommentSubmit = (e) => {
         e.preventDefault();
         console.log(newCommentDetail);
         axios
-            .post(`http://3.38.52.33:8080/minds/${id}/comment/`, {
+            .post(`https://beforyou.shop/minds/${id}/comment/`, {
                 commentDetail: newCommentDetail,
                 commentAttachedFile: 'http://wrwe',
             })

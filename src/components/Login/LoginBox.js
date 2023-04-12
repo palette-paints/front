@@ -127,7 +127,7 @@ const LoginBox = ({ setLoginStateTrue, isLoggedIn }) => {
 
     const connectAccount = (e) => {
         axios
-            .post('http://3.38.52.33:8080/login/form', {
+            .post('https://beforyou.shop/login/form', {
                 loginId: loginId,
                 loginPw: loginPw,
             })
