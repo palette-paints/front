@@ -271,7 +271,9 @@ function StudysDetail() {
                         <Button style={{ width: '60px' }}>
                             <img
                                 width="20px"
-                                src={commentBlue.src}
+                                src={
+                                    isCommentHover ? commentWhite : commentBlue
+                                }
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
@@ -311,7 +313,7 @@ function StudysDetail() {
             <CommentBar>
                 <img
                     width="20px"
-                    src={commentWhite.src}
+                    src={commentWhite}
                     alt=""
                     style={{ margin: '0 3px 0 0' }}
                 />
@@ -410,7 +412,7 @@ function StudysDetail() {
                                 left: '60px',
                             }}
                         >
-                            본인 이름
+                            {localStorage.getItem('loginId')}
                         </span>
                     </IdBox>
                     <div
