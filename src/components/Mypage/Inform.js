@@ -80,6 +80,7 @@ const Textbox = styled.div`
     box-shadow: 0px 2px 10px rgba(52, 101, 201, 0.5);
     border-radius: 30px;
 `;
+
 const Inform = ({ setLoginStateFalse }) => {
     const [user, setUser] = useState({});
 
@@ -94,7 +95,7 @@ const Inform = ({ setLoginStateFalse }) => {
             localStorage.removeItem('token');
             localStorage.removeItem('isLoggedIn');
             setLoginStateFalse();
-            localStorage.setItem('isLoggedIn', false);
+            // localStorage.setItem('isLoggedIn', false);
         });
     };
 
@@ -103,12 +104,13 @@ const Inform = ({ setLoginStateFalse }) => {
             const token = localStorage.getItem('token');
             const config = {
                 headers: {
+                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
                 },
             };
 
             const response = await axios.get(
-                'http://3.38.52.33:8080/mypage',
+                'https://beforyou.shop/mypage',
                 config
             );
             setUser(response.data);
