@@ -69,13 +69,14 @@ function PlaysBar(props) {
 
     const getDatas = async () => {
         const response = await axios
-            .get('http://3.38.52.33:8080/plays')
+            .get('https://beforyou.shop/plays')
             .then((response) => {
                 setDatas(response.data);
                 console.log(datas);
             })
             .catch((error) => {
                 console.log('전체 글 불러오기 실패', error.message);
+                <div>*준비 중*</div>;
             });
     };
     return (
@@ -87,17 +88,21 @@ function PlaysBar(props) {
             <Content>
                 <Categories>
                     <Button>전체</Button>
-                    {datas.categories.map((category) =>
-                        props && category === props.category ? (
-                            <Button
-                                style={{ background: '#7e6fdd', color: '#fff' }}
-                            >
-                                {category}
-                            </Button>
-                        ) : (
-                            <Button>{category}</Button>
-                        )
-                    )}
+                    {datas.categories &&
+                        datas.categories.map((category) =>
+                            props && category === props.category ? (
+                                <Button
+                                    style={{
+                                        background: '#7e6fdd',
+                                        color: '#fff',
+                                    }}
+                                >
+                                    {category}
+                                </Button>
+                            ) : (
+                                <Button>{category}</Button>
+                            )
+                        )}
                     {/* <Button>전체</Button>
           <Button>스포츠</Button>
           <Button>댄스</Button>

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useState } from 'react';
-import commentPur from '/public/images/commentPur.png';
-import commentWhite from '/public/images/commentWhite.png';
-import bookmarkPur from '/public/images/bookmarkPur.png';
-import bookmarkWhite from '/public/images/bookmarkWhite.png';
-
+import commentPur from '../../images/commentPur.png';
+// import commentWhite from '/public/images/commentWhite.png';
+import bookmarkPur from '../../images/bookmarkPur.png';
+// import bookmarkWhite from '/public/images/bookmarkWhite.png';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const Card = styled.div`
     display: flex;
     flex-direction: column;
@@ -82,7 +82,7 @@ function PostCard(props) {
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     return (
         <Card>
-            <Link to={`/minds/${props.playId}`}>
+            <Link to={`/plays/${props.playId}`}>
                 <IdBox>
                     <img
                         src="images/profile.png"
@@ -109,11 +109,7 @@ function PostCard(props) {
                         >
                             <img
                                 width="20px"
-                                src={
-                                    isCommentHover
-                                        ? commentWhite.src
-                                        : commentPur.src
-                                }
+                                src={commentPur.src}
                                 alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
@@ -125,11 +121,7 @@ function PostCard(props) {
                         >
                             <img
                                 width="20px"
-                                src={
-                                    isBookmarkHover
-                                        ? bookmarkWhite.src
-                                        : bookmarkPur.src
-                                }
+                                src={bookmarkPur.src}
                                 alt="북마크"
                             />
                         </Button>

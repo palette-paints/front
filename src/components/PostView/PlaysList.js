@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import PlaysBar from '@/api/PostView/PlaysBar';
-
-import PostCardImg from '@/api/PostView/PlaysCardImg';
+import PostCard from '../PostView/PlaysCard';
+import PlaysBar from '../PostView/PlaysBar';
 import { Pagination } from 'react-pagination-bar';
 import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
@@ -104,7 +103,7 @@ function PlaysList() {
 
     const getDatas = async () => {
         const response = await axios
-            .get('http://3.38.52.33:8080/plays')
+            .get('https://beforyou.shop/plays')
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
@@ -121,10 +120,11 @@ function PlaysList() {
                 <a href="/plays/create" style={{ textDecoration: 'none' }}>
                     <Question>+ 개설하기</Question>
                 </a>
+                <div style={{ textAlign: 'center' }}>**준비 중**</div>
                 <List>
                     {datas.plays &&
                         datas.plays.map((item) => (
-                            <PostCardImg data={item} />
+                            <PostCard data={item} />
                             // <PostCard
                             //   onClick={() => {
                             //     router.push(
