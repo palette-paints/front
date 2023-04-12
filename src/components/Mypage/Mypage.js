@@ -49,7 +49,7 @@ const Button = styled.button`
         font-weight: bold;
     }
 `;
-export default function Mypage() {
+export default function Mypage({ setLoginStateFalse }) {
     const [status, setStatus] = useState(1);
 
     return (
@@ -127,7 +127,7 @@ export default function Mypage() {
                     )}
                 </Categories>
             </Content>
-            {status === 1 && <Inform />}
+            {status === 1 && <Inform setLoginStateFalse={setLoginStateFalse} />}
             {status === 2 && <PlayLists />}
             {status === 3 && <StudyLists />}
             {status === 4 && <MindLists />}
