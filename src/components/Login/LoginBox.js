@@ -111,8 +111,7 @@ const Find = styled.div`
         }
     }
 `;
-
-const LoginBox = ({ loginState, setLoginStateTrue }) => {
+const LoginBox = ({ setLoginStateTrue, isLoggedIn }) => {
     const [loginId, setLoginId] = useState('');
     const [loginPw, setLoginPw] = useState('');
     const [error, setError] = useState('');
@@ -135,18 +134,13 @@ const LoginBox = ({ loginState, setLoginStateTrue }) => {
 
             .then((response) => {
                 console.log('로그인 성공');
-
-                window.location.href = '/';
+                setLoginStateTrue();
+                console.log(isLoggedIn);
             })
             .catch((error) => {
                 console.log('로그인 실패');
                 console.log(error.response.data);
             });
-    };
-
-    const loginChange = () => {
-        console.log('true');
-        setLoginStateTrue();
     };
 
     const onSubmit = async (event) => {
