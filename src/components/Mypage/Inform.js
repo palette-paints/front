@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Img from '../../images/profile.png';
 
 import styled from 'styled-components';
 
@@ -12,10 +13,10 @@ const Content = styled.div`
     display: flex;
 `;
 const Profile = styled.div`
-    background: img('src/images/profile.jpg');
+    background: url(${Img});
+    background-size: cover;
     width: 200px;
     height: 200px;
-    border: solid 1px #000;
     margin: 10px;
 `;
 const Button = styled.div`
@@ -87,8 +88,11 @@ const Inform = ({ setLoginStateFalse }) => {
     }, []);
 
     const logout = (e) => {
-        axios.post('http://3.38.52.33:8080/logout').then((response) => {
+        e.preventDefault();
+        axios.post('https://beforyou.shop/logout').then((response) => {
             console.log('로그아웃');
+            localStorage.removeItem('token');
+            localStorage.removeItem('isLoggedIn');
             setLoginStateFalse();
             localStorage.setItem('isLoggedIn', false);
         });
@@ -96,7 +100,17 @@ const Inform = ({ setLoginStateFalse }) => {
 
     const getDatas = async () => {
         try {
-            const response = await axios.get('http://3.38.52.33:8080/mypage');
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            const response = await axios.get(
+                'https://beforyou.shop/mypage',
+                config
+            );
             setUser(response.data);
             console.log('성공');
             console.log(response.data); // user 상태 값이 업데이트된 후 출력
@@ -115,7 +129,7 @@ const Inform = ({ setLoginStateFalse }) => {
                         gridRowGap: '10px',
                     }}
                 >
-                    <Profile />
+                    <Profile></Profile>
                     <Button>+ 이미지 수정</Button>
                     <Button>정보 수정</Button>
                     <Button type="button" onClick={logout}>

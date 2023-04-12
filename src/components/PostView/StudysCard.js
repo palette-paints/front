@@ -117,9 +117,7 @@ function PostCard(props) {
                             <img
                                 width="20px"
                                 src={
-                                    isCommentHover
-                                        ? commentWhite.src
-                                        : commentBlue.src
+                                    isCommentHover ? commentWhite : commentBlue
                                 }
                                 style={{ margin: '0 3px 0 0' }}
                             />

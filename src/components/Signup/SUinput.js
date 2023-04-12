@@ -227,7 +227,7 @@ const LoginBox = () => {
         e.preventDefault();
         if (loginPw != loginRePw) return alert('비밀번호가 틀려요 '); //비밀번호 유효성 체크
         axios
-            .post('http://3.38.52.33:8080/signup', {
+            .post('https://beforyou.shop/signup', {
                 loginId: loginId,
                 loginPw: loginPw,
                 userRole: userRole,
@@ -240,6 +240,7 @@ const LoginBox = () => {
             })
             .then((response) => {
                 if (response.status === 200) {
+                    window.location.href = '/';
                     console.log('우앙 회원가입 성공');
                 }
             })

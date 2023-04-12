@@ -223,6 +223,7 @@ function MindsDetail(props) {
         console.log(newCommentDetail);
         axios
             .post(`https://beforyou.shop/minds/${id}/comment/`, {
+                user: localStorage.getItem('loginId'),
                 commentDetail: newCommentDetail,
                 commentAttachedFile: 'http://wrwe',
             })
@@ -431,7 +432,7 @@ function MindsDetail(props) {
                                 left: '60px',
                             }}
                         >
-                            본인 이름
+                            {localStorage.getItem('loginId')}
                         </span>
                     </IdBox>
                     <div
