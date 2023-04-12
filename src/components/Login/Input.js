@@ -36,10 +36,12 @@ const UserDiv = styled.div`
     }
 `;
 
-const Input = ({ loginState }) => {
+const Input = () => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
     return (
         <a
-            href={loginState === false ? '/login' : '/mypage'}
+            href={isLoggedIn === 'false' ? '/login' : '/mypage'}
             style={{
                 display: 'flex',
                 flexDirection: 'row-reverse',
@@ -47,7 +49,7 @@ const Input = ({ loginState }) => {
                 textDecorationLine: 'none',
             }}
         >
-            {loginState === false ? (
+            {isLoggedIn === 'false' ? (
                 <UserDiv>
                     <p>로그인</p>
                 </UserDiv>

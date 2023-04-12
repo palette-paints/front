@@ -255,7 +255,6 @@ function StudysDetail() {
                         <img
                             src="/images/profile.png"
                             width={45}
-                            alt="프사"
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
@@ -278,17 +277,9 @@ function StudysDetail() {
                             <img
                                 width="20px"
                                 src={commentBlue.src}
-                                alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
-                        </Button>
-                        <Button>
-                            <img
-                                width="20px"
-                                src={bookmarkBlue.src}
-                                alt="북마크"
-                            />
                         </Button>
                     </div>
                     <p style={{ position: 'static', margin: '80px 0 0  50px' }}>
