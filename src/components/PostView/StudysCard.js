@@ -29,7 +29,8 @@ const IdBox = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 20px 30px;
-    margin-bottom: 30px;
+    margin-top: -50px;
+    margin-bottom: 50px;
     gap: 10px;
 
     width: 487px;

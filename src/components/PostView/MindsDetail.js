@@ -269,7 +269,6 @@ function MindsDetail(props) {
                         <img
                             src="/images/profile.png"
                             width={45}
-                            alt="프사"
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
@@ -292,17 +291,9 @@ function MindsDetail(props) {
                             <img
                                 width="20px"
                                 src={commentGreen.src}
-                                alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
-                        </Button>
-                        <Button>
-                            <img
-                                width="20px"
-                                src={bookmarkGreen.src}
-                                alt="북마크"
-                            />
                         </Button>
                     </div>
                     <p style={{ position: 'static', margin: '80px 0 0  50px' }}>
@@ -370,7 +361,7 @@ function MindsDetail(props) {
                                     right: '15px',
                                 }}
                             >
-                                {item.createdAt}
+                                {item.createdAt.slice(0, 10)}
                             </span>
                         </IdBox>
                         <div
@@ -385,7 +376,6 @@ function MindsDetail(props) {
                             <Button style={{ width: '60px' }}>
                                 <img
                                     src={likeGreen.src}
-                                    alt="좋아요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.like}
@@ -393,7 +383,6 @@ function MindsDetail(props) {
                             <Button style={{ width: '60px' }}>
                                 <img
                                     src={hateGreen.src}
-                                    alt="싫어요"
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.unlike}
@@ -491,9 +480,6 @@ function MindsDetail(props) {
                     ></input>
                 </Comment>
             )}
-            <PaginationBox>
-                <span>이전글</span>/<span>다음글</span>
-            </PaginationBox>
         </>
     );
 }

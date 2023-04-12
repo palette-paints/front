@@ -10,8 +10,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const Card = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     padding: 30px;
+    margin: 0 auto;
 
     width: 547px;
     height: 280px;
@@ -29,7 +31,8 @@ const IdBox = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 20px 30px;
-    margin-bottom: 30px;
+    margin-top: -50px;
+    margin-bottom: 50px;
     gap: 10px;
 
     width: 487px;
@@ -119,24 +122,9 @@ function PostCard(props) {
                                         ? commentWhite.src
                                         : commentGreen.src
                                 }
-                                alt="댓글"
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {props.data.comments}
-                        </Button>
-                        <Button
-                            onMouseOver={() => setIsBookmarkHover(true)}
-                            onMouseOut={() => setIsBookmarkHover(false)}
-                        >
-                            <img
-                                width="20px"
-                                src={
-                                    isBookmarkHover
-                                        ? bookmarkWhite.src
-                                        : bookmarkGreen.src
-                                }
-                                alt="북마크"
-                            />
                         </Button>
                     </div>
                 </Bottom>
