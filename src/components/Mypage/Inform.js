@@ -89,7 +89,7 @@ const Inform = ({ setLoginStateFalse }) => {
 
     const logout = (e) => {
         e.preventDefault();
-        axios.post('https://beforyou.shop/logout').then((response) => {
+        axios.post('http://3.38.52.33:8080/logout').then((response) => {
             console.log('로그아웃');
             localStorage.removeItem('token');
             localStorage.removeItem('isLoggedIn');
@@ -108,7 +108,7 @@ const Inform = ({ setLoginStateFalse }) => {
             };
 
             const response = await axios.get(
-                'https://beforyou.shop/mypage',
+                'http://3.38.52.33:8080/mypage',
                 config
             );
             setUser(response.data);
