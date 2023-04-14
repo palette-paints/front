@@ -164,7 +164,7 @@ function CheDetail() {
     // console.log(data.comments);
     const { id } = useParams();
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get(`https://beforyou.shop/plays/${id}`)
             .then((response) => {
                 setDatas(response.data);

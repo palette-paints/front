@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LoginBox from './LoginBox';
-import { useState } from 'react';
+
 const UserDiv = styled.div`
     box-sizing: border-box;
     width: 120px;

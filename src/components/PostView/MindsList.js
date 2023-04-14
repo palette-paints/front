@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
 import PostCard from '../PostView/MindsCard';
-// import PostCardImg from '@/api/PostView/MindsCardImg';
-import { Pagination } from 'react-pagination-bar';
 import 'react-pagination-bar/dist/index.css';
 import MindsBar from '../PostView/MindsBar';
 import axios from 'axios';
-// import Link from 'next/link';
 import { useEffect, useState } from 'react';
 const Content = styled.div`
     background: #fffcf8;
@@ -50,7 +47,7 @@ function MindsList() {
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get('https://beforyou.shop/minds')
             .then((response) => {
                 setDatas(response.data);

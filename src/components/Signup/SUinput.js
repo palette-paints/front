@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputForm from '../Login/InputForm';
 import LButton from '../Login/LButton';
-import Lock1 from '../../svg/Lock.svg';
-import Lock2 from '../../svg/Lock2.svg';
 import axios from 'axios';
 
 const LoginPart = styled.div`
@@ -60,97 +58,6 @@ const Container = styled.div`
     margin-bottom: 50px;
 `;
 
-const CheckBox = styled.input`
-    display: flex;
-    float: left;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: 160px;
-
-    @media screen and (max-width: 1024px) {
-        margin-left: 13px;
-    }
-
-    @media screen and (max-width: 510px) {
-        margin-left: 10px;
-    }
-`;
-
-const CheckDiv = styled.p`
-    font-family: 'Montserrat Alternates';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-
-    color: #3465c9;
-    margin-bottom: 40px;
-`;
-
-const Find = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: 0 auto;
-
-    li {
-        list-style: none;
-        color: #3465c9;
-        margin: 0px 16px;
-        font-family: 'Montserrat Alternates';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
-    }
-
-    @media screen and (max-width: 510px) {
-        li {
-            font-size: 5px;
-        }
-    }
-`;
-
-const LockImg1 = styled.img`
-    position: absolute;
-    width: 179.86px;
-    height: 226.6px;
-    left: calc(50% - 179.86px / 2 - 472.07px);
-    top: calc(50% - 226.6px / 2 - 120.04px);
-
-    transform: rotate(-7.24deg);
-    z-index: -1;
-
-    @media screen and (max-width: 1024px) {
-        left: calc(70% - 179.86px / 2 - 472.07px);
-        top: calc(50% - 226.6px / 2 - 120.04px);
-    }
-
-    @media screen and (max-width: 510px) {
-        left: calc(105% - 179.86px / 2 - 472.07px);
-        top: calc(50% - 226.6px / 2 - 120.04px);
-    }
-`;
-const LockImg2 = styled.img`
-    position: absolute;
-    width: 234px;
-    height: 317px;
-    left: calc(50% - 234px / 2 + 445px);
-    top: calc(50% - 317px / 2 + 340.97px);
-    z-index: -1;
-
-    @media screen and (max-width: 1024px) {
-        left: calc(35% - 234px / 2 + 445px);
-        top: calc(50% - 317px / 2 + 340.97px);
-    }
-
-    @media screen and (max-width: 510px) {
-        left: calc(0% - 234px / 2 + 445px);
-        top: calc(50% - 317px / 2 + 340.97px);
-    }
-`;
-
 const LoginBox = () => {
     const [loginId, setLoginId] = useState('');
     const [loginPw, setLoginPw] = useState('');
@@ -163,9 +70,6 @@ const LoginBox = () => {
     const [userEmail, setUserEmail] = useState('');
 
     const [nickname, setNickname] = useState('');
-    useEffect(() => {
-        getDatas();
-    }, []);
 
     const ChangeName = (e) => {
         e.preventDefault();
@@ -209,23 +113,10 @@ const LoginBox = () => {
         e.preventDefault();
         setNickname(e.target.value);
     };
-    const [datas, setDatas] = useState([]);
-
-    const getDatas = async () => {
-        // const response = await axios
-        //     .get('http://3.38.52.33:8080/mypage')
-        //     .then((response) => {
-        //         setDatas(response.data);
-        //         console.log(datas);
-        //     })
-        //     .catch((error) => {
-        //         console.log('회원 불러오기 실패', error.message);
-        //     });
-    };
 
     const submit = (e) => {
         e.preventDefault();
-        if (loginPw != loginRePw) return alert('비밀번호가 틀려요 '); //비밀번호 유효성 체크
+        if (loginPw !== loginRePw) return alert('비밀번호가 틀려요 '); //비밀번호 유효성 체크
         axios
             .post('https://beforyou.shop/signup', {
                 loginId: loginId,

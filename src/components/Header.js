@@ -52,15 +52,15 @@ function Header(title, loginState) {
             className={loginIconInputs.HeaderDiv}
             style={{ marginBottom: '150px' }}
         >
-            {location.includes('minds') == true ? (
+            {location.includes('minds') === true ? (
                 <Title title="마음 쑥쑥" color={'#71af8a'}></Title>
-            ) : location.includes('studys') == true ? (
+            ) : location.includes('studys') === true ? (
                 <Title title="학업 튼튼" color={'#3f8ab5'}></Title>
-            ) : location.includes('plays') == true ? (
+            ) : location.includes('plays') === true ? (
                 <Title title="체험 잼잼" color={'#7e6fdd'}></Title>
-            ) : location.includes('mypage') == true ? (
+            ) : location.includes('mypage') === true ? (
                 <Title title="마이페이지" color={'#3465c9'}></Title>
-            ) : location.includes('login') == true ? (
+            ) : location.includes('login') === true ? (
                 <Title title="로그인" color={'#3465c9'}></Title>
             ) : (
                 <Title title="회원가입" color={'#3465c9'}></Title>

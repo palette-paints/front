@@ -3,18 +3,6 @@ import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const Banner = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    height: 64px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    background: #71af8a;
-`;
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -69,7 +57,7 @@ function MindsBar(props) {
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get('http://3.38.52.33:8080/minds')
             .then((response) => {
                 setDatas(response.data);

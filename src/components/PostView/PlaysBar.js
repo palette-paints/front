@@ -1,21 +1,8 @@
 import styled from 'styled-components';
 import 'react-pagination-bar/dist/index.css';
-import logo from '../../images/PlaysLogo.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Banner = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    height: 64px;
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    background: #7e6fdd;
-`;
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -68,7 +55,7 @@ function PlaysBar(props) {
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get('https://beforyou.shop/plays')
             .then((response) => {
                 setDatas(response.data);

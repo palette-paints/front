@@ -3,9 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import commentGreen from '../../images/commentGreen.png';
 import commentWhite from '../../images/commentWhite.png';
-import bookmarkGreen from '../../images/bookmarkGreen.png';
-import bookmarkWhite from '../../images/bookmarkWhite.png';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import user from '../../images/profile.png';
 
 const Card = styled.div`
@@ -86,7 +84,6 @@ const Button = styled.button`
 `;
 function PostCard(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
-    const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     console.log(props.data);
     const date = new Date(props.data.createdDate).toISOString().split('T')[0];
     return (
