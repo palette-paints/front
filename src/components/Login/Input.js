@@ -48,13 +48,13 @@ const Input = () => {
                 textDecorationLine: 'none',
             }}
         >
-            {isLoggedIn === 'false' ? (
+            {isLoggedIn === 'true' ? (
                 <UserDiv>
-                    <p>로그인</p>
+                    <p>마이페이지</p>
                 </UserDiv>
             ) : (
                 <UserDiv>
-                    <p>마이페이지</p>
+                    <p>로그인</p>
                 </UserDiv>
             )}
         </a>
