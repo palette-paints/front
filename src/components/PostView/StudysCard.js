@@ -6,7 +6,7 @@ import commentWhite from '../../images/commentWhite.png';
 import bookmarkBlue from '../../images/bookmarkBlue.png';
 import bookmarkWhite from '../../images/bookmarkWhite.png';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-
+import user from '../../images/profile.png';
 const Card = styled.div`
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ function PostCard(props) {
             <Link to={`/studys/${props.studyId}`}>
                 <IdBox style={{ backgroundColor: '#fff' }}>
                     <img
-                        src="images/profile.png"
+                        src={user}
                         width={45}
                         style={{ position: 'absolute', left: '15px' }}
                     />

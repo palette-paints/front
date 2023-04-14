@@ -214,7 +214,7 @@ function CheDetail() {
                 <Card>
                     <IdBox>
                         <img
-                            src="/images/profile.png"
+                            src={user}
                             width={45}
                             style={{ position: 'absolute', left: '15px' }}
                         />
