@@ -11,7 +11,7 @@ const MainDiv = styled.div`
 
 const MainImgage = styled.img`
     width: fit-content;
-    height: 44.5em;
+    height: 40em;
     display: flex;
     @media screen and (max-width: 1024px) {
         width: 60em;
@@ -32,8 +32,6 @@ const MainImg = () => {
     return (
         <MainDiv>
             <MainImgage src={mainImage}></MainImgage>
-            <Circle />
-            <Circle2 />
         </MainDiv>
     );
 };
