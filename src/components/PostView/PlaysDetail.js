@@ -174,7 +174,7 @@ function CheDetail() {
                 console.log('전체 글 불러오기 실패', error.message);
             });
     };
-    const date = new Date(datas.createdAt).toISOString().split('T')[0];
+    // const date = new Date(datas.createdAt).toISOString().split('T')[0];
     return (
         <>
             <Header />
@@ -222,7 +222,7 @@ function CheDetail() {
                             {datas.user}
                         </span>
                         <span style={{ position: 'absolute', right: '15px' }}>
-                            {date}
+                            {/* {date} */}
                         </span>
                     </IdBox>
                     <div
@@ -272,9 +272,7 @@ function CheDetail() {
                         <Poster src="/images/sample.png" />
                         <Content>
                             <p>신청 방법: 구글 폼</p>
-                            <FileBar>
-                                첨부 파일: {datas.palyId.submitLink}
-                            </FileBar>
+                            <FileBar>첨부 파일:</FileBar>
                             <p>참여 대상: </p>
                             <p>
                                 신청 기간: <br />

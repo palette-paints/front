@@ -109,7 +109,7 @@ const Inform = ({ setLoginStateFalse }) => {
                 },
             };
             axios
-                .get('http://3.38.52.33:8080/mypage', config)
+                .get('https://beforyou.shop/mypage', config)
                 .then((response) => {
                     console.log('유저 정보:', response.data);
                     // 유저 정보 성공적으로 가져올 시 상태 업데이트
