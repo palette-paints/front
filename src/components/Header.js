@@ -43,20 +43,27 @@ function Header(title, loginState) {
     useEffect(() => {
         setLocation(loc.substring(1));
     }, []);
+    const gomain = () => {
+        window.location.href = '/main';
+    };
 
     return (
         <div
             className={loginIconInputs.HeaderDiv}
             style={{ marginBottom: '150px' }}
         >
-            {location !== 'minds' ? (
-                <Title title={location}></Title>
-            ) : location !== 'studys' ? (
-                <Title title={location}></Title>
-            ) : location !== 'plays' ? (
-                <Title title={location}></Title>
+            {location.includes('minds') == true ? (
+                <Title title="마음 쑥쑥" color={'#71af8a'}></Title>
+            ) : location.includes('studys') == true ? (
+                <Title title="학업 튼튼" color={'#3f8ab5'}></Title>
+            ) : location.includes('plays') == true ? (
+                <Title title="체험 잼잼" color={'#7e6fdd'}></Title>
+            ) : location.includes('mypage') == true ? (
+                <Title title="마이페이지" color={'#3465c9'}></Title>
+            ) : location.includes('login') == true ? (
+                <Title title="로그인" color={'#3465c9'}></Title>
             ) : (
-                <></>
+                <Title title="회원가입" color={'#3465c9'}></Title>
             )}
 
             <HeaderBox>
@@ -71,7 +78,7 @@ function Header(title, loginState) {
                 </li>
             </HeaderBox>
 
-            <Logo3 className={loginIconInputs.logoImg} />
+            <Logo3 className={loginIconInputs.logoImg} onClick={gomain} />
 
             <Input loginState={loginState} />
         </div>

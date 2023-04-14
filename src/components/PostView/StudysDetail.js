@@ -352,14 +352,14 @@ function StudysDetail() {
                         >
                             <Button style={{ width: '60px' }}>
                                 <img
-                                    src={likeBlue.src}
+                                    src={likeBlue}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.like}
                             </Button>
                             <Button style={{ width: '60px' }}>
                                 <img
-                                    src={hateBlue.src}
+                                    src={hateBlue}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.unlike}

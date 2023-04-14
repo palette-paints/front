@@ -20,8 +20,8 @@ const Box = styled.div`
     background: #3465c9;
 `;
 
-function Title({ title }) {
-    return <Box>{title}</Box>;
+function Title({ title, color }) {
+    return <Box style={{ background: color }}>{title}</Box>;
 }
 
 export default Title;
