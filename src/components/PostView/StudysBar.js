@@ -79,10 +79,6 @@ function StudysBar(props) {
     };
     return (
         <>
-            {/* <Banner>
-                <img src={logo.src} style={{ margin: '0 10px 0 0' }} />
-                학업 튼튼
-            </Banner> */}
             <Content>
                 <Categories>
                     <Button>전체</Button>
