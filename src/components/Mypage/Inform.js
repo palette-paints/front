@@ -116,14 +116,6 @@ const Inform = ({ setLoginStateFalse }) => {
                     setUser(response.data);
                     console.log('성공');
                 });
-            // const response = await axios.get(
-            //     'https://beforyou.shop/mypage',
-            //     config
-            // );
-
-            // setUser(response.data);
-
-            // console.log(response.data); // user 상태 값이 업데이트된 후 출력
         } catch (error) {
             console.log(error);
         }
