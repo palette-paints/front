@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputForm from './InputForm.js';
 import LButton from './LButton.js';
@@ -6,8 +6,6 @@ import Lock1 from '../../svg/Lock.svg';
 import Lock2 from '../../svg/Lock2.svg';
 import '../../css/login.css';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
-
 const LoginPart = styled.div`
     height: 600px;
     width: 800px;
@@ -111,12 +109,9 @@ const Find = styled.div`
         }
     }
 `;
-const LoginBox = ({ setLoginStateTrue, isLoggedIn }) => {
+const LoginBox = ({ setLoginStateTrue }) => {
     const [loginId, setLoginId] = useState('');
     const [loginPw, setLoginPw] = useState('');
-    const [error, setError] = useState('');
-
-    const navigate = useNavigate();
 
     const onEmailHnadler = (event) => {
         setLoginId(event.currentTarget.value);

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import 'react-pagination-bar/dist/index.css';
-import axios from 'axios';
-// import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Inform from './Inform';
 import MindLists from './MindLists';
 import StudyLists from './StudyLists';

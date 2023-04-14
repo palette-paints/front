@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import './createStlye.css';
 import styled from 'styled-components';
 
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 const CreateBox = styled.div`
     display: flex;
@@ -14,9 +13,6 @@ const CreateBox = styled.div`
 
 function CreatePost() {
     const [file, setFile] = useState(null);
-    const [title, setTitle] = useState('');
-    const [posts, setPosts] = useState('');
-    const [newPost, setNewPost] = useState('');
 
     const handleChangeFile = (event) => {
         setFile(event.target.files);

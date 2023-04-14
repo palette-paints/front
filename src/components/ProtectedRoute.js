@@ -1,9 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-function ProtectedRoute({
-    isLoggedIn,
-    component: Component,
-    setLoginStateFalse,
-}) {
+import { Navigate } from 'react-router-dom';
+function ProtectedRoute({ component: Component, setLoginStateFalse }) {
     console.log(localStorage.getItem('isLoggedIn'));
     return (
         <>
