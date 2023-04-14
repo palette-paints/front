@@ -108,14 +108,22 @@ const Inform = ({ setLoginStateFalse }) => {
                     Authorization: `Bearer ${token}`,
                 },
             };
+            axios
+                .get('https://beforyou.shop/mypage', config)
+                .then((response) => {
+                    console.log('유저 정보:', response.data);
+                    // 유저 정보 성공적으로 가져올 시 상태 업데이트
+                    setUser(response.data);
+                    console.log('성공');
+                });
+            // const response = await axios.get(
+            //     'https://beforyou.shop/mypage',
+            //     config
+            // );
 
-            const response = await axios.get(
-                'https://beforyou.shop/mypage',
-                config
-            );
-            setUser(response.data);
-            console.log('성공');
-            console.log(response.data); // user 상태 값이 업데이트된 후 출력
+            // setUser(response.data);
+
+            // console.log(response.data); // user 상태 값이 업데이트된 후 출력
         } catch (error) {
             console.log(error);
         }
@@ -149,12 +157,14 @@ const Inform = ({ setLoginStateFalse }) => {
                     >
                         <Textbox>
                             <span style={{ width: '70px' }}>성</span>|
+                            {user.userName}
                         </Textbox>
                         <Textbox>
                             <span style={{ width: '70px' }}>이름</span> |
                         </Textbox>
                         <Textbox>
                             <span style={{ width: '70px' }}>생년월일</span> |
+                            {user.userBirth}
                         </Textbox>
                         <Textbox>
                             <span style={{ width: '70px' }}>성별</span> |

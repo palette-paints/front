@@ -51,7 +51,7 @@ function MindsList() {
 
     const getDatas = async () => {
         const response = await axios
-            .get('http://3.38.52.33:8080/minds')
+            .get('https://beforyou.shop/minds')
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
