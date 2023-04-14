@@ -15,7 +15,6 @@ const CardTitle = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 30px;
-
     width: 1124px;
     height: 835px;
 
@@ -174,7 +173,7 @@ function CheDetail() {
                 console.log('전체 글 불러오기 실패', error.message);
             });
     };
-    const date = new Date(datas.createdAt).toISOString().split('T')[0];
+
     return (
         <>
             <Header />
@@ -215,15 +214,14 @@ function CheDetail() {
                         <img
                             src="/images/profile.png"
                             width={45}
-                            alt="프사"
                             style={{ position: 'absolute', left: '15px' }}
                         />
                         <span style={{ position: 'absolute', left: '60px' }}>
                             {datas.user}
                         </span>
-                        <span style={{ position: 'absolute', right: '15px' }}>
-                            {date}
-                        </span>
+                        <span
+                            style={{ position: 'absolute', right: '15px' }}
+                        ></span>
                     </IdBox>
                     <div
                         style={{
@@ -242,15 +240,12 @@ function CheDetail() {
                         >
                             <img
                                 width="20px"
-                                src={
-                                    isCommentHover
-                                        ? commentWhite.src
-                                        : commentPur.src
-                                }
-                                alt="댓글"
-                                style={{ margin: '0 3px 0 0' }}
+                                src={isCommentHover ? commentWhite : commentPur}
+                                style={{
+                                    margin: '0 3px 0 0',
+                                }}
                             />
-                            답변
+
                             {datas.comments}
                         </Button>
                         <Button
@@ -261,8 +256,8 @@ function CheDetail() {
                                 width="20px"
                                 src={
                                     isBookmarkHover
-                                        ? bookmarkWhite.src
-                                        : bookmarkPur.src
+                                        ? bookmarkWhite
+                                        : bookmarkPur
                                 }
                                 alt="북마크"
                             />
@@ -272,9 +267,7 @@ function CheDetail() {
                         <Poster src="/images/sample.png" />
                         <Content>
                             <p>신청 방법: 구글 폼</p>
-                            <FileBar>
-                                첨부 파일: {datas.palyId.submitLink}
-                            </FileBar>
+                            <FileBar>첨부 파일:</FileBar>
                             <p>참여 대상: </p>
                             <p>
                                 신청 기간: <br />
