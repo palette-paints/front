@@ -10,7 +10,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import Header from '../Header';
 import img from '../../images/smilemates.jpg';
-
+import user from '../../images/profile.png';
 const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
