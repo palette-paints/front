@@ -183,7 +183,7 @@ const Button = () => {
                 <ButtonImage src={B3} />
                 <p>마음 쑥쑥</p>
             </StyledButton>
-            <StyledButton hreef="#" style={{ color: '#3465C9' }}>
+            <StyledButton href="/mypage" style={{ color: '#3465C9' }}>
                 <ButtonImage src={B4} />
                 <p>마이페이지</p>
             </StyledButton>

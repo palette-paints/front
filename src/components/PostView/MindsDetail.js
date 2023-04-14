@@ -283,7 +283,7 @@ function MindsDetail(props) {
                         <Button style={{ width: '60px' }}>
                             <img
                                 width="20px"
-                                src={commentGreen.src}
+                                src={commentGreen}
                                 style={{ margin: '0 3px 0 0' }}
                             />
                             {datas.comments && datas.comments.length}
@@ -320,7 +320,7 @@ function MindsDetail(props) {
             <CommentBar>
                 <img
                     width="20px"
-                    src={commentWhite.src}
+                    src={commentWhite}
                     alt=""
                     style={{ margin: '0 3px 0 0' }}
                 />
@@ -368,14 +368,14 @@ function MindsDetail(props) {
                         >
                             <Button style={{ width: '60px' }}>
                                 <img
-                                    src={likeGreen.src}
+                                    src={likeGreen}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.like}
                             </Button>
                             <Button style={{ width: '60px' }}>
                                 <img
-                                    src={hateGreen.src}
+                                    src={hateGreen}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
                                 {item.unlike}

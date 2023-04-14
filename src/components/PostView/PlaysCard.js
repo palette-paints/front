@@ -106,20 +106,7 @@ function PostCard(props) {
                 </p>
                 <Bottom>
                     <Category>{props.data.category}</Category>
-                    <div style={{ display: 'flex', gap: '10px' }}>
-                        <Button
-                            onMouseOver={() => setIsCommentHover(true)}
-                            onMouseOut={() => setIsCommentHover(false)}
-                            style={{ width: '100px' }}
-                        >
-                            <img
-                                width="20px"
-                                src={commentPur}
-                                style={{ margin: '0 3px 0 0' }}
-                            />
-                            {props.data.comments}
-                        </Button>
-                    </div>
+                    <div style={{ display: 'flex', gap: '10px' }}></div>
                 </Bottom>
             </Link>
         </Card>

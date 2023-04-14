@@ -95,7 +95,6 @@ function PostCard(props) {
                     <img
                         src="images/profile.png"
                         width={45}
-                        alt="프사"
                         style={{ position: 'absolute', left: '15px' }}
                     />
                     <span style={{ position: 'absolute', left: '60px' }}>
@@ -118,9 +117,7 @@ function PostCard(props) {
                             <img
                                 width="20px"
                                 src={
-                                    isCommentHover
-                                        ? commentWhite.src
-                                        : commentGreen.src
+                                    isCommentHover ? commentWhite : commentGreen
                                 }
                                 style={{ margin: '0 3px 0 0' }}
                             />
