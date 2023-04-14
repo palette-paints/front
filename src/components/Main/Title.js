@@ -20,6 +20,7 @@ const MainDiv = styled.div`
 
 const TitleImg = styled.img`
     display: flex;
+    margin-top: -4em;
     @media screen and (max-width: 1024px) {
         margin-top: -6.3em;
         width: 25em;
