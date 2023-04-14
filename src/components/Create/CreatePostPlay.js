@@ -19,8 +19,8 @@ const TitleInput = styled.input`
     margin: auto;
     width: 1000px;
     height: 30x;
-    background: #71af8a;
-    box-shadow: 2px 2px 15px rgba(113, 175, 138, 0.5);
+    background: #7e6fdd;
+    box-shadow: 2px 2px 15px rgba(126, 110, 221, 0.5);
     border-radius: 20px;
     border: none;
     color: #fff;
@@ -36,10 +36,10 @@ const CreateFile = styled.input`
     justify-content: center;
     align-items: center;
     padding: 10px 10px;
-    color: #4e705b;
+    color: #7e6fdd;
     font-size: 1em;
     background: #fff;
-    box-shadow: 0px 2px 10px rgba(113, 175, 138, 0.5);
+    box-shadow: 0px 2px 10px rgba(126, 110, 221, 0.5);
     border-radius: 30px;
     border: none;
     margin-top: 30px;
@@ -48,7 +48,7 @@ const CreateFile = styled.input`
 function CreatePost() {
     const [file, setFile] = useState(null);
     const [title, setTitle] = useState('');
-    const [mindDetails, setMindDetails] = useState('');
+    const [studyDetails, setStudyDetails] = useState('');
 
     const handleChangeFile = (event) => {
         setFile(event.target.files);
@@ -58,35 +58,33 @@ function CreatePost() {
         setTitle(event.currentTarget.value);
     };
     const setNewPost = (event) => {
-        setMindDetails(event.currentTarget.value);
+        setStudyDetails(event.currentTarget.value);
     };
     const postPost = (event) => {
         event.preventDefault();
 
-        const mindDetailReq = {
-            category: '학업',
+        const studyDetailReq = {
+            category: '요리',
             title: title,
-            mindDetails: mindDetails,
-            password: '1234',
-            status: 'O',
+            studyDetails: studyDetails,
         };
         const fd = new FormData();
-        fd.append('mindAttachedFile', file);
+        fd.append('studyAttachedFile', file);
         fd.append(
-            ' mindDetailReq',
-            new Blob([JSON.stringify(mindDetailReq)], {
+            ' studyDetailReq',
+            new Blob([JSON.stringify(studyDetailReq)], {
                 type: 'application/json',
             })
         );
 
         axios
-            .post(`https://beforyou.shop/minds/new`, fd, {
+            .post(`http://3.38.52.33:8080/plays/new`, fd, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             })
             .then((response) => {
-                window.location.href = '/minds/';
+                window.location.href = '/plays/';
             })
             .catch((error) => {
                 console.log('작성 실패');
@@ -107,7 +105,7 @@ function CreatePost() {
                         onChange={setPostTitle}
                     />
                     <input
-                        className="CreateForm2"
+                        className="CreateForm3"
                         type="text"
                         placeholder="내용을 작성하세요"
                         onChange={setNewPost}
@@ -126,7 +124,7 @@ function CreatePost() {
                         onChange={handleChangeFile}
                         multiple="multiple"
                     ></CreateFile>
-                    <button className="save2">저장</button>
+                    <button className="save3">저장</button>
                 </div>
             </form>
         </CreateBox>
