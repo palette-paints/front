@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import 'react-pagination-bar/dist/index.css';
-import logo from '../../images/MindsLogo.png';
 import axios from 'axios';
-// import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const Banner = styled.div`
