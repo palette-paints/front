@@ -1,8 +1,6 @@
 import React from 'react';
 import mainImage from '../../images/mainImage.png';
 import styled from 'styled-components';
-import Circle from './Circle.js';
-import Circle2 from './Circle2.js';
 
 const MainDiv = styled.div`
     display: flex;

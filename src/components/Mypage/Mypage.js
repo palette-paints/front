@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import 'react-pagination-bar/dist/index.css';
-// import Link from 'next/link';
+
 import { useState } from 'react';
 import Inform from './Inform';
 import MindLists from './MindLists';
