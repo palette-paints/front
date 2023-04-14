@@ -63,7 +63,7 @@ function CreatePost() {
     const postPost = (event) => {
         event.preventDefault();
 
-        const mindsDetailReq = {
+        const mindDetailReq = {
             category: '국어',
             title: title,
             mindDetails: mindDetails,
@@ -73,8 +73,8 @@ function CreatePost() {
         const fd = new FormData();
         fd.append('mindAttachedFile', file);
         fd.append(
-            ' mindsDetailReq',
-            new Blob([JSON.stringify(mindsDetailReq)], {
+            ' mindDetailReq',
+            new Blob([JSON.stringify(mindDetailReq)], {
                 type: 'application/json',
             })
         );

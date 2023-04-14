@@ -16,3 +16,14 @@ body {
     margin-right: 0;
     padding: 0;
 }
+
+::-webkit-scrollbar {
+    width: 5px; /* 스크롤바의 너비 */
+}
+
+::-webkit-scrollbar-thumb {
+    height: 40px; /* 스크롤바의 길이 */
+    background: #3465c9; /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+}
