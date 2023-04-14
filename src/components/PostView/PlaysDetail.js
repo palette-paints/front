@@ -9,6 +9,8 @@ import bookmarkWhite from '../../images/bookmarkWhite.png';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import Header from '../Header';
+import img from '../../images/smilemates.jpg';
+
 const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
@@ -264,7 +266,7 @@ function CheDetail() {
                         </Button>
                     </div>
                     <Wrapper>
-                        <Poster src="/images/sample.png" />
+                        <Poster src={img} />
                         <Content>
                             <p>신청 방법: 구글 폼</p>
                             <FileBar>첨부 파일:</FileBar>
