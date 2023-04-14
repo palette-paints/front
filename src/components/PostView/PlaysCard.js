@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { useState } from 'react';
-import commentPur from '../../images/commentPur.png';
-// import commentWhite from '/public/images/commentWhite.png';
-import bookmarkPur from '../../images/bookmarkPur.png';
-// import bookmarkWhite from '/public/images/bookmarkWhite.png';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import user from '../../images/profile.png';
 const Card = styled.div`
     display: flex;
@@ -63,27 +58,8 @@ const Category = styled.button`
     border-radius: 30px;
     border: none;
 `;
-const Button = styled.button`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 10px;
 
-    color: ##4f46af;
-    font-size: 1em;
-    background: #fff;
-    box-shadow: 0px 2px 10px rgba(126, 110, 221, 0.5);
-    border-radius: 30px;
-    border: none;
-    &:hover {
-        background: #7e6fdd;
-        color: #fff;
-    }
-`;
 function PostCard(props) {
-    const [isCommentHover, setIsCommentHover] = useState(false);
-    const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const date = new Date(props.data.createdDate).toISOString().split('T')[0];
     return (
         <Card>

@@ -2,14 +2,10 @@ import styled from 'styled-components';
 
 import PostCard from '../PostView/StudysCard';
 import StudysBar from '../PostView/StudysBar';
-import PostCardImg from '../PostView/StudysCardImg';
 
 import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
-// import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-// import Link from 'next/link';
 
 const Content = styled.div`
     background: #fffcf8;
@@ -52,7 +48,7 @@ function StudysList() {
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get('http://3.38.52.33:8080/studys')
             .then((response) => {
                 setDatas(response.data);

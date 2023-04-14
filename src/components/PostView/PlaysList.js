@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import PostCard from '../PostView/PlaysCard';
 import PlaysBar from '../PostView/PlaysBar';
-import { Pagination } from 'react-pagination-bar';
 import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -45,7 +44,7 @@ function PlaysList() {
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get('https://beforyou.shop/plays')
             .then((response) => {
                 setDatas(response.data);

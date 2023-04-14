@@ -1,20 +1,14 @@
 import React from 'react';
 import MindsBar from './MindsBar';
-import { useState, useEffect, useRouter, useMemo } from 'react';
-import { redirect, useParams } from 'react-router';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import styled from 'styled-components';
 import commentGreen from '../../images/commentGreen.png';
 import commentWhite from '../../images/commentWhite.png';
-import bookmarkGreen from '../../images/bookmarkGreen.png';
-import bookmarkWhite from '../../images/bookmarkWhite.png';
 import likeGreen from '../../images/likeGreen.png';
-import likeWhite from '../../images/likeWhite.png';
 import hateGreen from '../../images/hateGreen.png';
-import hateWhite from '../../images/hateWhite.png';
 import Header from '../Header';
-import user from '../../images/profile.png';
-
 const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
@@ -153,27 +147,8 @@ const CommentAdd = styled.div`
         color: #fff;
     }
 `;
-const PaginationBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    margin: 40px auto;
-    width: 526px;
-    height: 52px;
-    background: #ffffff;
-    box-shadow: 0px 2px 10px rgba(113, 175, 138, 0.5);
-    border-radius: 30px;
-    padding: 10px;
-    color: #4e705b;
-`;
 
 function MindsDetail(props) {
-    const [isCommentHover, setIsCommentHover] = useState(false);
-    const [isBookmarkHover, setIsBookmarkHover] = useState(false);
-    //const [isLikeHover, setIsLikeHover] = useState(false);
     //const [isHateHover, setIsHateHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
 
@@ -208,7 +183,7 @@ function MindsDetail(props) {
     };
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get(`https://beforyou.shop/minds/${id}`)
             .then((response) => {
                 setDatas(response.data);
@@ -262,7 +237,7 @@ function MindsDetail(props) {
                 <Card>
                     <IdBox>
                         <img
-                            src={user}
+                            src="/images/profile.png"
                             width={45}
                             style={{ position: 'absolute', left: '15px' }}
                         />
@@ -335,7 +310,7 @@ function MindsDetail(props) {
                     <Comment>
                         <IdBox style={{ width: '860px' }}>
                             <img
-                                src={user}
+                                src="/images/profile.png"
                                 width={45}
                                 style={{
                                     position: 'absolute',

@@ -78,7 +78,7 @@ const Button = styled.button`
         color: #fff;
     }
 `;
-function PostCard() {
+function PostCard(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
     const date = new Date(props.data.createdDate).toISOString().split('T')[0];
