@@ -13,6 +13,8 @@ import likeWhite from '../../images/likeWhite.png';
 import hateGreen from '../../images/hateGreen.png';
 import hateWhite from '../../images/hateWhite.png';
 import Header from '../Header';
+import user from '../../images/profile.png';
+
 const CardTitle = styled.div`
     display: flex;
     flex-direction: column;
@@ -260,7 +262,7 @@ function MindsDetail(props) {
                 <Card>
                     <IdBox>
                         <img
-                            src="/images/profile.png"
+                            src={user}
                             width={45}
                             style={{ position: 'absolute', left: '15px' }}
                         />
@@ -333,7 +335,7 @@ function MindsDetail(props) {
                     <Comment>
                         <IdBox style={{ width: '860px' }}>
                             <img
-                                src="/images/profile.png"
+                                src={user}
                                 width={45}
                                 style={{
                                     position: 'absolute',

@@ -6,6 +6,7 @@ import commentWhite from '../../images/commentWhite.png';
 import bookmarkGreen from '../../images/bookmarkGreen.png';
 import bookmarkWhite from '../../images/bookmarkWhite.png';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import user from '../../images/profile.png';
 
 const Card = styled.div`
     display: flex;
@@ -93,7 +94,7 @@ function PostCard(props) {
             <Link to={`/minds/${props.mindId}`}>
                 <IdBox>
                     <img
-                        src="images/profile.png"
+                        src={user}
                         width={45}
                         style={{ position: 'absolute', left: '15px' }}
                     />
