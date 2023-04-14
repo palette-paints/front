@@ -92,7 +92,6 @@ function PostCard(props) {
                     <img
                         src="images/profile.png"
                         width={45}
-                        alt="프사"
                         style={{ position: 'absolute', left: '15px' }}
                     />
                     <span style={{ position: 'absolute', left: '60px' }}>

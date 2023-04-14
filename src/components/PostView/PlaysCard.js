@@ -9,8 +9,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const Card = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     padding: 30px;
+    margin: 0 auto;
 
     width: 547px;
     height: 280px;
@@ -26,7 +28,8 @@ const IdBox = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 20px 30px;
-    margin-bottom: 30px;
+    margin-top: -50px;
+    margin-bottom: 50px;
     gap: 10px;
 
     width: 487px;
@@ -80,6 +83,7 @@ const Button = styled.button`
 function PostCard(props) {
     const [isCommentHover, setIsCommentHover] = useState(false);
     const [isBookmarkHover, setIsBookmarkHover] = useState(false);
+    const date = new Date(props.data.createdDate).toISOString().split('T')[0];
     return (
         <Card>
             <Link to={`/plays/${props.playId}`}>
@@ -87,43 +91,33 @@ function PostCard(props) {
                     <img
                         src="images/profile.png"
                         width={45}
-                        alt="프사"
                         style={{ position: 'absolute', left: '15px' }}
                     />
                     <span style={{ position: 'absolute', left: '60px' }}>
-                        닉네임
+                        {props.data.user}
                     </span>
                     <span style={{ position: 'absolute', right: '15px' }}>
-                        날짜
+                        {date}
                     </span>
                 </IdBox>
-                <h4>제목입니다.</h4>
-                <p>질문합니다.</p>
+                <h4 style={{ backgroundColor: '#fff' }}>{props.data.title}</h4>
+                <p style={{ backgroundColor: '#fff' }}>
+                    {props.data.studyDetails}
+                </p>
                 <Bottom>
-                    <Category>카테고리</Category>
+                    <Category>{props.data.category}</Category>
                     <div style={{ display: 'flex', gap: '10px' }}>
                         <Button
                             onMouseOver={() => setIsCommentHover(true)}
                             onMouseOut={() => setIsCommentHover(false)}
-                            style={{ width: '60px' }}
+                            style={{ width: '100px' }}
                         >
                             <img
                                 width="20px"
-                                src={commentPur.src}
-                                alt="댓글"
+                                src={commentPur}
                                 style={{ margin: '0 3px 0 0' }}
                             />
-                            0
-                        </Button>
-                        <Button
-                            onMouseOver={() => setIsBookmarkHover(true)}
-                            onMouseOut={() => setIsBookmarkHover(false)}
-                        >
-                            <img
-                                width="20px"
-                                src={bookmarkPur.src}
-                                alt="북마크"
-                            />
+                            {props.data.comments}
                         </Button>
                     </div>
                 </Bottom>
