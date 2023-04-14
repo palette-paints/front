@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import SignupBox from '../components/Signup/SignupBox';
 
 function Signup() {
