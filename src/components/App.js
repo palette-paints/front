@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-    BrowserRouter as Routes,
+    HashRouter as Routes,
     Route,
     Navigate,
-    BrowserRouter,
+    HashRouter,
 } from 'react-router-dom';
 import Main from '../routes/Main';
 import Plays from '../routes/Plays';
@@ -42,7 +42,7 @@ const App = () => {
     }, [isLoggedIn]);
 
     return (
-        <BrowserRouter basename="/">
+        <HashRouter basename="/">
             <Routes>
                 <Route path={`${process.env.PUBLIC_URL}/`} element={<Main />} />
                 <Route
@@ -118,7 +118,7 @@ const App = () => {
                     element={<Navigate to={`${process.env.PUBLIC_URL}/`} />}
                 />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
