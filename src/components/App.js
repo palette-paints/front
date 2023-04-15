@@ -42,7 +42,7 @@ const App = () => {
     }, [isLoggedIn]);
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/">
             <Routes>
                 <Route path={`${process.env.PUBLIC_URL}/`} element={<Main />} />
                 <Route

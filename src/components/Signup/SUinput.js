@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputForm from '../Login/InputForm';
 import LButton from '../Login/LButton';
@@ -117,7 +117,7 @@ const LoginBox = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        if (loginPw != loginRePw) return alert('비밀번호가 틀려요 '); //비밀번호 유효성 체크
+        if (loginPw !== loginRePw) return alert('비밀번호가 틀려요 '); //비밀번호 유효성 체크
         axios
             .post('https://beforyou.shop/signup', {
                 loginId: loginId,

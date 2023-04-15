@@ -4,13 +4,9 @@ import { useState, useEffect } from 'react';
 import StudysBar from '../PostView/StudysBar';
 import commentBlue from '../../images/commentBlue.png';
 import commentWhite from '../../images/commentWhite.png';
-import bookmarkBlue from '../../images/bookmarkBlue.png';
-import bookmarkWhite from '../../images/bookmarkWhite.png';
 import likeBlue from '../../images/likeBlue.png';
-import likeWhite from '../../images/likeWhite.png';
 import hateBlue from '../../images/hateBlue.png';
-import hateWhite from '../../images/hateWhite.png';
-import { redirect, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import Header from '../Header';
 import user from '../../images/profile.png';
@@ -135,28 +131,9 @@ const CommentAdd = styled.div`
         background: #3f8ab5;
     }
 `;
-const PaginationBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 40px auto;
-    width: 526px;
-    height: 52px;
-    background: #ffffff;
-    box-shadow: 0px 2px 10px rgba(63, 138, 181, 0.5);
-    border-radius: 30px;
-    padding: 10px;
-    color: #00639b;
-`;
 function StudysDetail() {
-    const [isCommentHover, setIsCommentHover] = useState(false);
-    const [isBookmarkHover, setIsBookmarkHover] = useState(false);
-    const [isLikeHover, setIsLikeHover] = useState(false);
-    const [isHateHover, setIsHateHover] = useState(false);
+    const [isCommentHover] = useState(false);
     const [newCommentDetail, setNewCommentDetail] = useState([]);
-    const [newCommentVis, setNewCommentVis] = useState(false);
     const [visible, setVisible] = useState(false);
 
     const { id } = useParams();
@@ -167,7 +144,7 @@ function StudysDetail() {
     }, []);
 
     const getDatas = async () => {
-        const response = await axios
+        await axios
             .get(`https://beforyou.shop/studys/${id}`)
             .then((response) => {
                 setDatas(response.data);
