@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-    HashRouter as Routes,
+    BrowserRouter as Routes,
     Route,
     Navigate,
     BrowserRouter,
@@ -42,7 +42,7 @@ const App = () => {
     }, [isLoggedIn]);
 
     return (
-        <HashRouter basename="/">
+        <BrowserRouter basename="/">
             <Routes>
                 <Route path={`${process.env.PUBLIC_URL}/`} element={<Main />} />
                 <Route
@@ -118,7 +118,7 @@ const App = () => {
                     element={<Navigate to={`${process.env.PUBLIC_URL}/`} />}
                 />
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     );
 };
 
