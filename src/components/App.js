@@ -42,7 +42,7 @@ const App = () => {
     }, [isLoggedIn]);
 
     return (
-        <BrowserRouter basename="/">
+        <HashRouter basename="/">
             <Routes>
                 <Route path={`${process.env.PUBLIC_URL}/`} element={<Main />} />
                 <Route
@@ -118,7 +118,7 @@ const App = () => {
                     element={<Navigate to={`${process.env.PUBLIC_URL}/`} />}
                 />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
