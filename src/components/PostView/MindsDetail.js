@@ -237,6 +237,7 @@ function MindsDetail(props) {
                 <Card>
                     <IdBox>
                         <img
+                            alt=""
                             src="/images/profile.png"
                             width={45}
                             style={{ position: 'absolute', left: '15px' }}
@@ -259,6 +260,7 @@ function MindsDetail(props) {
                     >
                         <Button style={{ width: '60px' }}>
                             <img
+                                alt=""
                                 width="20px"
                                 src={commentGreen}
                                 style={{ margin: '0 3px 0 0' }}
@@ -270,6 +272,7 @@ function MindsDetail(props) {
                         {datas.mindDetails}
                     </p>
                     <img
+                        alt=""
                         src="/images/sample.png"
                         style={{ width: '65%', margin: '10px 50px' }}
                     />
@@ -310,6 +313,7 @@ function MindsDetail(props) {
                     <Comment>
                         <IdBox style={{ width: '860px' }}>
                             <img
+                                alt=""
                                 src="/images/profile.png"
                                 width={45}
                                 style={{
@@ -345,6 +349,7 @@ function MindsDetail(props) {
                         >
                             <Button style={{ width: '60px' }}>
                                 <img
+                                    alt=""
                                     src={likeGreen}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
@@ -352,6 +357,7 @@ function MindsDetail(props) {
                             </Button>
                             <Button style={{ width: '60px' }}>
                                 <img
+                                    alt=""
                                     src={hateGreen}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
@@ -396,6 +402,7 @@ function MindsDetail(props) {
                 <Comment>
                     <IdBox style={{ width: '860px' }}>
                         <img
+                            alt=""
                             src="/images/profile.png"
                             width={45}
                             style={{

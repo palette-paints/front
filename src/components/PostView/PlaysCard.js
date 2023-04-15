@@ -66,6 +66,7 @@ function PostCard(props) {
             <Link to={`/plays/${props.playId}`}>
                 <IdBox>
                     <img
+                        alt=""
                         src={user}
                         width={45}
                         style={{ position: 'absolute', left: '15px' }}
