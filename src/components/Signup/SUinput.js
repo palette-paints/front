@@ -71,9 +71,6 @@ const LoginBox = () => {
     const [userEmail, setUserEmail] = useState('');
 
     const [nickname, setNickname] = useState('');
-    useEffect(() => {
-        getDatas();
-    }, []);
 
     const ChangeName = (e) => {
         e.preventDefault();
