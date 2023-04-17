@@ -91,6 +91,7 @@ function PostCard(props) {
             <Link to={`/minds/${props.mindId}`}>
                 <IdBox>
                     <img
+                        alt=""
                         src={user}
                         width={45}
                         style={{ position: 'absolute', left: '15px' }}
@@ -113,6 +114,7 @@ function PostCard(props) {
                             style={{ width: '60px' }}
                         >
                             <img
+                                alt=""
                                 width="20px"
                                 src={
                                     isCommentHover ? commentWhite : commentGreen

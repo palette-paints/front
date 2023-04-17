@@ -225,6 +225,7 @@ function StudysDetail() {
                 <Card>
                     <IdBox>
                         <img
+                            alt=""
                             src={user}
                             width={45}
                             style={{ position: 'absolute', left: '15px' }}
@@ -247,6 +248,7 @@ function StudysDetail() {
                     >
                         <Button style={{ width: '60px' }}>
                             <img
+                                alt=""
                                 width="20px"
                                 src={
                                     isCommentHover ? commentWhite : commentBlue
@@ -260,6 +262,7 @@ function StudysDetail() {
                         {datas.studyDetails}
                     </p>
                     <img
+                        alt=""
                         src="/images/sample.png"
                         style={{ width: '65%', margin: '10px 50px' }}
                     />
@@ -303,6 +306,7 @@ function StudysDetail() {
                     <Comment>
                         <IdBox style={{ width: '860px' }}>
                             <img
+                                alt=""
                                 src="/images/profile.png"
                                 width={45}
                                 style={{ position: 'absolute', left: '15px' }}
@@ -329,6 +333,7 @@ function StudysDetail() {
                         >
                             <Button style={{ width: '60px' }}>
                                 <img
+                                    alt=""
                                     src={likeBlue}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
@@ -336,6 +341,7 @@ function StudysDetail() {
                             </Button>
                             <Button style={{ width: '60px' }}>
                                 <img
+                                    alt=""
                                     src={hateBlue}
                                     style={{ margin: '0 3px 0 0' }}
                                 />
@@ -376,6 +382,7 @@ function StudysDetail() {
                 <Comment>
                     <IdBox style={{ width: '860px' }}>
                         <img
+                            alt=""
                             src="/images/profile.png"
                             width={45}
                             style={{

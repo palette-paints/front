@@ -5,6 +5,7 @@ import 'react-pagination-bar/dist/index.css';
 import MindsBar from '../PostView/MindsBar';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -63,9 +64,9 @@ function MindsList() {
         <>
             <MindsBar />
             <Content>
-                <a href="/minds/create" style={{ textDecoration: 'none' }}>
+                <Link to="/minds/create" style={{ textDecoration: 'none' }}>
                     <Question>+ 질문하기</Question>
-                </a>
+                </Link>
                 <List>
                     {/* {datas &&
                         datas.map((data) => (
