@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import {
+    Routes,
+    Route,
+    Navigate,
+    BrowserRouter,
+    HashRouter,
+} from 'react-router-dom';
 import Main from '../routes/Main';
 import Plays from '../routes/Plays';
 import PlaysDetail from '../components/PostView/PlaysDetail';
@@ -38,7 +44,7 @@ const App = () => {
 
     return (
         <>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <HashRouter>
                 <Routes>
                     <Route exact path="/" element={<Main />} />
                     <Route path="/plays" element={<Plays />} />
@@ -106,7 +112,7 @@ const App = () => {
                         element={<Navigate to={`${process.env.PUBLIC_URL}/`} />}
                     /> */}
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </>
     );
 };

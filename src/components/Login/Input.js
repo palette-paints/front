@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const UserDiv = styled.div`
     box-sizing: border-box;
@@ -38,8 +39,8 @@ const UserDiv = styled.div`
 const Input = () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     return (
-        <a
-            href={isLoggedIn === 'false' ? '/login' : '/mypage'}
+        <Link
+            to={isLoggedIn === 'false' ? '/login' : '/mypage'}
             style={{
                 display: 'flex',
                 flexDirection: 'row-reverse',
@@ -56,7 +57,7 @@ const Input = () => {
                     <p>로그인</p>
                 </UserDiv>
             )}
-        </a>
+        </Link>
     );
 };
 

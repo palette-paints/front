@@ -6,6 +6,7 @@ import StudysBar from '../PostView/StudysBar';
 import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Content = styled.div`
     background: #fffcf8;
@@ -63,9 +64,9 @@ function StudysList() {
         <>
             <StudysBar />
             <Content>
-                <a href="/studys/create" style={{ textDecoration: 'none' }}>
+                <Link to="/studys/create" style={{ textDecoration: 'none' }}>
                     <Question>+ 질문하기</Question>
-                </a>
+                </Link>
                 <List>
                     {datas.studies &&
                         datas.studies.map((item) => (

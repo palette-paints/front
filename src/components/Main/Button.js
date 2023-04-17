@@ -4,6 +4,7 @@ import B1 from '../../svg/B1.svg';
 import B2 from '../../svg/B2.svg';
 import B3 from '../../svg/B3.svg';
 import B4 from '../../svg/B4.svg';
+import { Link } from 'react-router-dom';
 
 const ButtonDiv = styled.div`
     width: fit-content;
@@ -171,22 +172,30 @@ const ButtonImage = styled.img`
 const Button = () => {
     return (
         <ButtonDiv>
-            <StyledButton href="/plays" style={{ color: '#7E6FDD' }}>
-                <ButtonImage src={B1} />
-                <p>체험 잼잼</p>
-            </StyledButton>
-            <StyledButton href="/studys" style={{ color: '#3F8AB5' }}>
-                <ButtonImage src={B2} />
-                <p>학업 튼튼</p>
-            </StyledButton>
-            <StyledButton href="/minds" style={{ color: '#71AF8A' }}>
-                <ButtonImage src={B3} />
-                <p>마음 쑥쑥</p>
-            </StyledButton>
-            <StyledButton href="/mypage" style={{ color: '#3465C9' }}>
-                <ButtonImage src={B4} />
-                <p>마이페이지</p>
-            </StyledButton>
+            <Link to="/plays">
+                <StyledButton style={{ color: '#7E6FDD' }}>
+                    <ButtonImage src={B1} />
+                    <p>체험 잼잼</p>
+                </StyledButton>
+            </Link>
+            <Link to="/studys">
+                <StyledButton href="/front/studys" style={{ color: '#3F8AB5' }}>
+                    <ButtonImage src={B2} />
+                    <p>학업 튼튼</p>
+                </StyledButton>
+            </Link>
+            <Link to="/minds">
+                <StyledButton href="/front/minds" style={{ color: '#71AF8A' }}>
+                    <ButtonImage src={B3} />
+                    <p>마음 쑥쑥</p>
+                </StyledButton>
+            </Link>
+            <Link to="/mypage">
+                <StyledButton href="/front/mypage" style={{ color: '#3465C9' }}>
+                    <ButtonImage src={B4} />
+                    <p>마이페이지</p>
+                </StyledButton>
+            </Link>
         </ButtonDiv>
     );
 };

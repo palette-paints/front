@@ -4,6 +4,7 @@ import PlaysBar from '../PostView/PlaysBar';
 import 'react-pagination-bar/dist/index.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Content = styled.div`
     background: #fffcf8;
 `;
@@ -59,9 +60,9 @@ function PlaysList() {
         <>
             <PlaysBar />
             <Content>
-                <a href="/plays/create" style={{ textDecoration: 'none' }}>
+                <Link to="/plays/create" style={{ textDecoration: 'none' }}>
                     <Question>+ 개설하기</Question>
-                </a>
+                </Link>
 
                 <List>
                     {datas.plays &&

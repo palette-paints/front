@@ -4,7 +4,7 @@ import { ReactComponent as Logo3 } from '../svg/Logo.svg';
 import Input from './Login/Input';
 import loginIconInputs from '../modules/Input.module.css';
 import Title from './Title';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const HeaderBox = styled.div`
     display: flex;
@@ -43,9 +43,9 @@ function Header(title, loginState) {
     useEffect(() => {
         setLocation(loc.substring(1));
     }, []);
-    const gomain = () => {
-        window.location.href = '/main';
-    };
+    // const gomain = () => {
+    //     window.location.href = '/main';
+    // };
 
     return (
         <div
@@ -68,18 +68,18 @@ function Header(title, loginState) {
 
             <HeaderBox>
                 <li>
-                    <a href="/plays">체험 잼잼</a>
+                    <Link to="/plays">체험 잼잼</Link>
                 </li>
                 <li>
-                    <a href="/studys">학업 튼튼</a>
+                    <Link to="/studys">학업 튼튼</Link>
                 </li>
                 <li>
-                    <a href="/minds">마음 쑥쑥</a>
+                    <Link to="/minds">마음 쑥쑥</Link>
                 </li>
             </HeaderBox>
-
-            <Logo3 className={loginIconInputs.logoImg} onClick={gomain} />
-
+            <Link to="/">
+                <Logo3 className={loginIconInputs.logoImg} />
+            </Link>
             <Input loginState={loginState} />
         </div>
     );
