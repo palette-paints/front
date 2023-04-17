@@ -214,6 +214,7 @@ function CheDetail() {
                 <Card>
                     <IdBox>
                         <img
+                            alt=""
                             src={user}
                             width={45}
                             style={{ position: 'absolute', left: '15px' }}
@@ -241,6 +242,7 @@ function CheDetail() {
                             style={{ width: '60px' }}
                         >
                             <img
+                                alt=""
                                 width="20px"
                                 src={isCommentHover ? commentWhite : commentPur}
                                 style={{

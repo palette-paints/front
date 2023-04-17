@@ -87,6 +87,7 @@ function PostCard(props) {
             <Link to={`/studys/${props.studyId}`}>
                 <IdBox style={{ backgroundColor: '#fff' }}>
                     <img
+                        alt=""
                         src={user}
                         width={45}
                         style={{ position: 'absolute', left: '15px' }}
@@ -111,6 +112,7 @@ function PostCard(props) {
                             style={{ width: '100px' }}
                         >
                             <img
+                                alt=""
                                 width="20px"
                                 src={
                                     isCommentHover ? commentWhite : commentBlue
