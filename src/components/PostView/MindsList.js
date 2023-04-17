@@ -49,7 +49,7 @@ function MindsList() {
 
     const getDatas = async () => {
         await axios
-            .get('https://palette-paints.github.io/front/beforyou.shop/minds')
+            .get('https://beforyou.shop/minds')
             .then((response) => {
                 setDatas(response.data);
                 console.log('성공');
