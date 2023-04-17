@@ -179,28 +179,19 @@ const Button = () => {
                 </StyledButton>
             </Link>
             <Link to="/studys">
-                <StyledButton
-                    href="/sgm_front/studys"
-                    style={{ color: '#3F8AB5' }}
-                >
+                <StyledButton href="/front/studys" style={{ color: '#3F8AB5' }}>
                     <ButtonImage src={B2} />
                     <p>학업 튼튼</p>
                 </StyledButton>
             </Link>
             <Link to="/minds">
-                <StyledButton
-                    href="/sgm_front/minds"
-                    style={{ color: '#71AF8A' }}
-                >
+                <StyledButton href="/front/minds" style={{ color: '#71AF8A' }}>
                     <ButtonImage src={B3} />
                     <p>마음 쑥쑥</p>
                 </StyledButton>
             </Link>
             <Link to="/mypage">
-                <StyledButton
-                    href="/sgm_front/mypage"
-                    style={{ color: '#3465C9' }}
-                >
+                <StyledButton href="/front/mypage" style={{ color: '#3465C9' }}>
                     <ButtonImage src={B4} />
                     <p>마이페이지</p>
                 </StyledButton>
