@@ -55,7 +55,7 @@ function StudysBar(props) {
 
     const getDatas = async () => {
         await axios
-            .get('http://3.38.52.33:8080/studys')
+            .get('https://beforyou.shop/studys')
             .then((response) => {
                 setDatas(response.data);
                 console.log(datas);

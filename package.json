@@ -49,6 +49,5 @@
     "devDependencies": {
         "gh-pages": "^5.0.0",
         "redux-devtools-extension": "^2.13.9"
-    },
-    "proxy": "https://beforyou.shop/minds"
+    }
 }
