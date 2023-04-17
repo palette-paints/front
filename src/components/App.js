@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Routes,
-    Route,
-    Navigate,
-    BrowserRouter,
-    HashRouter,
-} from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import Main from '../routes/Main';
 import Plays from '../routes/Plays';
 import PlaysDetail from '../components/PostView/PlaysDetail';
