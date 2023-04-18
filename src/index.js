@@ -5,7 +5,7 @@ import axios from 'axios';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const PORT = 3000; // 포트 번호
-const serverURL = `https://palette-paints.github.io/front/:${PORT}`;
+const serverURL = `https://beforyou.shop/:${PORT}`;
 axios
     .get(serverURL)
     .then(() => {
