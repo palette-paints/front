@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Main from '../routes/Main';
 import Plays from '../routes/Plays';
 import PlaysDetail from '../components/PostView/PlaysDetail';
@@ -38,19 +38,15 @@ const App = () => {
 
     return (
         <>
-            <HashRouter>
+            <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={<Main />} />
                     <Route path="/plays" element={<Plays />} />
-                    <Route exact path="/plays/:id" element={<PlaysDetail />} />
+                    <Route path="/plays/:id" element={<PlaysDetail />} />
                     <Route path="/studys" element={<Studys />} />
-                    <Route
-                        exact
-                        path="/studys/:id"
-                        element={<StudysDetail />}
-                    />
+                    <Route path="/studys/:id" element={<StudysDetail />} />
                     <Route path="/minds" element={<Minds />} />
-                    <Route exact path="/minds/:id" element={<MindsDetail />} />
+                    <Route path="/minds/:id" element={<MindsDetail />} />
                     <Route
                         path="/login"
                         element={
@@ -106,7 +102,7 @@ const App = () => {
                         element={<Navigate to={`${process.env.PUBLIC_URL}/`} />}
                     /> */}
                 </Routes>
-            </HashRouter>
+            </BrowserRouter>
         </>
     );
 };
